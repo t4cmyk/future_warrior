@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "lib": ["es6", "dom", "es2017"],
+    "target": "esnext",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "jsx": "react"
+  },
+  "include": ["./src/**/*"]
+}
