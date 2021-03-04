@@ -10,6 +10,7 @@ import {
 } from "recharts";
 
 const data = [
+  //sample Data
   {
     name: "01.05",
     team1: 0,

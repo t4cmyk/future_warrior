@@ -1,13 +1,11 @@
 import React from "react";
 
 export function Chat() {
-	return (
-		<>
-			<h1>
-				Chat
-			</h1>
-			<br/>
-			<br />
-		</>
-	);
+  return (
+    <>
+      <h1>Chat</h1>
+      <br />
+      <br />
+    </>
+  );
 }
