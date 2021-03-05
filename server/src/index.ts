@@ -25,6 +25,12 @@ async function setupServer() {
 	];
 	const accessTokenSecret = "youraccesstokensecret";
 
+	app.get("/secret", (req, res) => {
+		const result = jwt.verify(req.body, accessTokenSecret);
+		console.log(result);
+		res.sendStatus(200);
+	});
+
 	app.post("/login", (req, res) => {
 		// Read username and password from request body
 		const { username, password } = req.body;
@@ -45,11 +51,11 @@ async function setupServer() {
 				accessToken,
 			});
 		} else {
-			res.send("Username or password incorrect");
+			res.status(401).send("Username or password incorrect");
 		}
 	});
 
-	//app.use("", express.static("../client/dist"));
+	app.use("", express.static("../client/dist"));
 
 	let port = config.get<number>("port");
 	app.listen(port);
