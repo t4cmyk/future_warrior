@@ -15,7 +15,7 @@ function ControlledCarousel() {
     <Carousel activeIndex={index} onSelect={handleSelect}>
       <Carousel.Item>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src="mission-placeholder.jpg" />
+          <Card.Img variant="top" src="img/missions/mission-placeholder.jpg" />
           <Card.Body>
             <Card.Title>Vegan kochen</Card.Title>
             <Card.Text>Beschreibung wie die Mission funktioniert.</Card.Text>
@@ -26,7 +26,7 @@ function ControlledCarousel() {
 
       <Carousel.Item>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src="mission-placeholder.jpg" />
+          <Card.Img variant="top" src="img/missions/mission-placeholder.jpg" />
           <Card.Body>
             <Card.Title>2te Mission</Card.Title>
             <Card.Text>Beschreibung wie die Mission funktioniert.</Card.Text>
@@ -37,7 +37,7 @@ function ControlledCarousel() {
 
       <Carousel.Item>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src="mission-placeholder.jpg" />
+          <Card.Img variant="top" src="img/missions/mission-placeholder.jpg" />
           <Card.Body>
             <Card.Title>3te Mission</Card.Title>
             <Card.Text>Beschreibung wie die Mission funktioniert.</Card.Text>
