@@ -1,4 +1,7 @@
 import React, { useRef, useState } from "react";
+import { Alert, Button } from "react-bootstrap";
+import Container from "react-bootstrap/esm/Container";
+import Form from "react-bootstrap/esm/Form";
 import {
   authenticateUser,
   getUsername,
@@ -28,34 +31,44 @@ export function Login() {
     }
   };
 
+  let loginErrorElement = <></>;
+  if (loginError.length > 0) {
+    loginErrorElement = (
+      <>
+        <Alert variant="danger" onClose={() => setLoginError("")} dismissible>
+          <Alert.Heading>Login fehlgeschlagen</Alert.Heading>
+          <p>{loginError}</p>
+        </Alert>
+      </>
+    );
+  }
+
   return (
     <>
-      <h1>Future Warrior - Performativ in die Zukunft!</h1>
-      <br />
-      <table>
-        <tr>
-          <td>Nickname</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="usernameInput" ref={usernameRef}></input>
-          </td>
-        </tr>
-        <tr>
-          <td>Passwort</td>
-        </tr>
-        <tr>
-          <td>
-            <input id="passwordInput" ref={passwordRef}></input>
-          </td>
-          <td>
-            <button onClick={login}>Einloggen 🠒 </button>
-          </td>
-        </tr>
-      </table>
-      {loginError.length > 0 ? <span>{loginError}</span> : <></>}
-      <button>Passwort vergessen?</button>
-      <br />
+      <Container>
+        <h1>Future Warrior - Performativ in die Zukunft!</h1>
+        {loginErrorElement}
+        <Form>
+          <Form.Group controlId="formGroupEmail">
+            <Form.Label>Nickname</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Nickname"
+              ref={usernameRef}
+            />
+          </Form.Group>
+          <Form.Group controlId="formGroupPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              ref={passwordRef}
+            />
+          </Form.Group>
+        </Form>
+        <Button variant="secondary">Passwort vergessen?</Button>
+        <Button onClick={login}>Einloggen</Button>
+      </Container>
     </>
   );
 }
