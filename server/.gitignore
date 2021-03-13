@@ -65,6 +65,7 @@ typings/
 .next
 
 #
+config/local.json
 .tmp
 .idea
 dist
