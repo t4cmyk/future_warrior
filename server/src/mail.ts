@@ -1,10 +1,9 @@
 import config from "config";
+import nodemailer from "nodemailer";
 
-var nodemailer = require("nodemailer");
-
-var transporter = nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
 	host: config.get<string>("mailHost"),
-	port: config.get<string>("mailPort"),
+	port: Number(config.get<string>("mailPort")),
 	tls: {
 		ciphers: config.get<string>("mailCiphers"),
 		rejectUnauthorized: false,
@@ -20,7 +19,7 @@ export async function sendMail(
 	subject: string,
 	text: string
 ) {
-	var mailOptions = {
+	let mailOptions = {
 		from: config.get<string>("mailUser"),
 		to: receiver,
 		subject: subject,
