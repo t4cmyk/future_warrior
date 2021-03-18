@@ -1,39 +1,49 @@
 import React from "react";
-import { Accordion, Button, Card } from "react-bootstrap";
+import { Accordion, Card, Container } from "react-bootstrap";
+
+let qaPairs = [
+  ["Frage 1", "Antwort 1"],
+  ["Frage 2", "Antwort 2"],
+];
+
+function Question(props: {
+  question: string;
+  answer: string;
+  questionNum: number;
+}) {
+  let numStr = props.questionNum.toString();
+  return (
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey={numStr}>
+        {props.question}
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey={numStr}>
+        <Card.Body>{props.answer}</Card.Body>
+      </Accordion.Collapse>
+    </Card>
+  );
+}
+
+function buildFAQ() {
+  let h: JSX.Element[] = [];
+  h.push(<h1>Hilfe</h1>);
+  h.push(<br />);
+  qaPairs.forEach((pair, index) => {
+    h.push(
+      <Question
+        question={pair[0]}
+        answer={pair[1]}
+        questionNum={index}
+      ></Question>
+    );
+  });
+  return (
+    <Container>
+      <Accordion defaultActiveKey="0">{h}</Accordion>
+    </Container>
+  );
+}
 
 export function Help() {
-  return (
-    <>
-      <h1>Hilfe</h1>
-      <br />
-      <Accordion defaultActiveKey="0">
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="0">
-            Was mache ich, wenn ich unangemessene Kommentare im Chat melden
-            will?
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>Melde es.</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="1">
-            Was kann ich tun, wenn ich mich angegriffen fühle?
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>Melde es.</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="2">
-            Was kann ich tun, wenn ich ein Problem mit meinen Teammitgliedern
-            habe?
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="2">
-            <Card.Body>Melde es.</Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-    </>
-  );
+  return buildFAQ();
 }
