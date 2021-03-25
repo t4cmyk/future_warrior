@@ -7,8 +7,12 @@ export function Landing() {
       <br />
       <img src="placeholder.jpg" />
       <br />
-      <button>Registrieren</button>
-      <button>Einloggen</button>
+      <a href="/#/Register">
+        <button>Registrieren</button>
+      </a>
+      <a href="/#/Login">
+        <button>Einloggen</button>
+      </a>
     </>
   );
 }

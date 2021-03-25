@@ -6,10 +6,18 @@ export function Main() {
       <h1>Missionen</h1>
       <br />
       <br />
-      <button>Unser Uptopia</button>
-      <button>Missionen</button>
-      <button>Teams</button>
-      <button>Chat</button>
+      <a href="/#/Utopia">
+        <button>Unser Uptopia</button>
+      </a>
+      <a href="/#/Missions">
+        <button>Missionen</button>
+      </a>
+      <a href="/#/Teams">
+        <button>Teams</button>
+      </a>
+      <a href="/#/Chat">
+        <button>Chat</button>
+      </a>
     </>
   );
 }
