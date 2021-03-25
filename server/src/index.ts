@@ -2,14 +2,14 @@ import express from "express";
 import cors from "cors";
 import config from "config";
 import jwt from "jsonwebtoken";
-import bodyParser from "body-parser";
+import { json as jsonBodyParser } from "body-parser";
 
 async function setupServer() {
 	const app = express(); // app = webserver
 
 	const corsAllowed = config.get<string>("cors");
 	app.use(cors({ allowedHeaders: corsAllowed }));
-	app.use(bodyParser.json());
+	app.use(jsonBodyParser());
 
 	const users = [
 		{

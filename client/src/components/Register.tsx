@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useRef } from "react";
 
 export function Register() {
+  const nameRef = useRef<HTMLInputElement>();
+  const mailRef = useRef<HTMLInputElement>();
+  const passwordRef = useRef<HTMLInputElement>();
+  const plzRef = useRef<HTMLInputElement>();
+
+  const onSubmit = () => {};
+
   return (
     <>
       <h1>Future Warrior - Performativ in die Zukunft</h1>
       <br />
       Nickname
       <br />
-      <input></input>
+      <input ref={nameRef}></input>
       <br />
       Emailadresse
       <br />
-      <input></input>
+      <input ref={mailRef}></input>
       <br />
       Passwort
       <br />
-      <input></input>
+      <input ref={passwordRef}></input>
       <br />
       Passwort wiederholen
       <br />
@@ -27,7 +34,7 @@ export function Register() {
       Falls ihr Aufgaben zusammen erledigen wollt, müsst ihr die Möglichkeit
       haben, euch einfach und bequem treffen zu können)
       <br />
-      <input></input>
+      <input ref={plzRef}></input>
       <br />
       <button>Registrieren</button>
     </>
