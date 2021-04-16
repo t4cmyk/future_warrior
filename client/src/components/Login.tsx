@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Alert, Button } from "react-bootstrap";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/esm/Form";
+import { Redirect } from "react-router";
 import {
   authenticateUser,
   getUsername,
@@ -16,7 +17,7 @@ export function Login() {
 
   if (loginState) {
     const username = getUsername();
-    return <>Logged in as {username}</>;
+    return <Redirect to="/Main/" />;
   }
 
   const login = async () => {

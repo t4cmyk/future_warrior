@@ -1,7 +1,15 @@
 body {
-  color: rgb(0, 0, 0);
+  color: white;
   background-image: url("background.png");
   background-size: cover;
+}
+
+body p > label {
+  display: block;
+}
+
+body input:invalid {
+  background-color: lightcoral;
 }
 
 h1 {
@@ -29,6 +37,12 @@ footer {
   border-radius: 15px;
   font-size: 1em;
   margin: 0 0 100px 0;
+}
+
+.account-menu {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1em;
 }
 
 .card {

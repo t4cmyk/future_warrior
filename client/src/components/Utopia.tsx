@@ -26,6 +26,9 @@ export function Utopia() {
       planetCon.drawImage(tempImg, 0, 0, 400, 400);
     }
   };
+
+  useEffect(() => drawPlanet(), []);
+
   return (
     <>
       <h1>Unser Utopia</h1>

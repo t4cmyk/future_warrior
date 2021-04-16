@@ -9,7 +9,7 @@ export interface UserCreateInfo {
 }
 
 export function isValidUserCreateInfo(info: any): info is UserCreateInfo {
-	if (info !== "object" || info === null) return false;
+	if (typeof info !== "object" || info === null) return false;
 
 	const fields = ["name", "password", "mail", "plz"];
 
