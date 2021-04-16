@@ -2,7 +2,7 @@
 -- Up
 --------------------------------------------------------------------------------
 
-CREATE TABLE players (
+CREATE TABLE Player (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
 	password TEXT NOT NULL,
@@ -15,4 +15,4 @@ CREATE TABLE players (
 -- Down
 --------------------------------------------------------------------------------
 
-DROP TABLE players;
+DROP TABLE Player;
