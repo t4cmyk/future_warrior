@@ -1,20 +1,20 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { AccountMenu } from "./accountMenu";
-import { Chat } from "./Chat";
-import { Contact } from "./Contact";
-import { Help } from "./Help";
-import { Impressum } from "./Impressum";
-import { Landing } from "./Landing";
-import { Login } from "./Login";
-import { Main } from "./Main";
-import { MissionComplete } from "./MissionComplete";
-import { Missions } from "./Missions";
-import { Privacy } from "./Privacy";
-import { Register } from "./Register";
-import { Teams } from "./Teams";
-import { Tutorial } from "./Tutorial";
-import { Utopia } from "./Utopia";
+import { Chat } from "./pages/chat";
+import { Contact } from "./pages/contact";
+import { Help } from "./pages/help";
+import { Impressum } from "./pages/impressum";
+import { Landing } from "./pages/landing";
+import { Login } from "./pages/login";
+import { Main } from "./pages/main";
+import { MissionComplete } from "./pages/missionComplete";
+import { Missions } from "./pages/missions";
+import { Privacy } from "./pages/privacy";
+import { Register } from "./pages/register";
+import { Teams } from "./pages/teams";
+import { Tutorial } from "./pages/tutorial";
+import { Utopia } from "./pages/utopia";
 
 export function AppComponent() {
   return (

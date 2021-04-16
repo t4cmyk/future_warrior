@@ -7,7 +7,7 @@ import {
   authenticateUser,
   getUsername,
   isLoggedIn,
-} from "../core/authentication";
+} from "../../core/authentication";
 
 export function Login() {
   const [loginState, setLoginState] = useState(isLoggedIn());
