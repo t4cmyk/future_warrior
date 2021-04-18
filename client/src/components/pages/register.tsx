@@ -1,4 +1,20 @@
 import React, { useRef, useState } from "react";
+import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
+function RegisterError(props: { errorMsg: string[]; onClose: () => any }) {
+  if (props.errorMsg.length <= 0) return <></>;
+  return (
+    <Alert variant="danger" onClose={props.onClose} dismissible>
+      <Alert.Heading>Registrierung fehlgeschlagen</Alert.Heading>
+      <ul>
+        {props.errorMsg.map((msg) => (
+          <li>{msg}</li>
+        ))}
+      </ul>
+    </Alert>
+  );
+}
 
 export function Register() {
   const nameRef = useRef<HTMLInputElement>();
@@ -7,10 +23,13 @@ export function Register() {
   const confirmPasswordRef = useRef<HTMLInputElement>();
   const plzRef = useRef<HTMLInputElement>();
 
+  let history = useHistory();
   const [canSubmit, setCanSubmit] = useState(false);
-  const [submitError, setSumbitError] = useState("");
+  const [submitInProgress, setInProgress] = useState(false);
+  const [submitError, setSumbitError] = useState<string[]>([]);
 
   const onSubmit = async () => {
+    setInProgress(true);
     const request: RequestInit = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,9 +40,18 @@ export function Register() {
         plz: plzRef.current.value,
       }),
     };
-    const resp = await fetch("/register", request);
-    if (resp.ok) {
+    try {
+      const resp = await fetch("/register", request);
+      if (resp.ok) {
+        history.push("/Main");
+      } else {
+        const text = await resp.json();
+        setSumbitError(text);
+      }
+    } catch (e) {
+      setSumbitError([e.toString()]);
     }
+    setInProgress(false);
   };
 
   const onChange = () => {
@@ -33,6 +61,8 @@ export function Register() {
       if (!plzRef.current.validity.valid) return false;
       if (!passwordRef.current.validity.valid) return false;
       if (!confirmPasswordRef.current.validity.valid) return false;
+      if (passwordRef.current.value !== confirmPasswordRef.current.value)
+        return false;
       return true;
     };
     setCanSubmit(canSubmit());
@@ -40,70 +70,62 @@ export function Register() {
 
   return (
     <>
-      <h1>Future Warrior - Performativ in die Zukunft</h1>
-      <br />
-      <p>
-        <label htmlFor="name">Nickname</label>
-        <input
-          id="name"
-          ref={nameRef}
-          onChange={onChange}
-          minLength={4}
-          maxLength={12}
-          pattern="^\w{4,12}$"
-          required
-        ></input>
-      </p>
-      <p>
-        <label htmlFor="email">E-Mail</label>
-        <input
-          id="email"
-          ref={mailRef}
-          onChange={onChange}
-          type="email"
-          required
-        ></input>
-      </p>
-      <p>
-        <label htmlFor="password">Passwort</label>
-        <input
-          id="password"
-          ref={passwordRef}
-          onChange={onChange}
-          type="password"
-          minLength={6}
-          required
-        ></input>
-      </p>
-      <p>
-        <label htmlFor="password2">Passwort wiederholen</label>
-        <input
-          id="password2"
-          ref={confirmPasswordRef}
-          onChange={onChange}
-          type="password"
-          minLength={6}
-          required
-        ></input>
-      </p>
-      <p>
-        <label htmlFor="plz">Postleitzahl</label>
-        (deine PLZ brauchen wir, um dich sinnvoll einem Team zuordnen zu können.
-        Falls ihr Aufgaben zusammen erledigen wollt, müsst ihr die Möglichkeit
-        haben, euch einfach und bequem treffen zu können)
+      <Container>
+        <h1>Account erstellen</h1>
         <br />
-        <input
-          id="plz"
-          ref={plzRef}
-          onChange={onChange}
-          minLength={5}
-          maxLength={5}
-          required
-        ></input>
-      </p>{" "}
-      <button onClick={onSubmit} disabled={!canSubmit}>
-        Registrieren
-      </button>
+        <RegisterError
+          errorMsg={submitError}
+          onClose={() => setSumbitError([])}
+        />
+        <Form.Group controlId="formGroupNickname">
+          <Form.Label>Nickname</Form.Label>
+          <Form.Control
+            placeholder="Nickname"
+            onChange={onChange}
+            ref={nameRef}
+          />
+        </Form.Group>
+        <Form.Group controlId="formGroupEmail">
+          <Form.Label>E-Mail</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="E-Mail"
+            onChange={onChange}
+            ref={mailRef}
+          />
+        </Form.Group>
+        <Form.Group controlId="formGroupPassword">
+          <Form.Label>Passwort</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={onChange}
+            ref={passwordRef}
+          />
+        </Form.Group>
+        <Form.Group controlId="formGroupPasswordRepeat">
+          <Form.Label>Passwort wiederholen</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={onChange}
+            ref={confirmPasswordRef}
+          />
+        </Form.Group>
+        <Form.Group controlId="formGroupPLZ">
+          <Form.Label>Postleitzahl</Form.Label>
+          <br />
+          <span className="font-weight-lighter">
+            deine PLZ brauchen wir, um dich sinnvoll einem Team zuordnen zu
+            können. Falls ihr Aufgaben zusammen erledigen wollt, müsst ihr die
+            Möglichkeit haben, euch einfach und bequem treffen zu können
+          </span>
+          <Form.Control placeholder="PLZ" onChange={onChange} ref={plzRef} />
+        </Form.Group>{" "}
+        <Button onClick={onSubmit} disabled={!canSubmit || submitInProgress}>
+          {submitInProgress ? <Spinner animation="border" /> : "Registrieren"}
+        </Button>
+      </Container>
     </>
   );
 }
