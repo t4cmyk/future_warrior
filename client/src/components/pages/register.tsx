@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import { authenticateByJWT } from "../../core/authentication";
 
 function RegisterError(props: { errorMsg: string[]; onClose: () => any }) {
   if (props.errorMsg.length <= 0) return <></>;
@@ -8,8 +9,8 @@ function RegisterError(props: { errorMsg: string[]; onClose: () => any }) {
     <Alert variant="danger" onClose={props.onClose} dismissible>
       <Alert.Heading>Registrierung fehlgeschlagen</Alert.Heading>
       <ul>
-        {props.errorMsg.map((msg) => (
-          <li>{msg}</li>
+        {props.errorMsg.map((msg, idx) => (
+          <li key={idx}>{msg}</li>
         ))}
       </ul>
     </Alert>
@@ -42,11 +43,12 @@ export function Register() {
     };
     try {
       const resp = await fetch("/register", request);
+      const respData = await resp.json();
       if (resp.ok) {
+        authenticateByJWT(respData.token);
         history.push("/Main");
       } else {
-        const text = await resp.json();
-        setSumbitError(text);
+        setSumbitError(respData);
       }
     } catch (e) {
       setSumbitError([e.toString()]);

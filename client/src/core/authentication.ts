@@ -41,11 +41,15 @@ export async function authenticateUser(username: string, password: string) {
     body: JSON.stringify({ username: username, password: password }),
   });
   if (resp.ok) {
-    jwt = await resp.text();
-    parseToken();
-    localStorage.setItem("jwt", jwt);
-    onLoginStateChange();
+    authenticateByJWT(await resp.text());
   } else throw new Error(await resp.text());
+}
+
+export function authenticateByJWT(newToken: string) {
+  jwt = newToken;
+  parseToken();
+  localStorage.setItem("jwt", jwt);
+  onLoginStateChange();
 }
 
 export function logoutPlayer() {

@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
+import { createUserToken } from "../authentication";
+import { loginUser } from "../database/login";
 import {
 	createUser,
+	isFreeUserName,
 	isValidUserCreateInfo,
 	UserCreateInfo,
 } from "../database/register";
@@ -23,6 +26,10 @@ const createUserConstraints: CreateUserConstraint[] = [
 		"Du musst eine gültige E-Mail angeben",
 	],
 	[
+		(userInfo: UserCreateInfo) => userInfo.password.length > 0,
+		"Bitte gib ein Passwort ein",
+	],
+	[
 		(userInfo: UserCreateInfo) => /^[0-9]{5,5}$/.test(userInfo.plz),
 		"Deine PLZ muss aus 5 Zahlen bestehen",
 	],
@@ -32,7 +39,7 @@ export async function registerUserHandler(req: Request, resp: Response) {
 	const createInfo = req.body;
 
 	if (!isValidUserCreateInfo(createInfo)) {
-		resp.sendStatus(400);
+		resp.status(400).json(["Bad Request"]);
 		return;
 	}
 
@@ -40,10 +47,24 @@ export async function registerUserHandler(req: Request, resp: Response) {
 		(val) => !val[0](createInfo)
 	);
 	if (violatedConstaints.length > 0) {
-		resp.status(400).send(violatedConstaints.map((val) => val[1]));
+		resp.status(400).json(violatedConstaints.map((val) => val[1]));
+		return;
+	}
+
+	if ((await isFreeUserName(createInfo.name)) === false) {
+		resp.status(400).json(["Dieser Nickname ist bereits vergeben"]);
 		return;
 	}
 
 	await createUser(createInfo);
-	resp.sendStatus(200);
+	const loginInfo = {
+		username: createInfo.name,
+		password: createInfo.password,
+	};
+	if (!(await loginUser(loginInfo))) {
+		resp.status(500).json(["Something went terribly wrong :("]);
+		return;
+	}
+	const jwt = createUserToken(loginInfo);
+	resp.status(200).json({ token: jwt });
 }

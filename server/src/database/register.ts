@@ -22,6 +22,18 @@ export function isValidUserCreateInfo(info: any): info is UserCreateInfo {
 	return result;
 }
 
+const getUserId = database.prepare<string>(
+	"SELECT id FROM players WHERE name=lower(?)"
+);
+
+export async function isFreeUserName(username: string) {
+	const userIdResult: {
+		id: number;
+	} = getUserId.get(username);
+	if (userIdResult) return false;
+	return true;
+}
+
 const createUserQuery = database.prepare<
 	[string, string, string, string, string]
 >(
