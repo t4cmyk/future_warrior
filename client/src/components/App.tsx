@@ -19,7 +19,10 @@ import { Utopia } from "./pages/utopia";
 export function AppComponent() {
   return (
     <>
-      <AccountMenu />
+      <header>
+        Mission:Future disPositiv
+        <AccountMenu />
+      </header>
       <Router>
         <Switch>
           <Route path="/Landing/">

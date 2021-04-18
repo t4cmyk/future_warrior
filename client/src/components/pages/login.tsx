@@ -15,10 +15,7 @@ export function Login() {
   const usernameRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
 
-  if (loginState) {
-    const username = getUsername();
-    return <Redirect to="/Main/" />;
-  }
+  if (loginState) return <Redirect to="/Main/" />;
 
   const login = async () => {
     const username = usernameRef.current.value;
@@ -67,7 +64,7 @@ export function Login() {
             />
           </Form.Group>
         </Form>
-        <Button variant="secondary">Passwort vergessen?</Button>
+        <Button variant="secondary">Passwort vergessen?</Button>{" "}
         <Button onClick={login}>Einloggen</Button>
       </Container>
     </>

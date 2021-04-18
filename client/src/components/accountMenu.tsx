@@ -1,4 +1,5 @@
 import React from "react";
+import { logoutPlayer } from "../core/authentication";
 import { useLoginState } from "./hooks/loginState";
 
 export function AccountMenu(props: {}) {
@@ -7,8 +8,9 @@ export function AccountMenu(props: {}) {
   if (!loginState) return <></>;
 
   return (
-    <div className="AccountMenu">
-      Eingeloggt als {loginState.username} <span>(ausloggen)</span>
+    <div className="justify-content-end col-12 d-flex">
+      Angemeldet als {loginState.username}{" "}
+      <span onClick={logoutPlayer}> (ausloggen)</span>
     </div>
   );
 }

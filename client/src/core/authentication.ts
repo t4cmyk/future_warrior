@@ -17,6 +17,13 @@ export function registerOnLoginChange(callback: OnLoginStateChangeFn) {
 function loadFromLocalStorage() {
   const token = localStorage.getItem("jwt");
   jwt = token || "";
+  if (jwt.length > 0) parseToken();
+}
+
+function parseToken() {
+  const encPayload = jwt.split(".")[1];
+  const payload: { username: string } = JSON.parse(window.atob(encPayload));
+  userLoggedIn = payload.username;
 }
 
 loadFromLocalStorage();
@@ -34,12 +41,18 @@ export async function authenticateUser(username: string, password: string) {
     body: JSON.stringify({ username: username, password: password }),
   });
   if (resp.ok) {
-    const token = await resp.text();
-    const encPayload = token.split(".")[1];
-    const payload: { username: string } = JSON.parse(window.atob(encPayload));
-    userLoggedIn = payload.username;
+    jwt = await resp.text();
+    parseToken();
+    localStorage.setItem("jwt", jwt);
     onLoginStateChange();
   } else throw new Error(await resp.text());
+}
+
+export function logoutPlayer() {
+  userLoggedIn = "";
+  jwt = "";
+  localStorage.removeItem("jwt");
+  onLoginStateChange();
 }
 
 export function isLoggedIn() {
