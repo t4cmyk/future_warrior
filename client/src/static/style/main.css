@@ -13,7 +13,7 @@ body input:invalid {
   background-color: lightcoral;
 }
 
-h1 {
+h1,h2,h3,h4 {
   color: rgb(158, 217, 219);
   text-align: center;
 }
@@ -69,6 +69,12 @@ footer {
   display: flex;
   justify-content: flex-end;
   margin: 1em;
+}
+
+.center {
+  margin: 0 auto;
+  width: fit-content;
+  display: block;
 }
 
 .card {
