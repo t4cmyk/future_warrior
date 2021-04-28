@@ -77,6 +77,15 @@ footer {
   margin-bottom: 10px;
 }
 
+.card-header {
+  color: rgb(23, 83, 95);
+  background-color: rgb(76, 150, 155);
+}
+
+.card-body {
+  color: rgb(23, 83, 95);
+}
+
 .fullscreen {
   position: absolute;
   right: 0;
