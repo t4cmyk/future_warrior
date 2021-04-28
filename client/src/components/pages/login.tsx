@@ -44,7 +44,7 @@ export function Login() {
   return (
     <>
       <Container>
-        <h1>Future Warrior - Performativ in die Zukunft!</h1>
+        <h1>Anmelden</h1>
         {loginErrorElement}
         <Form>
           <Form.Group controlId="formGroupEmail">

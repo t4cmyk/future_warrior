@@ -1,5 +1,5 @@
 body {
-  color: white;
+  color: rgb(158, 217, 219);
   background-color: black;
   background-image: url("background.jpg");
   background-size: cover;
@@ -14,27 +14,40 @@ body input:invalid {
 }
 
 h1 {
-  color: rgb(251, 248, 248);
+  color: rgb(158, 217, 219);
   text-align: center;
 }
 
 /** Colors:
-rgb(23, 83, 95);
+rgb(23, 83, 95); - darkest turquoise
 rgb(76, 150, 155); 
 rgb(86, 191, 188);
-rgb(158, 217, 219);
+rgb(158, 217, 219); 
 
 rgb(21, 94, 86);
 rgb(63, 132, 114);
-rgb(244, 182, 55);
+rgb(244, 182, 55); - yellow
 rgb(122, 203, 189);
 */
+
+a:link {
+  color: rgb(33, 164, 182);
+  /**border-bottom: 1px solid #ff0000;*/
+}
+a:visited {
+  color: rgb(33, 164, 182);
+  /**border-bottom: 1px solid #b3b3b3;*/
+}
+a:hover {
+  color: #2d8653;
+  border-bottom: 1px solid #000099;
+}
 
 header {
   height: 90px;
   width: 100%;
   background-color: rgb(158, 217, 219);
-  color: #ffffff;
+  color: rgb(23, 83, 95);
   text-align: center;
   border-radius: 15px;
   font-size: 1em;

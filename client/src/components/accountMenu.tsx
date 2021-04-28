@@ -7,14 +7,14 @@ export function AccountMenu(props: {}) {
 
   if (!loginState)
     return (
-      <div className="justify-content-end col-12 d-flex">
+      <div>
         {`Nicht angemeldet\u00A0`}
         <a href="#/Register">Registrieren</a>/<a href="#/Login">Einloggen</a>
       </div>
     );
 
   return (
-    <div className="justify-content-end col-12 d-flex">
+    <div>
       {`Angemeldet als ${loginState.username}\u00A0`}
       <a href="#" onClick={logoutPlayer}>
         (ausloggen)
