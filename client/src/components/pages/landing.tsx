@@ -18,11 +18,11 @@ export function Landing() {
         <br />
         <h2>Entscheidet, auf welche Sektoren ihr euch spezialisieren wollt.</h2>
         <br />
-        <img src="img/missions/diet.jpg" height="100" width="100" />
-        <img src="img/missions/energy.jpg" height="100" width="100" />
-        <img src="img/missions/household.jpg" height="100" width="100" />
-        <img src="img/missions/mobility.jpg" height="100" width="100" />
-        <img src="img/missions/social.jpg" height="100" width="100" />
+        <img src="img/missions/diet.png" height="100" width="100" />
+        <img src="img/missions/energy.png" height="100" width="100" />
+        <img src="img/missions/household.png" height="100" width="100" />
+        <img src="img/missions/mobility.png" height="100" width="100" />
+        <img src="img/missions/social.png" height="100" width="100" />
         <br />
         <a href="/#/Register">
           <button>Registrieren</button>
