@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 import { json as jsonBodyParser } from "body-parser";
 import { registerUserHandler } from "./handlers/register";
 import { loginUserHandler } from "./handlers/login";
+import { initMissions } from "./database/missions";
+import { createTestGame } from "./database/testgame";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -43,6 +45,8 @@ async function setupServer() {
 	console.log(`Listen on port ${port}... `);
 	console.log("Hello");
 	console.log("------------------------------");
+	initMissions();
+	createTestGame();
 }
 
 setupServer();
