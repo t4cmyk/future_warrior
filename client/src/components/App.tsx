@@ -20,10 +20,11 @@ export function AppComponent() {
   return (
     <>
       <header>
-      <div className="justify-content-between col-12 d-flex">
-        <a href="#/Dispositiv"><img width="288" height="100" src="img/missionfuture.png"/></a>
-      
-        <AccountMenu />
+        <div className="justify-content-between col-12 d-flex">
+          <a href="#/Landing">
+            <img width="288" height="100" src="img/missionfuture.png" />
+          </a>
+          <AccountMenu />
         </div>
       </header>
       <Router>
