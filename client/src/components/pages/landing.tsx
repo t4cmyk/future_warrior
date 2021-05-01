@@ -16,7 +16,7 @@ export function Landing() {
       </video>
       <br />
  
-      <img src="img/utopia/planet.png" className="center" />
+      <img src="img/planet/edre.png" className="center" height="600px" width="600px" />
       <h2>
         Spiele, um mit deinem Team eure Parallelwelt aufzubauen.
       </h2>

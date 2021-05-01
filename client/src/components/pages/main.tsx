@@ -6,8 +6,8 @@ export function Main() {
       <h1>Missionen</h1>
       <br />
       <br />
-      <a href="/#/Utopia">
-        <button>Unser Uptopia</button>
+      <a href="/#/Planet">
+        <button>Unsere Edre</button>
       </a>
       <a href="/#/Missions">
         <button>Missionen</button>

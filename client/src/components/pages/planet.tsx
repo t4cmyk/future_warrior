@@ -1,28 +1,34 @@
 import React, { useEffect, useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 
-export function Utopia() {
-  const inputPeace = useRef<HTMLInputElement>(null);
-  const inputCleanAir = useRef<HTMLInputElement>(null);
+export function Planet() {
+  const inputEnergy = useRef<HTMLInputElement>(null);
+  const inputDiet = useRef<HTMLInputElement>(null);
   const canvasPlanet = useRef<HTMLCanvasElement>(null);
+
+  // draw order:
+  // good
+  // edre
+  // energy
+  // food
+  // household
+  // communication
+  // clouds
 
   const drawPlanet = () => {
     var planetCon = canvasPlanet.current.getContext("2d");
     var tempImg = new Image();
     planetCon.clearRect(0, 0, 400, 400);
-    tempImg.src = "img/utopia/planet.png";
+    tempImg.src = "img/planet/edre.png";
     planetCon.drawImage(tempImg, 0, 0, 400, 400);
-    if (inputPeace.current.checked) {
+    if (inputEnergy.current.checked) {
       var tempImg = new Image();
-      tempImg.src = "img/utopia/peace.png";
+      tempImg.src = "img/planet/energy.png";
       planetCon.drawImage(tempImg, 0, 0, 400, 400);
     }
-    if (!inputCleanAir.current.checked) {
+    if (!inputDiet.current.checked) {
       var tempImg = new Image();
-      tempImg.src = "img/utopia/factory.png";
-      planetCon.drawImage(tempImg, 0, 0, 400, 400);
-      var tempImg = new Image();
-      tempImg.src = "img/utopia/badAir.png";
+      tempImg.src = "img/planet/diet.png";
       planetCon.drawImage(tempImg, 0, 0, 400, 400);
     }
   };
@@ -31,7 +37,7 @@ export function Utopia() {
 
   return (
     <>
-      <h1>Unser Utopia</h1>
+      <h1>Unsere edrE</h1>
       <Container>
         <Row>
           <Col>
@@ -40,9 +46,6 @@ export function Utopia() {
               ref={canvasPlanet}
               height="400"
               width="400"
-              style={{
-                border: "1px solid #000000",
-              }}
             ></canvas>
           </Col>
           <Col>
@@ -50,18 +53,18 @@ export function Utopia() {
               <Row>
                 <input
                   type="checkbox"
-                  ref={inputPeace}
+                  ref={inputEnergy}
                   onClick={drawPlanet}
                 ></input>
-                Frieden
+                Energie
               </Row>
               <Row>
                 <input
                   type="checkbox"
-                  ref={inputCleanAir}
+                  ref={inputDiet}
                   onClick={drawPlanet}
                 ></input>
-                Saubere Luft
+                Ernährung
               </Row>
               <Row>...</Row>
             </Container>

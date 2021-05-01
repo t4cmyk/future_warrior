@@ -14,7 +14,7 @@ import { Privacy } from "./pages/privacy";
 import { Register } from "./pages/register";
 import { Teams } from "./pages/teams";
 import { Tutorial } from "./pages/tutorial";
-import { Utopia } from "./pages/utopia";
+import { Planet } from "./pages/planet";
 
 export function AppComponent() {
   return (
@@ -58,8 +58,8 @@ export function AppComponent() {
           <Route path="/Main/">
             <Main />
           </Route>
-          <Route path="/Utopia/">
-            <Utopia />
+          <Route path="/Planet/">
+            <Planet />
           </Route>
           <Route path="/Teams/">
             <Teams />
