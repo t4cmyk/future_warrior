@@ -16,27 +16,7 @@ async function setupServer() {
 	app.use(cors({ allowedHeaders: corsAllowed }));
 	app.use(jsonBodyParser());
 
-	const users = [
-		{
-			username: "john",
-			password: "password123admin",
-			role: "admin",
-		},
-		{
-			username: "anna",
-			password: "password123member",
-			role: "member",
-		},
-	];
-	const accessTokenSecret = "youraccesstokensecret";
-
-	app.get("/secret", (req, res) => {
-		const result = jwt.verify(req.body, accessTokenSecret);
-		console.log(result);
-		res.sendStatus(200);
-	});
-
-	app.get("/missions", missionsHandler)
+	app.get("/missions", missionsHandler);
 	app.post("/register", registerUserHandler);
 	app.post("/login", loginUserHandler);
 

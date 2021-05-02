@@ -19,7 +19,6 @@ export function convertJsToSQLDate(jsDate: Date) {
 }
 
 export function convertSQLToJsDate(sqlDate: string) {
-	let jsDate = "";
 	const match = /(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+)/.exec(sqlDate);
 	if (!match) throw new Error();
 	// const match = result[0];
