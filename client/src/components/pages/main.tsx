@@ -1,4 +1,5 @@
 import React from "react";
+import { Gameboard } from "../gameBoard";
 
 export function Main() {
   return (
@@ -6,6 +7,7 @@ export function Main() {
       <h1>Missionen</h1>
       <br />
       <br />
+      <Gameboard />
       <a href="/#/Planet">
         <button>Unsere Edre</button>
       </a>
