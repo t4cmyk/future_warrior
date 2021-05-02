@@ -247,7 +247,7 @@ export function readMissionsFromFile() {
 		let sectorname = s.split("\r\n", 1)[0].replace(" ", "");
 		let tasks = s.split("Aufgabe");
 		tasks.shift();
-		tasks.forEach(async (t) => {
+		tasks.forEach((t) => {
 			let id = -1; // <-- you should never see this
 			t = t.split(": ")[1];
 			let title = t.split("\r\n")[0];
@@ -263,7 +263,7 @@ export function readMissionsFromFile() {
 			);
 			if (!m.isValid()) throw new Error();
 
-			await writeMissionInDB(m);
+			writeMissionInDB(m);
 		});
 	});
 }
