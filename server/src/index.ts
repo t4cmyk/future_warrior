@@ -5,8 +5,9 @@ import jwt from "jsonwebtoken";
 import { json as jsonBodyParser } from "body-parser";
 import { registerUserHandler } from "./handlers/register";
 import { loginUserHandler } from "./handlers/login";
-import { initMissions } from "./database/missions";
+import { initMissions, Mission } from "./database/missions";
 import { createTestGame } from "./database/testgame";
+import { missionsHandler } from "./handlers/missions";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -35,6 +36,7 @@ async function setupServer() {
 		res.sendStatus(200);
 	});
 
+	app.get("/missions", missionsHandler)
 	app.post("/register", registerUserHandler);
 	app.post("/login", loginUserHandler);
 

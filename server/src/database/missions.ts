@@ -1,6 +1,7 @@
 import { database } from "./core";
 import { readFileSync } from "fs";
 import { getSectorsFromTeamId } from "./team";
+import { convertSQLToJsDate } from "../util";
 
 export enum Sector {
 	diet = "Ernährung",
@@ -17,7 +18,7 @@ export class Mission {
 	description: string;
 	score: number;
 	sector: Sector;
-	creatorId: number; //default: empty
+	creatorId: number; //default: -1
 
 	constructor(
 		id: number,
@@ -81,6 +82,37 @@ export class Mission {
 	}
 }
 
+interface MissionPackageForClient extends Mission {
+	imagePath: string;
+}
+
+function getImagePath(sector: Sector, score: number) {
+	let imagePath = "";
+	switch (sector) {
+		case Sector.diet:
+			imagePath = "/img/missions/diet";
+			break;
+		case Sector.energy:
+			imagePath = "/img/missions/energy";
+			break;
+		case Sector.household:
+			imagePath = "/img/missions/household";
+			break;
+		case Sector.mobility:
+			imagePath = "/img/missions/mobility";
+			break;
+		case Sector.social:
+			imagePath = "/img/missions/social";
+			break;
+		case Sector.key:
+			imagePath = "/img/missions/key";
+			break;
+	}
+	if (score > 4) imagePath += "-advanced";
+	imagePath += ".jpg";
+	return imagePath;
+}
+
 const createMissionQuery = database.prepare<
 	[string, string, number, Sector, number]
 >(
@@ -88,11 +120,11 @@ const createMissionQuery = database.prepare<
 );
 
 const clearDailyMissionsForTeamQuery = database.prepare<number>(
-	"DELETE FROM dailyMissions WHERE teamId=?"
+	"DELETE FROM dailyMissions WHERE team=?"
 );
 
 const createDailyMissionQuery = database.prepare<[number, number, number]>(
-	"INSERT INTO dailyMissions (teamId, missionId, playerId) VALUES (?, ?, ?)"
+	"INSERT INTO dailyMissions (team, mission, completedByPlayer) VALUES (?, ?, ?)"
 );
 
 export async function clearDailyMissionsForTeam(teamId: number) {
@@ -131,11 +163,31 @@ const getCustomMissionsQuery = database.prepare(
 	"SELECT * FROM missions WHERE creatorId=-1"
 );
 
-export function getDailyMissions(teamId: number) {}
+const getLastDailyUpdate = database.prepare<number>(
+	"SELECT lastDailyUpdate FROM teams WHERE id=?"
+);
+
+const getDailyMissionsWithDescriptionQuery = database.prepare<number>(
+	"SELECT dailyMissions.id, mission,completedByPlayer,name, description,score,sector,creatorId FROM dailyMissions INNER JOIN missions ON dailyMissions.mission=missions.id WHERE team=?"
+);
+
+export function getDailyMissions(teamId: number) {
+	let d = getLastDailyUpdate.get(teamId);
+	if (d.lastDailyUpdate == null) pickDailyMissions(teamId);
+	else if (convertSQLToJsDate(d.lastDailyUpdate) < new Date())
+		pickDailyMissions(teamId);
+	let missions = getDailyMissionsWithDescriptionQuery.all(teamId);
+	missions.forEach((m: MissionPackageForClient) => {
+		m.imagePath = getImagePath(m.sector, m.score);
+	});
+
+	return missions;
+}
 
 export async function pickDailyMissions(teamId: number) {
 	let sec1 = getSectorsFromTeamId(teamId)[0].sector1;
 	let sec2 = getSectorsFromTeamId(teamId)[0].sector2;
+	clearDailyMissionsForTeamQuery.run(teamId);
 
 	let dailyMissions: Mission[] = [];
 	// 12 normal missions, max 2 of one kind
