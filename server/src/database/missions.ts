@@ -241,17 +241,18 @@ export function readMissionsFromFile() {
 	let file = readFileSync("missions.txt", "utf-8");
 	if (!file) throw new Error();
 
+	file.replace("\r\n", "\n");
 	let sectors = file.split("Sektor");
 	sectors.forEach((s) => {
 		if (s == "") return;
-		let sectorname = s.split("\r\n", 1)[0].replace(" ", "");
+		let sectorname = s.split("\n", 1)[0].replace(" ", "");
 		let tasks = s.split("Aufgabe");
 		tasks.shift();
 		tasks.forEach((t) => {
 			let id = -1; // <-- you should never see this
 			t = t.split(": ")[1];
-			let title = t.split("\r\n")[0];
-			let description = t.replace(title, "").replace("\r\n", "");
+			let title = t.split("\n")[0];
+			let description = t.replace(title, "").replace("\n", "");
 			let score = parseInt(description.split(" Punkte")[0].slice(-1));
 			let m = new Mission(
 				id,
