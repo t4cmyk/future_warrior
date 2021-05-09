@@ -8,6 +8,7 @@ import { loginUserHandler } from "./handlers/login";
 import { initMissions, Mission } from "./database/missions";
 import { createTestGame } from "./database/testgame";
 import { missionsHandler } from "./handlers/missions";
+import { authenticateUser } from "./authentication";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -16,7 +17,7 @@ async function setupServer() {
 	app.use(cors({ allowedHeaders: corsAllowed }));
 	app.use(jsonBodyParser());
 
-	app.get("/missions", missionsHandler);
+	app.get("/missions", authenticateUser, missionsHandler);
 	app.post("/register", registerUserHandler);
 	app.post("/login", loginUserHandler);
 

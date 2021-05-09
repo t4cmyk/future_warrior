@@ -32,11 +32,12 @@ export async function loginUser(loginInfo: LoginInfo) {
 		id: number;
 		passwordSalt: string;
 	} = getUserIdAndSalt.get(loginInfo.username);
-	if (!userIdResult) return false;
+	if (!userIdResult) return -1;
 	const passwordHash = createHash("sha256")
 		.update(userIdResult.passwordSalt)
 		.update(loginInfo.password)
 		.digest("hex");
 	const loginResult = loginUserQuery.get(userIdResult.id, passwordHash);
-	return loginResult.count > 0;
+	if (loginResult.count > 0) return userIdResult.id;
+	return -1;
 }

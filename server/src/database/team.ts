@@ -6,7 +6,7 @@ const createTeamQuery = database.prepare<string>(
 );
 
 const getTeamIdFromUserIdQuery = database.prepare<number>(
-	"SELECT teamID FROM participates WHERE playerId=?"
+	"SELECT teamId FROM participates WHERE playerId=?"
 );
 
 const getSectorsFromTeamIdQuery = database.prepare<number>(
@@ -18,11 +18,15 @@ const changeTeamSectorsQuery = database.prepare<[Sector, Sector, number]>(
 );
 
 export function getSectorsFromTeamId(teamId: number) {
-	return getSectorsFromTeamIdQuery.all(teamId);
+	return getSectorsFromTeamIdQuery.all(teamId) as {
+		sector1: string;
+		sector2: string;
+	}[];
 }
 
 export function getTeamIDFromUserId(userId: number) {
-	return getTeamIdFromUserIdQuery.get(userId);
+	const result: { teamId: number } = getTeamIdFromUserIdQuery.get(userId);
+	return result.teamId;
 }
 
 export function createTeam(name: string) {

@@ -1,47 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import { getToken } from "../../core/authentication";
 import { Carousel } from "../carousel";
 
 interface IMission {
   id: number;
   name: string;
   description: string;
-  src: string;
+  imagePath: string;
+  completedByPlayer: number;
   score: number;
   creatorId?: number;
 }
 
-const missionList = [
-  {
-    id: 1,
-    name: "Mission 1",
-    description:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt",
-    src: "img/missions/diet.png",
-    score: 10,
-  },
-  {
-    id: 2,
-    name: "Mission 2",
-    description:
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt",
-    src: "img/missions/energy.png",
-    score: 10,
-  },
-  {
-    id: 3,
-    name: "Mission 3",
-    description:
-      "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    src: "img/missions/social.png",
-    score: 10,
-  },
-];
-
 function MissionCard(props: { mission: IMission }) {
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={props.mission.src} />
+      <Card.Img variant="top" src={props.mission.imagePath} />
       <Card.Body>
         <Card.Title>{props.mission.name}</Card.Title>
         <Card.Text>{props.mission.description}</Card.Text>
@@ -51,10 +26,7 @@ function MissionCard(props: { mission: IMission }) {
   );
 }
 
-missionList.push(...missionList);
-missionList.push(...missionList);
-
-function ControlledCarousel() {
+function ControlledCarousel(props: { missions: IMission[] }) {
   return (
     <Carousel<IMission>
       angle={-60}
@@ -66,18 +38,37 @@ function ControlledCarousel() {
       render={(elem) => <MissionCard mission={elem} />}
       onContextMenu={() => {}}
       onDoubleClick={() => {}}
-      elementList={missionList}
+      elementList={props.missions}
     ></Carousel>
   );
 }
 
 export function Missions() {
+  const [missions, setMissions] = useState<IMission[]>([]);
+  useEffect(() => {
+    const resultHandler = { onFetch: setMissions };
+    const fetchMissions = async () => {
+      try {
+        const resp = await fetch(`/missions?token=${getToken()}`);
+        const respData = await resp.json();
+        return respData as IMission[];
+      } catch (e) {
+        console.log(e);
+      }
+      return [];
+    };
+    fetchMissions().then((result) => resultHandler.onFetch(result));
+    return () => {
+      resultHandler.onFetch = (_: any[]) => {};
+    };
+  }, []);
+
   return (
     <>
       <h1>Missionen</h1>
       <br />
       <br />
-      <ControlledCarousel />
+      <ControlledCarousel missions={missions} />
     </>
   );
 }

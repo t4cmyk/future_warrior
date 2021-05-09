@@ -61,10 +61,11 @@ export async function registerUserHandler(req: Request, resp: Response) {
 		username: createInfo.name,
 		password: createInfo.password,
 	};
-	if (!(await loginUser(loginInfo))) {
+	const userId = await loginUser(loginInfo);
+	if (userId > 0) {
 		resp.status(500).json(["Something went terribly wrong :("]);
 		return;
 	}
-	const jwt = createUserToken(loginInfo);
-	resp.status(200).json({ token: jwt });
+	const jwt = createUserToken(loginInfo, userId);
+	resp.status(200).send(jwt);
 }

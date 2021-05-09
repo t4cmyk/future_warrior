@@ -1,5 +1,5 @@
 import { database } from "./core";
-import { readFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { getSectorsFromTeamId } from "./team";
 import { convertSQLToJsDate } from "../util";
 
@@ -238,32 +238,24 @@ export async function pickDailyMissions(teamId: number) {
 }
 
 export function readMissionsFromFile() {
-	let file = readFileSync("missions.txt", "utf-8");
+	let file = readFileSync("missions.json", "utf-8");
 	if (!file) throw new Error();
 
-	file.replace("\r\n", "\n");
-	let sectors = file.split("Sektor");
-	sectors.forEach((s) => {
-		if (s == "") return;
-		let sectorname = s.split("\n", 1)[0].replace(" ", "");
-		let tasks = s.split("Aufgabe");
-		tasks.shift();
-		tasks.forEach((t) => {
-			let id = -1; // <-- you should never see this
-			t = t.split(": ")[1];
-			let title = t.split("\n")[0];
-			let description = t.replace(title, "").replace("\n", "");
-			let score = parseInt(description.split(" Punkte")[0].slice(-1));
-			let m = new Mission(
-				id,
-				title,
-				description,
-				score,
-				(sectorname as unknown) as Sector,
+	const missionData: {
+		sector: string;
+		tasks: { title: string; description: string; score: number }[];
+	}[] = JSON.parse(file);
+
+	missionData.forEach((sector) => {
+		sector.tasks.forEach((task) => {
+			const m = new Mission(
+				-1,
+				task.title,
+				task.description,
+				task.score,
+				sector.sector as Sector,
 				-1
 			);
-			if (!m.isValid()) throw new Error();
-
 			writeMissionInDB(m);
 		});
 	});

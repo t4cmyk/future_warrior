@@ -259,7 +259,7 @@ export default class CarouselController<ElementType> {
   }
 
   private handleElementListChanged() {
-    // if (this.updateImgSrc()) this.scroll();
+    this.scroll();
     if (this._elementList.length > 0 && !this.isInScrollRange(this.centerIdx))
       this.snapToIdx(this._elementList.length - 1);
   }

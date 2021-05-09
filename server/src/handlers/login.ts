@@ -12,10 +12,9 @@ export async function loginUserHandler(req: Request, resp: Response) {
 		return;
 	}
 
-	if (await loginUser(loginInfo)) {
-		const accessToken = createUserToken(loginInfo);
-		resp.json({
-			accessToken,
-		});
+	const userId = await loginUser(loginInfo);
+	if (userId > 0) {
+		const accessToken = createUserToken(loginInfo, userId);
+		resp.send(accessToken);
 	} else resp.status(401).send("Username or password incorrect");
 }

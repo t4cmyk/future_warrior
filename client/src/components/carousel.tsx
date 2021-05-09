@@ -40,6 +40,10 @@ export function Carousel<ElementType>(props: CarouselProps<ElementType>) {
     );
   }, [divCount]);
 
+  if (controller) {
+    if (controller.elementList !== props.elementList)
+      controller.elementList = props.elementList;
+  }
   useEffect(() => {
     if (divRefs.length == 0) return;
 
@@ -72,10 +76,11 @@ export function Carousel<ElementType>(props: CarouselProps<ElementType>) {
   }, []);
 
   const renderDivContent = (idx: number) => {
-    if (!controller) return <></>;
+    if (!controller || props.elementList.length === 0) return <></>;
     const elemIdx =
       (controller.getElemIdxFromDivIdx(idx) - renderOffset) %
       props.elementList.length;
+    if (isNaN(elemIdx)) return <></>;
     return props.render(
       props.elementList[
         elemIdx < 0 ? elemIdx + props.elementList.length : elemIdx
