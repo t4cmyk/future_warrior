@@ -3,7 +3,7 @@ import { Button, Card } from "react-bootstrap";
 import { getToken } from "../../core/authentication";
 import { Carousel } from "../carousel";
 
-interface IMission {
+export interface IMission {
   id: number;
   name: string;
   description: string;
@@ -15,6 +15,10 @@ interface IMission {
 }
 
 function MissionCard(props: { mission: IMission }) {
+  const href = `/#/MissionComplete/${btoa(
+    encodeURI(JSON.stringify(props.mission))
+  )}`;
+
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Header>
@@ -24,7 +28,7 @@ function MissionCard(props: { mission: IMission }) {
         <Card.Img variant="top" src={props.mission.imagePath} />
         <Card.Title>{`Sektor: ${props.mission.sector}`}</Card.Title>
         <Card.Text>{props.mission.description}</Card.Text>
-        <Button variant="primary" className="w-100">
+        <Button variant="primary" className="w-100" href={href}>
           Missions abschließen
         </Button>
       </Card.Body>

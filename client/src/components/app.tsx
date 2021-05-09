@@ -70,7 +70,7 @@ export function AppComponent() {
           <Route path="/Chat/">
             <Chat />
           </Route>
-          <Route path="/MissionComplete/">
+          <Route path="/MissionComplete/:mission">
             <MissionComplete />
           </Route>
 
