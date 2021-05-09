@@ -10,17 +10,23 @@ interface IMission {
   imagePath: string;
   completedByPlayer: number;
   score: number;
+  sector: string;
   creatorId?: number;
 }
 
 function MissionCard(props: { mission: IMission }) {
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={props.mission.imagePath} />
+      <Card.Header>
+        <h4>{props.mission.name}</h4>
+      </Card.Header>
       <Card.Body>
-        <Card.Title>{props.mission.name}</Card.Title>
+        <Card.Img variant="top" src={props.mission.imagePath} />
+        <Card.Title>{`Sektor: ${props.mission.sector}`}</Card.Title>
         <Card.Text>{props.mission.description}</Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary" className="w-100">
+          Missions abschließen
+        </Button>
       </Card.Body>
     </Card>
   );

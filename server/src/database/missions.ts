@@ -176,8 +176,18 @@ export function getDailyMissions(teamId: number) {
 	if (d.lastDailyUpdate == null) pickDailyMissions(teamId);
 	else if (convertSQLToJsDate(d.lastDailyUpdate) < new Date())
 		pickDailyMissions(teamId);
-	let missions = getDailyMissionsWithDescriptionQuery.all(teamId);
-	missions.forEach((m: MissionPackageForClient) => {
+	const missions: {
+		id: number;
+		mission: number;
+		completedByPlayer: number;
+		name: string;
+		description: string;
+		score: number;
+		sector: Sector;
+		creatorId: number;
+		imagePath: string;
+	}[] = getDailyMissionsWithDescriptionQuery.all(teamId);
+	missions.forEach((m) => {
 		m.imagePath = getImagePath(m.sector, m.score);
 	});
 
