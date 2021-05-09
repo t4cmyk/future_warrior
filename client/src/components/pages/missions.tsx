@@ -15,9 +15,7 @@ export interface IMission {
 }
 
 function MissionCard(props: { mission: IMission }) {
-  const href = `/#/MissionComplete/${btoa(
-    encodeURI(JSON.stringify(props.mission))
-  )}`;
+  const href = `/#/MissionComplete/${props.mission.id}`;
 
   return (
     <Card style={{ width: "18rem" }}>
@@ -60,8 +58,14 @@ export function Missions() {
     const fetchMissions = async () => {
       try {
         const resp = await fetch(`/missions?token=${getToken()}`);
-        const respData = await resp.json();
-        return respData as IMission[];
+        const respData = (await resp.json()) as IMission[];
+        respData.forEach((mission) =>
+          sessionStorage.setItem(
+            `mission/${mission.id}`,
+            JSON.stringify(mission)
+          )
+        );
+        return respData;
       } catch (e) {
         console.log(e);
       }
