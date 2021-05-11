@@ -123,7 +123,9 @@ const clearDailyMissionsForTeamQuery = database.prepare<number>(
 	"DELETE FROM dailyMissions WHERE team=?"
 );
 
-const createDailyMissionQuery = database.prepare<[number, number, number]>(
+const createDailyMissionQuery = database.prepare<
+	[number, number, number | null]
+>(
 	"INSERT INTO dailyMissions (team, mission, completedByPlayer) VALUES (?, ?, ?)"
 );
 
@@ -134,7 +136,7 @@ export async function clearDailyMissionsForTeam(teamId: number) {
 export async function createDailyMission(
 	teamId: number,
 	missionId: number,
-	playerId: number
+	playerId: number | null
 ) {
 	createDailyMissionQuery.run(teamId, missionId, playerId);
 }
@@ -179,7 +181,7 @@ export function getDailyMissions(teamId: number) {
 	const missions: {
 		id: number;
 		mission: number;
-		completedByPlayer: number;
+		completedByPlayer: number | null;
 		name: string;
 		description: string;
 		score: number;
@@ -243,7 +245,7 @@ export async function pickDailyMissions(teamId: number) {
 	);
 
 	dailyMissions.forEach((m) => {
-		createDailyMission(teamId, m.id, -1);
+		createDailyMission(teamId, m.id, null);
 	});
 }
 

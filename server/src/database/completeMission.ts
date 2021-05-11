@@ -27,7 +27,7 @@ export function getMissionIdFromDailyId(
 }
 
 const updateDailyMissionComplete = database.prepare<[number, number]>(
-	"UPDATE dailyMissions SET completedByPlayer=? WHERE id=? AND completedByPlayer=-1"
+	"UPDATE dailyMissions SET completedByPlayer=? WHERE id=? AND completedByPlayer IS NULL"
 );
 
 const createFeedbackEntry = database.prepare<

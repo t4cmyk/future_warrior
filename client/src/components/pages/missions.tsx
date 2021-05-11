@@ -9,7 +9,7 @@ export interface IMission {
   name: string;
   description: string;
   imagePath: string;
-  completedByPlayer: number;
+  completedByPlayer: number | null;
   score: number;
   sector: string;
   creatorId?: number;
@@ -25,11 +25,17 @@ function MissionCard(props: { mission: IMission }) {
         <Card.Img variant="top" src={props.mission.imagePath} />
         <Card.Title>{`Sektor: ${props.mission.sector}`}</Card.Title>
         <Card.Text>{props.mission.description}</Card.Text>
-        <Link to={`/MissionComplete/${props.mission.id}`}>
-          <Button variant="primary" className="w-100">
-            Missions abschließen
+        {props.mission.completedByPlayer != null ? (
+          <Button variant="primary" className="w-100" disabled>
+            Mission abgeschlossen
           </Button>
-        </Link>
+        ) : (
+          <Link to={`/MissionComplete/${props.mission.id}`}>
+            <Button variant="primary" className="w-100">
+              Mission abschließen
+            </Button>
+          </Link>
+        )}
       </Card.Body>
     </Card>
   );
