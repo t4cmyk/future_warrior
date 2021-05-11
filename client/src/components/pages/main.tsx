@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Gameboard } from "../gameBoard";
 
 export function Main() {
@@ -8,18 +9,18 @@ export function Main() {
       <br />
       <br />
       <Gameboard />
-      <a href="/#/Planet">
+      <Link to="/Planet">
         <button>Unsere Edre</button>
-      </a>
-      <a href="/#/Missions">
+      </Link>
+      <Link to="/Missions">
         <button>Missionen</button>
-      </a>
-      <a href="/#/Teams">
+      </Link>
+      <Link to="/Teams">
         <button>Teams</button>
-      </a>
-      <a href="/#/Chat">
+      </Link>
+      <Link to="/Chat">
         <button>Chat</button>
-      </a>
+      </Link>
     </>
   );
 }

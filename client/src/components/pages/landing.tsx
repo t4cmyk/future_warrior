@@ -41,12 +41,6 @@ export function Landing() {
         Entscheidet, auf welche Sektoren ihr euch spezialisieren wollt.
       </h2>
       <br />
-      <a href="/#/Register">
-        <button>Registrieren</button>
-      </a>
-      <a href="/#/Login">
-        <button>Einloggen</button>
-      </a>
     </>
   );
 }

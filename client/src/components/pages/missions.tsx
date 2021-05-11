@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { getToken } from "../../core/authentication";
 import { Carousel } from "../carousel";
 
@@ -15,8 +16,6 @@ export interface IMission {
 }
 
 function MissionCard(props: { mission: IMission }) {
-  const href = `/#/MissionComplete/${props.mission.id}`;
-
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Header>
@@ -26,9 +25,11 @@ function MissionCard(props: { mission: IMission }) {
         <Card.Img variant="top" src={props.mission.imagePath} />
         <Card.Title>{`Sektor: ${props.mission.sector}`}</Card.Title>
         <Card.Text>{props.mission.description}</Card.Text>
-        <Button variant="primary" className="w-100" href={href}>
-          Missions abschließen
-        </Button>
+        <Link to={`/MissionComplete/${props.mission.id}`}>
+          <Button variant="primary" className="w-100">
+            Missions abschließen
+          </Button>
+        </Link>
       </Card.Body>
     </Card>
   );

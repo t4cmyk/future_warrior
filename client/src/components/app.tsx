@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { AccountMenu } from "./accountMenu";
 import { Chat } from "./pages/chat";
 import { Contact } from "./pages/contact";
@@ -19,15 +19,15 @@ import { Planet } from "./pages/planet";
 export function AppComponent() {
   return (
     <>
-      <header>
-        <div className="justify-content-between col-12 d-flex">
-          <a href="#/Landing">
-            <img width="288" height="100" src="img/missionfuture.png" />
-          </a>
-          <AccountMenu />
-        </div>
-      </header>
       <Router>
+        <header>
+          <div className="justify-content-between col-12 d-flex">
+            <Link to="Landing">
+              <img width="288" height="100" src="img/missionfuture.png" />
+            </Link>
+            <AccountMenu />
+          </div>
+        </header>
         <Switch>
           <Route path="/Landing/">
             <Landing />

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { logoutPlayer } from "../core/authentication";
 import { useLoginState } from "./hooks/loginState";
 
@@ -9,7 +10,8 @@ export function AccountMenu(props: {}) {
     return (
       <div>
         {`Nicht angemeldet\u00A0`}
-        <a href="#/Register">Registrieren</a>/<a href="#/Login">Einloggen</a>
+        <Link to="/Register">Registrieren</Link>/
+        <Link to="/Login">Einloggen</Link>
       </div>
     );
 
