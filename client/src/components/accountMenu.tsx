@@ -17,7 +17,9 @@ export function AccountMenu(props: {}) {
 
   return (
     <div>
-      {`Angemeldet als ${loginState.username}\u00A0`}
+      {`Angemeldet als\u00A0`}
+      <span className="text-capitalize">{loginState.username}</span>
+      {`\u00A0`}
       <a href="#" onClick={logoutPlayer}>
         (ausloggen)
       </a>
