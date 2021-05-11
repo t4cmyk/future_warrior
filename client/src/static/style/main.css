@@ -93,6 +93,12 @@ footer {
   color: rgb(23, 83, 95);
 }
 
+.chat-frame {
+  max-height: 60vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 .fullscreen {
   position: absolute;
   right: 0;

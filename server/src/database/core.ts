@@ -5,4 +5,4 @@ import { join } from "path";
 
 console.log("Loading database...");
 export const database = openSqliteDB("server.db");
-migrate(database);
+migrate(database, { reapplyLast: false });

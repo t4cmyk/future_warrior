@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import config from "config";
 import jwt from "jsonwebtoken";
-import { json as jsonBodyParser } from "body-parser";
+import { text as textBodyParser, json as jsonBodyParser } from "body-parser";
 import { registerUserHandler } from "./handlers/register";
 import { loginUserHandler } from "./handlers/login";
 import { initMissions, Mission } from "./database/missions";
@@ -11,6 +11,7 @@ import { missionsHandler } from "./handlers/missions";
 import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
 import { handleTeamsData } from "./handlers/teams";
+import { getChatHandler, postChatMsgHandler } from "./handlers/chat";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -22,6 +23,8 @@ async function setupServer() {
 	app.get("/missions", authenticateUser, missionsHandler);
 	app.get("/teams", handleTeamsData);
 	app.post("/complete", authenticateUser, completeMissionHandler);
+	app.get("/chat", authenticateUser, getChatHandler);
+	app.post("/chat", textBodyParser(), authenticateUser, postChatMsgHandler);
 	app.post("/register", registerUserHandler);
 	app.post("/login", loginUserHandler);
 
