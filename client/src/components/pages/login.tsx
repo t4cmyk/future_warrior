@@ -46,11 +46,16 @@ export function Login() {
       <Container>
         <h1>Anmelden</h1>
         {loginErrorElement}
-        <Form>
-          <Form.Group controlId="formGroupEmail">
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            login();
+          }}
+        >
+          <Form.Group controlId="formGroupNickname">
             <Form.Label>Nickname</Form.Label>
             <Form.Control
-              type="email"
+              type="text"
               placeholder="Nickname"
               ref={usernameRef}
             />
@@ -63,9 +68,9 @@ export function Login() {
               ref={passwordRef}
             />
           </Form.Group>
+          <Button variant="secondary">Passwort vergessen?</Button>{" "}
+          <Button type="submit">Einloggen</Button>
         </Form>
-        <Button variant="secondary">Passwort vergessen?</Button>{" "}
-        <Button onClick={login}>Einloggen</Button>
       </Container>
     </>
   );
