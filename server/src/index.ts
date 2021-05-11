@@ -10,6 +10,7 @@ import { createTestGame } from "./database/testgame";
 import { missionsHandler } from "./handlers/missions";
 import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
+import { handleTeamsData } from "./handlers/teams";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -19,6 +20,7 @@ async function setupServer() {
 	app.use(jsonBodyParser());
 
 	app.get("/missions", authenticateUser, missionsHandler);
+	app.get("/teams", handleTeamsData);
 	app.post("/complete", authenticateUser, completeMissionHandler);
 	app.post("/register", registerUserHandler);
 	app.post("/login", loginUserHandler);

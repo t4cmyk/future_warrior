@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { RecentFeedback } from "../missionFeedback";
 
 const data = [
   //sample Data
@@ -59,6 +60,7 @@ export function Teams() {
         />
         <Line type="linear" dataKey="team2" stroke="#82ca9d" />
       </LineChart>
+      <RecentFeedback />
     </>
   );
 }
