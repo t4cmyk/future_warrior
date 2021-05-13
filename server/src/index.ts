@@ -12,6 +12,7 @@ import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
 import { handleTeamsData } from "./handlers/teams";
 import { getChatHandler, postChatMsgHandler } from "./handlers/chat";
+import { planetHandler } from "./handlers/planet";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -21,6 +22,7 @@ async function setupServer() {
 	app.use(jsonBodyParser());
 
 	app.get("/missions", authenticateUser, missionsHandler);
+	app.get("/planet", authenticateUser, planetHandler);
 	app.get("/teams", handleTeamsData);
 	app.post("/complete", authenticateUser, completeMissionHandler);
 	app.get("/chat", authenticateUser, getChatHandler);
