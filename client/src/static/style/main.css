@@ -93,6 +93,15 @@ footer {
   color: rgb(23, 83, 95);
 }
 
+.list-group-item {
+  color: rgb(23, 83, 95);
+}
+
+.listgrouphead {
+  color: rgb(23, 83, 95);
+  background-color: rgb(76, 150, 155);
+}
+
 .chat-frame {
   max-height: 60vh;
   overflow-x: hidden;

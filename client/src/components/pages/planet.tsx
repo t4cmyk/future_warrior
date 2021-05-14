@@ -1,12 +1,24 @@
 import React, { Component, useEffect, useRef, useState } from "react";
-import { Col, Container, ListGroup, Row, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  ListGroup,
+  Row,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "react-bootstrap";
 import { getToken } from "../../core/authentication";
 
 export interface IPlanetInfo {
-  level: number;
+  level: number; // 1 -default, 2 - one sector, 3 - two sectors
   sector1: string;
   sector2: string;
 }
+
+// level 1: 0 - 54
+// level 2: 55 - 119 Sec1
+// level 3: 120 - 194 Sec2
+// Endgame: 195 - 280 Sec3
 
 export enum Sector {
   diet = "Ernährung",
@@ -72,10 +84,12 @@ function drawPlanet(planetCon: any, planetInfo: IPlanetInfo) {
   }
 }
 
-
 export function Planet() {
   const inputEnergy = useRef<HTMLInputElement>(null);
   const inputDiet = useRef<HTMLInputElement>(null);
+  const inputMobility = useRef<HTMLInputElement>(null);
+  const inputSocial = useRef<HTMLInputElement>(null);
+  const inputHousehold = useRef<HTMLInputElement>(null);
   const canvasPlanet = useRef<HTMLCanvasElement>();
   let description =
     "Erreiche ein höheres Level um die Sektoren freizuschalten.";
@@ -104,12 +118,6 @@ export function Planet() {
     };
   }, []);
 
-
-  const [view, setView] = React.useState('list');
-
-  const handleChange = (event: any, nextView: React.SetStateAction<string>) => {
-    setView(nextView);
-  };
   // draw order:
   // good
   // edre
@@ -119,9 +127,9 @@ export function Planet() {
   // household
   // social
 
-  // clouds
+  //mobility?
 
-  //useEffect(() => drawPlanet(), []);
+  // clouds
 
   return (
     <>
@@ -136,7 +144,9 @@ export function Planet() {
             <br />
             <br />
             <ListGroup>
-              <ListGroup.Item>{description}</ListGroup.Item>
+              <ListGroup.Item className="listgrouphead">
+                {description}
+              </ListGroup.Item>
               <ListGroup.Item>
                 <input type="checkbox" ref={inputEnergy}></input>
                 Energie
@@ -146,7 +156,16 @@ export function Planet() {
                 Ernährung
               </ListGroup.Item>
               <ListGroup.Item>
-              <ToggleButton type="radio" value="1"></ToggleButton>
+                <input type="checkbox" ref={inputMobility}></input>
+                Mobilität
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <input type="checkbox" ref={inputSocial}></input>
+                Soziales
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <input type="checkbox" ref={inputHousehold}></input>
+                Soziales
               </ListGroup.Item>
             </ListGroup>
           </Col>
@@ -154,7 +173,7 @@ export function Planet() {
       </Container>
 
       <br />
-     
+
       <br />
     </>
   );
