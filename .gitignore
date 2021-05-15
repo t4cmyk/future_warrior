@@ -1,2 +1,3 @@
 server/config/local.json
 server/server.db
+/server/config/local.json
