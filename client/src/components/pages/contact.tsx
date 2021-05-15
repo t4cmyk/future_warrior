@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { ContactForm } from "../contactForm";
 
 export function Contact() {
   return (
@@ -7,12 +8,16 @@ export function Contact() {
       <h1>Kontakt</h1>
       <br />
       <Container>
-      dis [Positiv!]<br/>
-      Rebecca Zechiel<br/>
-      [Kontaktformular: wie bei Help-Seite]
+        dis [Positiv!]
+        <br />
+        mission:future
+        <br />
+        Rebecca Zechiel
+        <br />
       </Container>
-      
 
+      <br />
+      <ContactForm></ContactForm>
     </>
   );
 }

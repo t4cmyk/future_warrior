@@ -1,5 +1,6 @@
 import React from "react";
 import { Accordion, Card, Container } from "react-bootstrap";
+import { ContactForm } from "../contactForm";
 
 let qaPairs = [
   [
@@ -48,9 +49,13 @@ function buildFAQ() {
     );
   });
   return (
-    <Container>
-      <Accordion defaultActiveKey="0">{h}</Accordion>
-    </Container>
+    <>
+      <Container>
+        <Accordion defaultActiveKey="0">{h}</Accordion>
+      </Container>
+      <br />
+      <ContactForm></ContactForm>
+    </>
   );
 }
 

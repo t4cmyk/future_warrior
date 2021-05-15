@@ -13,6 +13,7 @@ import { completeMissionHandler } from "./handlers/completeMission";
 import { handleTeamsData } from "./handlers/teams";
 import { getChatHandler, postChatMsgHandler } from "./handlers/chat";
 import { planetHandler } from "./handlers/planet";
+import { contactFormHandler } from "./handlers/contactForm";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -28,6 +29,7 @@ async function setupServer() {
 	app.get("/chat", authenticateUser, getChatHandler);
 	app.post("/chat", textBodyParser(), authenticateUser, postChatMsgHandler);
 	app.post("/register", registerUserHandler);
+	app.post("/contactForm", contactFormHandler);
 	app.post("/login", loginUserHandler);
 
 	app.use("", express.static("../client/dist"));
