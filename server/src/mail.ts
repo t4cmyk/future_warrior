@@ -27,3 +27,16 @@ export async function sendMail(
 	};
 	transporter.sendMail(mailOptions);
 }
+
+export async function contactMail(
+	user: string,
+	mail: string,
+	subject: string,
+	text: string
+) {
+	sendMail(
+		config.get<string>("supportMail"),
+		"" + subject,
+		"Nachricht von " + user + " (" + mail + "): \n" + text
+	);
+}

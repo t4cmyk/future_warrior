@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { contactMail } from "../mail";
 
 export interface contactFormInfo {
 	name: string;
@@ -52,20 +53,28 @@ const createContactConstraints: CreateContactConstraint[] = [
 
 export async function contactFormHandler(req: Request, resp: Response) {
 	try {
-		const createInfo = req.body;
+		const contactInfo = req.body;
 
-		if (!isContactFormInfo(createInfo)) {
+		if (!isContactFormInfo(contactInfo)) {
 			resp.status(400).json(["Bad Request"]);
 			return;
 		}
 
 		const violatedConstaints = createContactConstraints.filter(
-			(val) => !val[0](createInfo)
+			(val) => !val[0](contactInfo)
 		);
 		if (violatedConstaints.length > 0) {
 			resp.status(400).json(violatedConstaints.map((val) => val[1]));
 			return;
 		}
+
+		contactMail(
+			contactInfo.name,
+			contactInfo.mail,
+			contactInfo.subject,
+			contactInfo.message
+		);
+
 		resp.status(200).json({});
 	} catch {
 		resp.sendStatus(500);
