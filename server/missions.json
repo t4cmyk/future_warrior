@@ -3,38 +3,38 @@
 		"sector": "Haushalt",
 		"tasks": [
 			{
-				"title": "Think about … your household",
-				"description": "Du wolltest dich schon immer mal zu Umwelt-Zertifizierungen informieren?\r\nOder wissen, ob deine Spülmaschine im Gegensatz zum Spülen von Hand weniger Wasser\r\nverbraucht? Du fragst dich, wie Mülltrennung eigentlich richtig funktioniert?\r\nOder wie sich die Fläche deiner Wohnung auf deinen CO2-Ausstoß auswirkt?\r\nDu möchtest herausfinden, wie du am besten Geld sparen kannst bei Anschaffungen?\r\nOder was mit deinem Putzmittel passiert, wenn es mit dem Abwasser weggespült wird?\r\nIch nicht. Aber gut, dass nicht ich die Mission erledigen muss, sondern du.\r\nJedenfalls gewinnst du damit 2 Punkte für deine edrE.\r\n",
+				"title": "Interesse?",
+				"description": "Du wolltest dich schon immer mal zu Umwelt-Zertifizierungen informieren?\r\nOder wissen, ob deine Spülmaschine im Gegensatz zum Spülen von Hand weniger Wasserverbraucht?\r\nDu fragst dich, wie Mülltrennung eigentlich richtig funktioniert?\r\nOder wie sich die Fläche deiner Wohnung auf deinen CO2-Ausstoß auswirkt?\r\nDu möchtest herausfinden, wie du am besten Geld sparen kannst bei Anschaffungen?\r\nOder was mit deinem Putzmittel passiert, wenn es mit dem Abwasser weggespült wird?\r\nGut, dann finde es heraus! Damit gewinnst du 2 Punkte für deine edrE.\r\n",
 				"score": 2
 			},
 			{
-				"title": "Act now … in your household",
-				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nGanz sicher? Okay, dann schau dich mal in deinem Haushalt um. Vielleicht findest du einen\r\nGegenstand, den du gegen einen nachhaltigeren austauschen möchtest. Aber denk doch bitte\r\ngleich noch drüber nach gegen welchen genau und warum. Optimalerweise setzt du dein\r\nVorhaben noch heute oder in den kommenden Tagen in die Tat um.\r\nJuhu, du gewinnst damit 3 Punkte für deine edrE.\r\n",
+				"title": "Tauschbar",
+				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nDann schau dich mal in deinem Haushalt um. Findest du einenGegenstand,\r\nden du gegen einen Nachhaltigeren austauschen möchtest?\r\nGegen welchen genau und warum? Optimalerweise setzt du dein\r\nVorhaben noch heute oder in den kommenden Tagen in die Tat um.\r\nJuhu, du gewinnst damit 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Act here … in your household",
-				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nWirklich? Na, du bist ja kaum zu bremsen.\r\nDann wirf einen Blick auf deine Müllproduktion. Überlege, wie du es schaffen kannst, heute so\r\nwenig Müll wie möglich zu produzieren und wenn, dann ausschließlich Biomüll. Dein Wertstoff/\r\nGelber Sack und dein Restmüll bleiben unangetastet. Setze deine Überlegungen in die Tat um.\r\nDamit gewinnst du 3 Punkte für deine edrE.\r\n",
+				"title": "Zerknüll den Müll",
+				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nWirklich? Na, du bist ja kaum zu bremsen.\r\nDann wirf einen Blick auf deine Müllproduktion. Überlege, wie du es schaffen kannst, heute so\r\nwenig Müll wie möglich zu produzieren und wenn, dann ausschließlich Biomüll.\r\nSetze deine Überlegungen in die Tat um.\r\nDamit gewinnst du 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Thinking out of the box … in your household",
-				"description": "Heute ist ein guter Tag, um um die Ecke zu denken. Ich habe gehört, Menschen können so etwas.\r\nÜberlege dir ein System, um dein Zuhause in deinen eigenen vier Wänden nachhaltiger zu\r\ngestalten. Suche dir einen Bereich aus und los geht die Planung. Das kann z.B. dein Kühlschrank,\r\ndeine Mülltrennung oder dein Wasserverbrauch sein.\r\nDamit gewinnst du 4 Punkte für deine edrE.\r\n",
+				"title": "Ordnung ist das halbe Leben",
+				"description": "Heute ist ein guter Tag, um um die Ecke zu denken. Ich habe gehört, Menschen können so etwas.\r\nÜberlege dir ein System, um dein Zuhause in deinen eigenen vier Wänden nachhaltiger zu\r\ngestalten. Suche dir einen Bereich aus, hole die alle Informationen, die du brauchst\r\nund los geht die Planung. Das kann z.B. dein Kühlschrank,\r\ndeine Mülltrennung oder dein Wasserverbrauch sein.\r\nDamit gewinnst du 4 Punkte für deine edrE.\r\n",
 				"score": 4
 			},
 			{
-				"title": "Acting out of the box … in your household",
-				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich weiß zwar nicht, welche Ecke gemeint ist,\r\naber ich bin mir sicher, du wirst es herausfinden. Überlege, welches Haushaltsprodukt du gerne\r\nselbst herstellen würdest und setze dein Vorhaben in die Tat um. Das könnte z.B. Seife, Duschgel,\r\nSpülmittel oder ein Wachstuch sein.\r\nDamit gewinnst du 4 Punkte für deine edrE!\r\n",
+				"title": "Do It Yourself",
+				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich weiß zwar nicht, welche Ecke gemeint ist,\r\naber ich bin mir sicher, du wirst es herausfinden. Überlege, welches Haushaltsprodukt du gerne\r\nselbst herstellen würdest und setze dein Vorhaben in die Tat um. Das könnte z.B. Seife, Duschgel,\r\nSpülmittel oder ein Wachstuch sein.\r\n Bedenke, dass du dafür evtl. Zutaten benötigst, die du sonst nicht zu Hause hast.\r\nDamit gewinnst du 4 Punkte für deine edrE!\r\n",
 				"score": 4
 			},
 			{
 				"title": "Share it!",
-				"description": "GEBEN ist seliger als nehmen heißt es doch bei euch Menschen.\r\nAlso vergleiche Aspekte deines Haushalts mit dem Haushalt einer von dir ausgewählten Person\r\nund GIB ihr die Möglichkeit, mit dir in einen Dialog über die Gemeinsamkeiten und Unterschiede zu\r\nkommen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Geben ist seliger als nehmen heißt es doch bei euch Menschen.\r\nAlso vergleiche Aspekte deines Haushalts mit dem Haushalt einer von dir ausgewählten Person\r\nund GIB ihr die Möglichkeit, mit dir in einen Dialog über die Gemeinsamkeiten und Unterschiede zu\r\nkommen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Schweigen ist Silber, Reden ist Gold, habe ich gelernt.\r\nÜberlege dir, wie du am besten die Meinung deiner Mitmenschen zu nachhaltiger\r\nHaushaltsführung erheben kannst und gehe einen ersten Schritt, um deine Überlegungen in die\r\nTat umzusetzen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Reden ist Silber und Schweigen ist Gold, habe ich gelernt.\r\nHeute kannst du dich zurücklehnen und andere für dich reden lassen. Du musst dir nur einen Aspekt\r\nin deinem Haushalt aussuchen, bei dem du in Sachen Nachhaltigkeit noch einiges zu tun hättest.\r\nLass dir von anderen Menschen drei Empfehlungen geben, um dich zu überzeugen,\r\ndass und wie du damit umgehen kannst. Teile die Empfehlungen beim Abgeben der Mission doch bitte mit,\r\ndamit auch andere Erdbewohnende davon profitieren können.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
@@ -44,7 +44,7 @@
 			},
 			{
 				"title": "Share it!",
-				"description": "Noch nicht genug von meinen Ratschlägen?\r\nÜberlege dir eine Strategie, wie und worüber du in einen Dialog mit einem oder einer regionalen\r\nHaushaltsprodukthersteller:in kommen kannst und tue einen ersten Schritt in diese Richtung.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n\r\n",
+				"description": "Noch nicht genug von meinen Ratschlägen?\r\nDann kannst du heute das digitale Tagebuch füttern. Schreibe auf, was dir\r\nin Bezug auf deinen nachhaltigeren Haushalt am Herzen liegt.\r\nKeien falsche Scheu, sei ehrlich zu deinem Tagebuch!\r\nHast du es heute nicht geschafft, den Müll richtig zu trennen? Oder möchtest du Anderen eine\r\nUnterstützung zum ökologischeren Putzen an die Hand geben?\r\nSchicke deinen Tagebucheintrag (egal in welcher Form) an dis-positiv@posteo.de und ich veröffentliche ihn ganz anonym.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n\r\n",
 				"score": 5
 			}
 		]
@@ -53,48 +53,48 @@
 		"sector": "Ernährung",
 		"tasks": [
 			{
-				"title": "Think about … your nutrition",
-				"description": "Du wolltest dich schon immer mal zu Bio-Siegeln informieren?\r\nOder wissen, wie sich der Anbau oder die Haltung von deinen Nahrungsbestandteilen auf die\r\nBodenfruchtbarkeit oder die Artenvielfalt auswirkt?\r\nDu fragst dich, wie du einfach an Produktinformationen kommst?\r\nOder wo du am gesündesten Einkaufen kannst?\r\nDu möchtest herausfinden, wie du am besten Geld sparen kannst bei Lebensmitteln?\r\nOder wie sich ein Bio-Schnitzel aus der Region gegenüber einer Avocado aus Mexiko auf die\r\nUmwelt auswirkt?\r\nIch nicht. Aber gut, dass nicht ich die Mission erledigen muss, sondern du.\r\nDamit gewinnst du 2 Punkte für deine edrE.\r\n",
+				"title": "Interesse?",
+				"description": "Du wolltest dich schon immer mal zu Bio-Siegeln informieren?\r\nOder wissen, wie sich der Anbau oder die Haltung von deinen Nahrungsbestandteilen auf die\r\nBodenfruchtbarkeit oder die Artenvielfalt auswirkt?\r\nDu fragst dich, wie du einfach an Produktinformationen kommst?\r\nOder wo du am gesündesten Einkaufen kannst?\r\nDu möchtest herausfinden, wie du am besten Geld sparen kannst bei Lebensmitteln?\r\nOder wie sich ein Bio-Schnitzel aus der Region gegenüber einer Avocado aus Mexiko auf die\r\nUmwelt auswirkt? Gut, dann finde es heraus!\r\nDamit gewinnst du 2 Punkte für deine edrE.\r\n",
 				"score": 2
 			},
 			{
-				"title": "Act now … for your nutrition",
-				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nGanz sicher? Okay, dann überlege dir für eine deiner Mahlzeiten heute, wie du sie ausschließlich\r\nmit regionalen und saisonalen Lebensmitteln zubereiten kannst und setze es in die Tat um.\r\nJuhu, du gewinnst 3 Punkte für deine edrE.\r\n",
+				"title": "Jetzt und Hier",
+				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nOkay, dann überlege dir für eine deiner Mahlzeiten heute, wie du sie ausschließlich\r\nmit regionalen und saisonalen Lebensmitteln zubereiten kannst und setze es in die Tat um.\r\nJuhu, du gewinnst 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Act here … for your nutrition",
+				"title": "Wenn schon, denn schon!",
 				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun? Wirklich? Na, du bist ja kaum zu bremsen.\r\nÜberlege dir, wie du bei all deinen Mahlzeiten heute möglichst alles (weiter-)verwerten kannst.\r\nWenn du z.B. Brokkoli zubereiten willst, denke daran, nicht nur die Röschen zu nutzen, sondern\r\nauch den Strunk.\r\nDamit gewinnst du 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Thinking out of the box … for your nutrition",
+				"title": "Gärtnern @home",
 				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich habe gehört, Menschen können so etwas.\r\nÜberlege dir eine Nutzpflanze, die du in deinem Zuhause haben wollen würdest. Das kann z.B.\r\nPetersilie, Salat oder ein Bananenbaum sein. Lege dir eine Pflanze deiner Wahl zu, egal ob du sie\r\nerst säst oder schon in ausgewachsenem Zustand erwirbst und kümmere dich auch um sie.\r\nDamit gewinnst du 4 Punkte für deine edrE.\r\n",
 				"score": 4
 			},
 			{
-				"title": "Acting out of the box … for your nutrition",
+				"title": " Leckerschmecker",
 				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich weiß zwar nicht, welche Ecke gemeint ist,\r\naber ich bin mir sicher, du wirst es herausfinden.\r\nÜberlege dir, wie du restlos alle Mahlzeiten heute so nachhaltig wie möglich gestalten kannst und\r\nsetze deine Überlegungen in die Tat um.\r\nDamit gewinnst du 4 Punkte für deine edrE!\r\n",
 				"score": 4
 			},
 			{
 				"title": "Share it!",
-				"description": "GEBEN ist seliger als nehmen heißt es doch bei euch Menschen.\r\nHeute ist dein Tag, um mit einem Anliegen deiner Wahl an eine:n Lebensmittelerzeuger:in in deiner\r\nRegion heranzutreten. GIB ihm oder ihr die Chance auf den Dialog mit dir.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Geben ist seliger als nehmen heißt es doch bei euch Menschen.\r\nHeute ist dein Tag, um mit einem Anliegen deiner Wahl an eine:n Lebensmittelerzeuger:inheranzutreten.\r\nGib ihm oder ihr die Chance auf den Dialog mit dir.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Schweigen ist Silber, Reden ist Gold, habe ich gelernt.\r\nHeute ist dein Tag, um fünf nachhaltige Koch- und/oder Backrezepte mit jemandem zu teilen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Noch nicht genug von meinen Ratschlägen?\r\nHeute ist dein Tag, um fünf nachhaltige Koch- und/oder Backrezepte mit jemandem zu teilen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Wie heißt es? Brauchen ist besser als Haben. Du brauchst heute Ideen?\r\nÜberlege dir, wie du am besten die Meinungen deiner Mitmenschen zu einem Teilbereich von\r\nErnährung erheben kannst und tue einen ersten Schritt, um dein Vorhaben in die Tat umzusetzen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Wie heißt es? Brauchen ist besser als Haben. Du brauchst heute Ideen?\r\nDu kannst das digitale Tagebuch füttern. Schreibe auf, was dir in Bezug auf deine nachhaltigere\r\nErnährung am Herzen liegt. Keine falsche Scheu, sei ehrlich zu deinem Tagebuch!\r\nHast du es nicht geschafft, den unverpackten Salat zu kaufen, statt den in Plastik?\r\nOder möchtest du Anderen eine Unterstützung zum ökologischeren Einkaufen an die Hand geben?\r\nSchicke deinen Tagebucheintrag (egal in welcher Form) an dis-positiv@posteo.com und ich veröffentliche diesen anonym.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Noch nicht genug von meinen Ratschlägen?\r\nÜberlege dir, wie du deine Mitmenschen auf einen deiner Meinung nach verbesserungswürdigen\r\nTeil im Umgang mit dem Thema Ernährung aufmerksam machen kannst und setze deine\r\nÜberlegung in die Tat um.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n",
+				"description": "Reden ist Silber, Schweigen ist Gold, habe ich gelernt.\r\nHeute kannst du dich zurücklehnen und andere für dich reden lassen.\r\nDu musst dir nur einen Aspekt deiner Ernährungsweise aussuchen, bei dem du \r\nin Sachen Nachhaltigkeit noch Einiges zu tun hättest. Lass dir von Anderen drei Empfehlungen\r\ngeben, um dich zu überzeugen, dass und wie du damit umgehen kannst.\r\nTeile die Empfehlungen beim Abgeben der Missionen im Formular doch bitte mit.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n",
 				"score": 5
 			}
 		]
@@ -103,48 +103,48 @@
 		"sector": "Soziales",
 		"tasks": [
 			{
-				"title": "Think about … your social activities",
-				"description": "Du wolltest dich schon immer mal zu Fairtrade informieren?\r\nOder wissen, welche Förderungen du für eine Biogasanlage beziehen kannst?\r\nDu fragst dich, wie du am besten teilen kannst?\r\nOder wo du dich am besten mit anderen Menschen austauschen kannst?\r\nDu möchtest herausfinden, wie der soziale Status mit dem Umweltschutz zusammenhängt?\r\nOder welchen Weg dein Lieblingsprodukt zurücklegen muss, bis es bei dir ankommt?\r\nIch nicht. Aber gut, dass nicht ich die Mission erledigen muss, sondern du.\r\nDamit gewinnst du 2 Punkte für deine edrE.\r\n",
+				"title": "Interesse?",
+				"description": "Du wolltest dich schon immer mal zu Fairtrade informieren?\r\nOder wissen, welche Förderungen du für eine Biogasanlage beziehen kannst?\r\nDu fragst dich, wie du am besten teilen kannst?\r\nOder wo du dich am besten mit anderen Menschen austauschen kannst?\r\nDu möchtest herausfinden, wie der soziale Status mit dem Umweltschutz zusammenhängt?\r\nOder welchen Weg dein Lieblingsprodukt zurücklegen muss, bis es bei dir ankommt?\r\nGut, dann finde es heraus!\r\nDamit gewinnst du 2 Punkte für deine edrE.\r\n",
 				"score": 2
 			},
 			{
-				"title": "Act here … for sociability",
+				"title": "Gutes tun",
 				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nGanz sicher? Okay, dann überlege dir, wie du eine Person heute mit einer dir eigenen Ressource\r\nunterstützen kannst.\r\nJuhu, du gewinnst 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Act now … for sociability",
+				"title": "Deine Ethik",
 				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun? Wirklich? Na, du bist ja kaum zu bremsen.\r\nDann überlege dir, wie du den Tag über möglichst nur Produkte verwenden kannst, deren Herkunft\r\nund Herstellung du ethisch vertreten kannst.\r\nDamit gewinnst du 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Think out of the box … for sociability",
+				"title": "Freude schenken",
 				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich habe gehört, Menschen können so etwas.\r\nÜberlege dir, wie du ein Produkt selbst herstellen kannst und verschenke es.\r\nDas kann z.B. ein Blumentopf, eine Kräutermischung, ein Origami oder ein Müsli sein.\r\nDamit gewinnst du 4 Punkte für deine edrE.\r\n",
 				"score": 4
 			},
 			{
-				"title": "Act out of the box … for sociability",
+				"title": "Liebe schenken",
 				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich weiß zwar nicht, welche Ecke gemeint ist,\r\naber ich bin mir sicher, du wirst es herausfinden.\r\nÜberlege dir, wie du deine Liebe heute teilen möchtest. Mit wem oder was, wie und warum ist dir\r\nüberlassen.\r\nDamit gewinnst du 4 Punkte für deine edrE!\r\n",
 				"score": 4
 			},
 			{
 				"title": "Share it!",
-				"description": "GEBEN ist seliger als nehmen heißt es doch bei euch Menschen.\r\nÜberlege dir, auf welche Weise du deine Mitmenschen am besten für ein dir am Herzen liegendes\r\nThema begeistern kannst und GIB ihnen die Möglichkeit, es zu erfahren.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Geben ist seliger als nehmen heißt es doch bei euch Menschen.\r\nÜberlege dir, auf welche Weise du deine Mitmenschen am besten für ein dir am Herzen liegendes\r\nThema begeistern kannst und Gib ihnen die Möglichkeit, es zu erfahren.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Schweigen ist Silber, Reden ist Gold, habe ich gelernt.\r\nFür was brennst du? Was motiviert dich? Wie oder wobei fühlst du dich so richtig lebendig?\r\nFinde eine Antwort auf diese Fragen und teile sie mit einem oder mehreren Menschen auf eine dir\r\nüberlassene Weise.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Schweigen ist Silber, Reden ist Gold, habe ich gelernt.Heute kannst du dich zurücklehnen und andere für dich reden lassen.\r\nDu musst dir nur einen Aspekt deines Sozialverhaltens aussuchen, bei dem du\r\nin Sachen Nachhaltigkeit noch Einiges zu tun hättest. Lass dir von Anderen drei Empfehlungen\r\ngeben, um dich zu überzeugen, dass und wie du damit umgehen kannst.\r\nTeile die Empfehlungen beim Abgeben der Missionen im Formular doch bitte mit.\r\n\r\n\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Wie heißt es? Brauchen ist besser als Haben. Du brauchst heute Ideen?\r\nÜberlege dir, wie du am besten die Meinungen deiner Mitmenschen zu einem von dir gewählten\r\nsozial relevanten Thema erheben kannst und tue einen ersten Schritt, um dein Vorhaben in die Tat\r\numzusetzen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Wie heißt es? Brauchen ist besser als Haben.\r\nFür was brennst du? Was motiviert dich? Wie oder wobei fühlst du dich so richtig lebendig?\r\nFinde eine Antwort auf diese Fragen und teile sie mit einem oder mehreren Menschen auf eine dir\r\nüberlassene Weise.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Noch nicht genug von meinen Ratschlägen?\r\nÜberlege dir, wie du deine Mitmenschen heute am besten auf eine deiner Meinung nach\r\nverbesserungswürdige Sache des öffentlichen Zusammenlebens aufmerksam machen kannst und\r\nsetze deine Überlegung um.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n",
+				"description": "Noch nicht genug von meinen Ratschlägen?\r\nDu kannst das digitale Tagebuch füttern. Schreibe auf, was dir in Bezug auf soziale Nachhaltigkeit\r\n auf dem Herzen liegt. Keine falsche Scheu, sei ehrlich zu deinem Tagebuch!\r\nHast du es nicht geschafft, deine:r Nachbar:in die Tür aufzuhalten?\r\nOder möchtest du Anderen eine Unterstützung für ein besseres Miteinander an die Hand geben?\r\nSchicke deinen Tagebucheintrag (egal in welcher Form) an dis-positiv@posteo.com und ich veröffentliche diesen anonym.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n",
 				"score": 5
 			}
 		]
@@ -153,48 +153,48 @@
 		"sector": "Energie",
 		"tasks": [
 			{
-				"title": "Think about … your energy use",
-				"description": "Du wolltest dich schon immer mal zu Wärmedämmung informieren?\r\nOder wissen, welchen Anteil Server am nationalen Energieverbrauch haben?\r\nDu fragst dich, wie du selbst Energie erzeugen bzw. nutzbar machen kannst?\r\nOder wie der Energieverbrauch von Licht im Vergleich zu Wärme ist?\r\nDu möchtest herausfinden, welcher E-Mail-Anbieter welche Art von Strom nutzt?\r\nOder wie sich Elektroautos in Bezug auf den Stromverbrauch auswirken?\r\nIch nicht. Aber gut, dass nicht ich die Mission erledigen muss, sondern du.\r\nDamit gewinnst du 2 Punkte für dein edrE.\r\n",
+				"title": "Interesse?",
+				"description": "Du wolltest dich schon immer mal zu Wärmedämmung informieren?\r\nOder wissen, welchen Anteil Server am nationalen Energieverbrauch haben?\r\nDu fragst dich, wie du selbst Energie erzeugen bzw. nutzbar machen kannst?\r\nOder wie der Energieverbrauch von Licht im Vergleich zu Wärme ist?\r\nDu möchtest herausfinden, welcher E-Mail-Anbieter welche Art von Strom nutzt?\r\nOder wie sich Elektroautos in Bezug auf den Stromverbrauch auswirken?\r\nGut, dann finde es heraus!\r\nDamit gewinnst du 2 Punkte für dein edrE.\r\n",
 				"score": 2
 			},
 			{
-				"title": "Act here … for energy",
+				"title": "Herunterfahren",
 				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nGanz sicher? Okay, dann überlege dir, wie du deinen Energieverbrauch für heute reduzieren\r\nkannst. Du kannst z.B. Heizung, Licht und Strom verbrauchende Geräte mit einbeziehen. Setze\r\ndeine Überlegungen in die Tat um.\r\nJuhu, du gewinnst 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Act now … for energy",
+				"title": "Technology",
 				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun? Wirklich? Na, du bist ja kaum zu bremsen.\r\nDann überlege dir, welche Strom verbrauchenden Geräte du heute ausschalten kannst, wenn du\r\nsie nicht verwendest und setze deine Überlegungen in die Tat um.\r\nDamit gewinnst du 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Think out of the box … for energy",
+				"title": "Tauschbar",
 				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich habe gehört, Menschen können so etwas.\r\nDann schau dich ein Mal um in deinem Haushalt und überlege, welchen Strom verbrauchenden\r\nGegenstand du gegen einen nachhaltigeren austauschen möchtest, gegen welchen genau, wann\r\nund warum.\r\nDamit gewinnst du 4 Punkte für deine edrE.\r\n",
 				"score": 4
 			},
 			{
-				"title": "Act out of the box … for energy",
-				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich weiß zwar nicht, welche Ecke gemeint ist,\r\naber ich bin mir sicher, du wirst es herausfinden.\r\nÜberlege, welchen sekundären Energieverbrauch du nachhaltiger gestalten kannst. Das kann z.B.\r\nmit einem Wechsel der Bank oder des E-Mail-Anbieters geschehen. Gehe einen ersten Schritt,\r\ndein Vorhaben in die Tat umzusetzen.\r\nDamit gewinnst du 4 Punkte für deine edrE!\r\n",
+				"title": "Gut versteckt",
+				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich weiß zwar nicht, welche Ecke gemeint ist,\r\naber ich bin mir sicher, du wirst es herausfinden.\r\nÜberlege, welchen verstecken Energieverbrauch du nachhaltiger gestalten kannst. Das kann z.B.\r\nmit Streamingdiensten, Banken oder E-Mail-Anbietern zusammenhängen. Gehe einen ersten Schritt,\r\ndein Vorhaben in die Tat umzusetzen.\r\nDamit gewinnst du 4 Punkte für deine edrE!\r\n",
 				"score": 4
 			},
 			{
 				"title": "Share it!",
-				"description": "GEBEN ist seliger als nehmen heißt es doch bei euch Menschen.\r\nÜberlege dir eine Strategie, wie und worüber du in einen Dialog mit einem regionalen\r\nEnergiedienstleister kommen kannst und GIB euch eine Möglichkeit des Austauschs.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Geben ist seliger als nehmen heißt es doch bei euch Menschen.\r\nÜberlege dir eine Strategie, wie und worüber du in einen Dialog mit einer:m (regionalen)\r\nEnergiedienstleister:in kommen kannst und GIB euch eine Möglichkeit des Austauschs.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Schweigen ist Silber, Reden ist Gold, habe ich gelernt.\r\nÜberlege dir, wie du deine Mitmenschen heute am besten auf eine deiner Meinung nach\r\nverbesserungswürdige Energiegewinnung aufmerksam machen kannst und setze deine\r\nÜberlegung um.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Reden ist Silber, Schweigen ist Gold, habe ich gelernt.\r\n\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Wie heißt es? Brauchen ist besser als Haben. Du brauchst heute Aufmerksamkeit?\r\nÜberlege dir, wie du deine Mitmenschen heute am besten auf eine deiner Meinung nach\r\nverbesserungswürdige Energienutzung aufmerksam machen kannst und setze deine Überlegung\r\num.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Wie heißt es? Brauchen ist besser als Haben. Du brauchst heute den Austausch?\r\nÜberlege dir, wie du am besten die Meinung deiner Mitmenschen zur Energienutzung im öffentlichen städtischen Raum erheben kannst und setze dein Vorhaben in die Tat um.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Noch nicht genug von meinen Ratschlägen?\r\nÜberlege dir, wie du am besten die Meinungen deiner Mitmenschen zu einem Teilbereich von\r\nEnergienutzung im öffentlichen städtischen Raum erheben kannst und tue einen ersten Schritt, um\r\ndein Vorhaben in die Tat umzusetzen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n",
+				"description": "Noch nicht genug von meinen Ratschlägen?\r\nDu kannst das digitale Tagebuch füttern. Schreibe auf, was dir in Bezug auf Energie\r\n auf dem Herzen liegt. Keine falsche Scheu, sei ehrlich zu deinem Tagebuch!\r\nHast du es nicht geschafft, dein Handy über Nacht auszumachen?\r\nOder möchtest du Anderen eine Unterstützung für eine effektivere Energienutzung an die Hand geben?\r\nSchicke deinen Tagebucheintrag (egal in welcher Form) an dis-positiv@posteo.com und ich veröffentliche diesen anonym.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n\r\n",
 				"score": 5
 			}
 		]
@@ -203,48 +203,48 @@
 		"sector": "Mobilität",
 		"tasks": [
 			{
-				"title": "Think about … your mobility",
-				"description": "Du wolltest dich schon immer mal zu Lärm-/Licht- und/oder Luftverschmutzung informieren?\r\nOder wissen, wie du auf deinem Weg am wenigsten CO2 ausstößt?\r\nDu fragst dich, was deine Stadt für ein Verkehrskonzept hat?\r\nOder wie sich die Flächenversiegelung auswirkt?\r\nDu möchtest herausfinden, mit welchem Verkehrsmittel du am wenigsten Zeit benötigst?\r\nOder wie viele Ressourcen du im Homeoffice wirklich sparst?\r\nIch nicht. Aber gut, dass nicht ich die Mission erledigen muss, sondern du.\r\nDamit gewinnst du 2 Punkte für deine edrE.\r\n",
+				"title": "Interesse?",
+				"description": "Du wolltest dich schon immer mal zu Lärm-/Licht- und/oder Luftverschmutzung informieren?\r\nOder wissen, wie du auf deinem Weg am wenigsten CO2 ausstößt?\r\nDu fragst dich, was deine Stadt für ein Verkehrskonzept hat?\r\nOder wie sich die Flächenversiegelung auswirkt?\r\nDu möchtest herausfinden, mit welchem Verkehrsmittel du am wenigsten Zeit benötigst?\r\nOder wie viele Ressourcen du im Homeoffice wirklich sparst?\r\nGut, dann finde es heraus!\r\nDamit gewinnst du 2 Punkte für deine edrE.\r\n",
 				"score": 2
 			},
 			{
-				"title": "Act here … for mobility",
+				"title": "So weit die Füße tragen",
 				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun?\r\nGanz sicher? Okay, dann überlege dir, wie du heute eine mindestens 10% längere Strecke (oder\r\nalternativ 10% mehr Zeit) als normalerweise zu Fuß zurücklegen kannst und setze deine\r\nÜberlegung in die Tat um.\r\nJuhu, du gewinnst 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Act now … for mobility",
+				"title": "Achtung: Verkehr",
 				"description": "Du bist heute motiviert, der edrE etwas Gutes zu tun? Wirklich? Na, du bist ja kaum zu bremsen.\r\nDann wirf einen Blick in ein öffentlich einsehbares Verkehrskonzept deiner Stadt und nimm an\r\neiner beliebigen Stelle eine Änderung vor.\r\nDamit gewinnst du 3 Punkte für deine edrE.\r\n",
 				"score": 3
 			},
 			{
-				"title": "Think out of the box … for mobility",
+				"title": "Wir gehen auf eine Reise",
 				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich habe gehört, Menschen können so etwas.\r\nDann überlege dir, wie du eine anstehende oder fiktive Reise möglichst nachhaltig gestalten\r\nkönntest.\r\nDamit gewinnst du 4 Punkte für deine edrE.\r\n",
 				"score": 4
 			},
 			{
-				"title": "Act out of the box … for mobility",
+				"title": "Deine Strecke",
 				"description": "Heute ist ein guter Tag, um um die Ecke zu denken! Ich weiß zwar nicht, welche Ecke gemeint ist,\r\naber ich bin mir sicher, du wirst es herausfinden.\r\nÜberlege dir, wie du eine deiner häufigen Wegstrecken nachhaltiger gestalten könntest.\r\nDamit gewinnst du 4 Punkte für deine edrE!\r\n",
 				"score": 4
 			},
 			{
 				"title": "Share it!",
-				"description": "GEBEN ist seliger als nehmen heißt es doch bei euch Menschen.\r\nÜberlege dir, wie du mehrere Straßen in deiner Umgebung als Fahrradstraßen mit reversibler\r\nFarbe markieren kannst, z.B. indem du Fahrradwege einzeichnest und GIB anderen die Chance, in\r\nGenuss dessen zu kommen\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Geben ist seliger als nehmen heißt es doch bei euch Menschen.\r\nÜberlege dir, wie du reversible Markierungen im Straßenverkehr machen kannst, um damit\r\nz.B. die Flächenverteilung der Verkehrsteilnehmer:innen anzusprechen und gib Anderen die Chance, in\r\nden Genuss deiner Maßnahme zu kommen\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Schweigen ist Silber, Reden ist Gold, habe ich gelernt.\r\nÜberlege dir eine Strategie, wie du in einen Dialog mit den Verantwortlichen in deiner Stadt über\r\ndas Verkehrskonzept kommen kannst und tue einen ersten Schritt in diese Richtung.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Schweigen ist Silber, Reden ist Gold, habe ich gelernt.\r\n\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Wie heißt es? Brauchen ist besser als Haben. Du brauchst heute Ideen?\r\nÜberlege dir, wie du am besten die Meinungen deiner Mitmenschen zu einem Teilbereich von\r\nMobilität in deiner Stadt erheben kannst und tue einen ersten Schritt, um dein Vorhaben in die Tat\r\numzusetzen.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
+				"description": "Wie heißt es? Brauchen ist besser als Haben. Du brauchst heute Ideen?\r\nÜberlege dir, wie du deine Mitmenschen heute am besten auf eine deiner Meinung nach\r\nverbesserungswürdige Mobilitätsinfrastruktur aufmerksam machen kannst und setze deine\r\nÜberlegung um.\r\nDamit gewinnst du 5 Punkte für deine edrE!\r\n",
 				"score": 5
 			},
 			{
 				"title": "Share it!",
-				"description": "Noch nicht genug von meinen Ratschlägen?\r\nÜberlege dir, wie du deine Mitmenschen heute am besten auf eine deiner Meinung nach\r\nverbesserungswürdige Mobilitätsinfrastruktur aufmerksam machen kannst und setze deine\r\nÜberlegung um.\r\nDamit gewinnst du 5 Punkte für deine edrE!",
+				"description": "Noch nicht genug von meinen Ratschlägen?\r\nDu kannst das digitale Tagebuch füttern. Schreibe auf, was dir in Bezug auf Mobilität\r\n auf dem Herzen liegt. Keine falsche Scheu, sei ehrlich zu deinem Tagebuch!\r\nHast du es nicht geschafft, zu Fuß einkaufen zu gehen statt mit dem Auto?\r\nOder möchtest du Anderen eine Unterstützung zur Fahrradreparatur an die Hand geben?\r\nSchicke deinen Tagebucheintrag (egal in welcher Form) an dis-positiv@posteo.com und ich veröffentliche diesen anonym.\r\nDamit gewinnst du 5 Punkte für deine edrE!",
 				"score": 5
 			}
 		]
