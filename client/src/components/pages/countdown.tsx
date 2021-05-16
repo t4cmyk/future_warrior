@@ -25,7 +25,10 @@ export function Countdown() {
       time = "Das Spiel beginnt in wenigen Augenblicken!";
       captionRef.current.innerText = "";
     }
-    if(timerRef.current == null) return;
+    if (timerRef.current == null) {
+      clearInterval(clock);
+      return;
+    }
     timerRef.current.innerText = time;
   }, 500);
 
