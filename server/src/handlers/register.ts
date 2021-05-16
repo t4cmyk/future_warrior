@@ -7,6 +7,7 @@ import {
 	isValidUserCreateInfo,
 	UserCreateInfo,
 } from "../database/register";
+import { GamePhase, getCurrentGameState } from "./status";
 
 type CreateUserConstraint = [(userInfo: UserCreateInfo) => boolean, string];
 const createUserConstraints: CreateUserConstraint[] = [
@@ -40,6 +41,11 @@ export async function registerUserHandler(req: Request, resp: Response) {
 
 	if (!isValidUserCreateInfo(createInfo)) {
 		resp.status(400).json(["Bad Request"]);
+		return;
+	}
+
+	if (getCurrentGameState().phase !== GamePhase.Signup) {
+		resp.status(400).json(["Die Registierung wurde beendet"]);
 		return;
 	}
 

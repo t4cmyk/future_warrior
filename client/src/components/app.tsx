@@ -24,73 +24,90 @@ import { Planet } from "./pages/planet";
 import { isLoggedIn } from "../core/authentication";
 import { Footer } from "./footer";
 import { Countdown } from "./pages/Countdown";
+import { requireGameState } from "./hooks/gameState";
+
+function Header() {
+  return (
+    <header>
+      <div className="justify-content-between col-12 d-flex">
+        <Link to="/Landing">
+          <img width="288" height="100" src="/img/missionfuture.png" />
+        </Link>
+        <AccountMenu />
+      </div>
+    </header>
+  );
+}
+
+function SwitchPageContent() {
+  const loadedGameState = requireGameState();
+
+  if (!loadedGameState) return <></>;
+
+  return (
+    <Switch>
+      <Route path="/Landing/">
+        <Landing />
+      </Route>
+      <Route path="/Login/">
+        <Login />
+      </Route>
+      <Route path="/Register/">
+        <Register />
+      </Route>
+      <Route path="/Tutorial/">
+        <Tutorial />
+          </Route>
+          <Route path="/Countdown/">
+            <Countdown />
+      </Route>
+
+      <Route path="/Help/">
+        <Help />
+      </Route>
+      <Route path="/Privacy/">
+        <Privacy />
+      </Route>
+      <Route path="/Impressum/">
+        <Impressum />
+      </Route>
+      <Route path="/Contact/">
+        <Contact />
+      </Route>
+
+      <Route path="/Main/">
+        <Main />
+      </Route>
+      <Route path="/Planet/">
+        <Planet />
+      </Route>
+      <Route path="/Teams/">
+        <Teams />
+      </Route>
+      <Route path="/Missions/">
+        <Missions />
+      </Route>
+      <Route path="/Chat/">
+        <Chat />
+      </Route>
+      <Route path="/MissionComplete/:mission">
+        <MissionComplete />
+      </Route>
+
+      <Route path="/" exact>
+        <Redirect to={isLoggedIn() ? "/Main/" : "/Landing/"} />
+      </Route>
+      <Route path="/">404</Route>
+    </Switch>
+  );
+}
 
 export function AppComponent() {
   return (
     <>
       <Router>
-        <header>
-          <div className="justify-content-between col-12 d-flex">
-            <Link to="Landing">
-              <img width="288" height="100" src="/img/missionfuture.png" />
-            </Link>
-            <AccountMenu />
-          </div>
-        </header>
-        <Switch>
-          <Route path="/Landing/">
-            <Landing />
-          </Route>
-          <Route path="/Login/">
-            <Login />
-          </Route>
-          <Route path="/Register/">
-            <Register />
-          </Route>
-          <Route path="/Tutorial/">
-            <Tutorial />
-          </Route>
-          <Route path="/Countdown/">
-            <Countdown />
-          </Route>
-
-          <Route path="/Help/">
-            <Help />
-          </Route>
-          <Route path="/Privacy/">
-            <Privacy />
-          </Route>
-          <Route path="/Impressum/">
-            <Impressum />
-          </Route>
-          <Route path="/Contact/">
-            <Contact />
-          </Route>
-
-          <Route path="/Main/">
-            <Main />
-          </Route>
-          <Route path="/Planet/">
-            <Planet />
-          </Route>
-          <Route path="/Teams/">
-            <Teams />
-          </Route>
-          <Route path="/Missions/">
-            <Missions />
-          </Route>
-          <Route path="/Chat/">
-            <Chat />
-          </Route>
-          <Route path="/MissionComplete/:mission">
-            <MissionComplete />
-          </Route>
-
-          <Route path="/" exact>
-            <Redirect to={isLoggedIn() ? "/Main/" : "/Landing/"} />
-          </Route>
-          <Route path="/">404</Route>
-        </Switch>
+        <Header />
+        <SwitchPageContent />
         <Footer />
       </Router>
     </>

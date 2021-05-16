@@ -15,6 +15,7 @@ import { handleTeamsData } from "./handlers/teams";
 import { getChatHandler, postChatMsgHandler } from "./handlers/chat";
 import { planetHandler } from "./handlers/planet";
 import { contactFormHandler } from "./handlers/contactForm";
+import { getStatusHandler } from "./handlers/status";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -23,6 +24,7 @@ async function setupServer() {
 	app.use(cors({ allowedHeaders: corsAllowed }));
 	app.use(jsonBodyParser());
 
+	app.get("/status", getStatusHandler);
 	app.get("/missions", authenticateUser, missionsHandler);
 	app.get("/mission/:missionId", queryMissionHandler);
 	app.get("/planet", authenticateUser, planetHandler);

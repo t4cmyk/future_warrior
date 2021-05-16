@@ -1,8 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Gameboard } from "../gameBoard";
+import { GamePhase, useGameState } from "../hooks/gameState";
 
 export function Main() {
+  const state = useGameState();
+  if (
+    state.phase === GamePhase.Signup ||
+    state.phase === GamePhase.Preparation
+  ) {
+    return <Redirect to="/Tutorial/" />;
+  }
+
   return (
     <>
       <h1>Missionen</h1>

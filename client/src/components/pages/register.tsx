@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { authenticateByJWT } from "../../core/authentication";
+import { GamePhase, useGameState } from "../hooks/gameState";
 
 function RegisterError(props: { errorMsg: string[]; onClose: () => any }) {
   if (props.errorMsg.length <= 0) return <></>;
@@ -28,6 +29,20 @@ export function Register() {
   const [canSubmit, setCanSubmit] = useState(false);
   const [submitInProgress, setInProgress] = useState(false);
   const [submitError, setSumbitError] = useState<string[]>([]);
+
+  const state = useGameState();
+  if (state.phase !== GamePhase.Signup) {
+    return (
+      <Container>
+        <h1>Registrierung beendet</h1>
+        <span>
+          {state.phase === GamePhase.Preparation
+            ? "Das Spiel ist voll."
+            : "Das Spiel hat bereits begonnen!"}
+        </span>
+      </Container>
+    );
+  }
 
   const onSubmit = async () => {
     setInProgress(true);
