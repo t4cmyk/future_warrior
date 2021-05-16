@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { AccountMenu } from "./accountMenu";
 import { Chat } from "./pages/chat";
 import { Contact } from "./pages/contact";

@@ -33,7 +33,11 @@ async function setupServer() {
 	app.post("/contactForm", contactFormHandler);
 	app.post("/login", loginUserHandler);
 
-	app.use("", express.static("../client/dist"));
+	app.use(express.static("../client/dist"));
+
+	app.get("/", function (req, res) {
+		res.sendFile("../client/dist/index.html");
+	});
 
 	let port = config.get<number>("port");
 	app.listen(port);
