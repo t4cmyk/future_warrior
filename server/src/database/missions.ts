@@ -157,9 +157,9 @@ const selectMissionDetails = database.prepare<number>(
 
 export function getMissionData(id: number) {
 	const data = selectMissionDetails.get(id);
-	data.imagePath = getImagePath(data.sector, data.score);
 
-	if (data)
+	if (data) {
+		data.imagePath = getImagePath(data.sector, data.score);
 		return data as {
 			name: string;
 			description: string;
@@ -167,6 +167,7 @@ export function getMissionData(id: number) {
 			sector: Sector;
 			creatorId: number;
 		};
+	}
 	return undefined;
 }
 
