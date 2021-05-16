@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import { AccountMenu } from "./accountMenu";
 import { Chat } from "./pages/chat";
 import { Contact } from "./pages/contact";
@@ -15,6 +21,8 @@ import { Register } from "./pages/register";
 import { Teams } from "./pages/teams";
 import { Tutorial } from "./pages/tutorial";
 import { Planet } from "./pages/planet";
+import { isLoggedIn } from "../core/authentication";
+import { Footer } from "./footer";
 
 export function AppComponent() {
   return (
@@ -23,7 +31,7 @@ export function AppComponent() {
         <header>
           <div className="justify-content-between col-12 d-flex">
             <Link to="Landing">
-              <img width="288" height="100" src="img/missionfuture.png" />
+              <img width="288" height="100" src="/img/missionfuture.png" />
             </Link>
             <AccountMenu />
           </div>
@@ -74,8 +82,12 @@ export function AppComponent() {
             <MissionComplete />
           </Route>
 
+          <Route path="/" exact>
+            <Redirect to={isLoggedIn() ? "/Main/" : "/Landing/"} />
+          </Route>
           <Route path="/">404</Route>
         </Switch>
+        <Footer />
       </Router>
     </>
   );

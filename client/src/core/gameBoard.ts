@@ -51,13 +51,13 @@ export class GameboardGraphics {
     const loader = new GLTFLoader();
 
     loader.load(
-      "models/board.glb",
+      "/models/board.glb",
       (gltf) => {
         const board = gltf.scene;
         scene.add(board);
 
         loader.load(
-          "models/player.glb",
+          "/models/player.glb",
           (gltf) => {
             board.add(gltf.scene);
           },
