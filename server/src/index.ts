@@ -7,7 +7,7 @@ import { registerUserHandler } from "./handlers/register";
 import { loginUserHandler } from "./handlers/login";
 import { initMissions, Mission } from "./database/missions";
 import { createTestGame } from "./database/testgame";
-import { missionsHandler } from "./handlers/missions";
+import { missionsHandler, queryMissionHandler } from "./handlers/missions";
 import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
 import { handleTeamsData } from "./handlers/teams";
@@ -23,6 +23,7 @@ async function setupServer() {
 	app.use(jsonBodyParser());
 
 	app.get("/missions", authenticateUser, missionsHandler);
+	app.get("/mission/:missionId", queryMissionHandler);
 	app.get("/planet", authenticateUser, planetHandler);
 	app.get("/teams", handleTeamsData);
 	app.post("/complete", authenticateUser, completeMissionHandler);

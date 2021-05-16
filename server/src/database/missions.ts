@@ -151,6 +151,25 @@ export async function writeMissionInDB(mission: Mission) {
 	);
 }
 
+const selectMissionDetails = database.prepare<number>(
+	"SELECT name, description, score,sector,creatorId FROM missions WHERE id=?"
+);
+
+export function getMissionData(id: number) {
+	const data = selectMissionDetails.get(id);
+	data.imagePath = getImagePath(data.sector, data.score);
+
+	if (data)
+		return data as {
+			name: string;
+			description: string;
+			score: number;
+			sector: Sector;
+			creatorId: number;
+		};
+	return undefined;
+}
+
 const getAllMissionsQuery = database.prepare("SELECT * FROM missions");
 
 const getNormalMissionsQuery = database.prepare(
@@ -169,8 +188,8 @@ const getLastDailyUpdate = database.prepare<number>(
 	"SELECT lastDailyUpdate FROM teams WHERE id=?"
 );
 
-const getDailyMissionsWithDescriptionQuery = database.prepare<number>(
-	"SELECT dailyMissions.id, mission,completedByPlayer,name, description,score,sector,creatorId FROM dailyMissions INNER JOIN missions ON dailyMissions.mission=missions.id WHERE team=?"
+const getDailyMissionsForTeam = database.prepare<number>(
+	"SELECT id,mission,completedByPlayer FROM dailyMissions WHERE team=?"
 );
 
 export function getDailyMissions(teamId: number) {
@@ -182,16 +201,7 @@ export function getDailyMissions(teamId: number) {
 		id: number;
 		mission: number;
 		completedByPlayer: number | null;
-		name: string;
-		description: string;
-		score: number;
-		sector: Sector;
-		creatorId: number;
-		imagePath: string;
-	}[] = getDailyMissionsWithDescriptionQuery.all(teamId);
-	missions.forEach((m) => {
-		m.imagePath = getImagePath(m.sector, m.score);
-	});
+	}[] = getDailyMissionsForTeam.all(teamId);
 
 	return missions;
 }

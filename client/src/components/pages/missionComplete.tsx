@@ -1,12 +1,8 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
-import { IMission } from "./missions";
+import { IMission } from "../missionCard";
 import { getToken } from "../../core/authentication";
-
-interface IMissionCompleteData {
-  id: number;
-}
 
 export function MissionComplete() {
   const { mission } = useParams<{ mission: string }>();
