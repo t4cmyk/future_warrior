@@ -1,88 +1,9 @@
-import React, { Component, useEffect, useRef, useState } from "react";
-import {
-  Col,
-  Container,
-  ListGroup,
-  Row,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "react-bootstrap";
+import React, { useEffect, useRef, useState } from "react";
+import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { getToken } from "../../core/authentication";
+import { drawPlanet, IPlanetInfo } from "../planetElements";
 
-export interface IPlanetInfo {
-  level: number; // 1 -default, 2 - one sector, 3 - two sectors
-  sector1: string;
-  sector2: string;
-}
 
-// level 1: 0 - 54
-// level 2: 55 - 119 Sec1
-// level 3: 120 - 194 Sec2
-// Endgame: 195 - 280 Sec3
-
-export enum Sector {
-  diet = "Ernährung",
-  energy = "Energie",
-  household = "Haushalt",
-  mobility = "Mobilität",
-  social = "Soziales",
-  key = "Schlüsselereignis",
-}
-
-function drawPlanet(planetCon: any, planetInfo: IPlanetInfo) {
-  var tempImg = new Image();
-  planetCon.clearRect(0, 0, 400, 400);
-  tempImg.src = "img/planet/edre.png";
-  console.log(tempImg.src);
-  planetCon.drawImage(tempImg, 0, 0, 400, 400);
-  if (planetInfo == undefined) {
-    console.log("Error - planetInfo not found");
-    return;
-  }
-  if (
-    planetInfo.sector1 == Sector.energy ||
-    planetInfo.sector2 == Sector.energy
-  ) {
-    var tempImg = new Image();
-    tempImg.src = "img/planet/energy.png";
-    planetCon.drawImage(tempImg, 0, 0, 400, 400);
-  }
-  if (planetInfo.sector1 == Sector.diet || planetInfo.sector2 == Sector.diet) {
-    var tempImg = new Image();
-    tempImg.src = "img/planet/diet.png";
-    planetCon.drawImage(tempImg, 0, 0, 400, 400);
-  }
-  if (
-    planetInfo.sector1 == Sector.household ||
-    planetInfo.sector2 == Sector.household
-  ) {
-    var tempImg = new Image();
-    tempImg.src = "img/planet/household.png";
-    planetCon.drawImage(tempImg, 0, 0, 400, 400);
-  }
-  if (
-    planetInfo.sector1 == Sector.social ||
-    planetInfo.sector2 == Sector.social
-  ) {
-    var tempImg = new Image();
-    tempImg.src = "img/planet/social.png";
-    planetCon.drawImage(tempImg, 0, 0, 400, 400);
-  }
-  if (
-    planetInfo.sector1 == Sector.mobility ||
-    planetInfo.sector2 == Sector.mobility
-  ) {
-    var tempImg = new Image();
-    tempImg.src = "img/planet/mobility.png";
-    planetCon.drawImage(tempImg, 0, 0, 400, 400);
-  }
-
-  if ("todo") {
-    var tempImg = new Image();
-    tempImg.src = "img/planet/happiness.png";
-    planetCon.drawImage(tempImg, 0, 0, 400, 400);
-  }
-}
 
 export function Planet() {
   const inputEnergy = useRef<HTMLInputElement>(null);
@@ -106,6 +27,7 @@ export function Planet() {
         setTimeout(function () {
           drawPlanet(planetCon, respData);
         }, 100);
+        description = getDescription(respData.level);
         return respData;
       } catch (e) {
         console.log(e);
@@ -118,18 +40,7 @@ export function Planet() {
     };
   }, []);
 
-  // draw order:
-  // good
-  // edre
 
-  // energy
-  // diet
-  // household
-  // social
-
-  //mobility?
-
-  // clouds
 
   return (
     <>
@@ -148,24 +59,40 @@ export function Planet() {
                 {description}
               </ListGroup.Item>
               <ListGroup.Item>
-                <input type="checkbox" ref={inputEnergy}></input>
+                <input
+                  type="checkbox"
+                  ref={inputEnergy}
+                  disabled={true}
+                ></input>
                 Energie
               </ListGroup.Item>
               <ListGroup.Item>
-                <input type="checkbox" ref={inputDiet}></input>
+                <input type="checkbox" ref={inputDiet} disabled={true}></input>
                 Ernährung
               </ListGroup.Item>
               <ListGroup.Item>
-                <input type="checkbox" ref={inputMobility}></input>
+                <input
+                  type="checkbox"
+                  ref={inputMobility}
+                  disabled={true}
+                ></input>
                 Mobilität
               </ListGroup.Item>
               <ListGroup.Item>
-                <input type="checkbox" ref={inputSocial}></input>
+                <input
+                  type="checkbox"
+                  ref={inputSocial}
+                  disabled={true}
+                ></input>
                 Soziales
               </ListGroup.Item>
               <ListGroup.Item>
-                <input type="checkbox" ref={inputHousehold}></input>
-                Soziales
+                <input
+                  type="checkbox"
+                  ref={inputHousehold}
+                  disabled={true}
+                ></input>
+                Haushalt
               </ListGroup.Item>
             </ListGroup>
           </Col>
@@ -178,3 +105,9 @@ export function Planet() {
     </>
   );
 }
+
+
+function getDescription(level: number): string {
+  throw new Error("Function not implemented.");
+}
+
