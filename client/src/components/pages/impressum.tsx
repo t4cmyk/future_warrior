@@ -15,12 +15,12 @@ export function Impressum() {
         <br />
         31134 Hildesheim
         <br />
-        Kontakt
+		<br />
+        Kontakt:
         <br />
-        E-Mail: <a href="mailto:r.zechiel@web.de">r.zechiel@web.de</a>
+        E-Mail: <a href="mailto:dis-positiv@posteo.de">dis-positiv@posteo.de</a>
         <br />
         Telefon: 015156115521
-        <br />
         <br />
         <br />
         <h2>Streitschlichtung</h2>
@@ -68,7 +68,7 @@ export function Impressum() {
         <br />
         <h2>Tonquellen</h2>
         Die Plattform Bensound.com hat das Urheberrecht für die verwendeten
-        Musiktitel und Effektgeräusche.
+        Musiktitel.
       </Container>
     </>
   );

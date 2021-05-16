@@ -62,7 +62,7 @@ export function Privacy() {
         Sie erläutert auch, wie und zu welchem Zweck das geschieht.
         <br />
         Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei
-        der Kommunikation per EMail) Sicherheitslücken aufweisen kann. Ein
+        der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein
         lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht
         möglich.
         <br />
@@ -77,7 +77,7 @@ export function Privacy() {
         <br />
         Telefon: 015156115521
         <br />
-        E-Mail: <a href="mailto:r.zechiel@web.de">r.zechiel@web.de</a>
+        E-Mail: <a href="mailto:dis-positiv@posteo.de">dis-positiv@posteo.de</a>
         <br />
         Verantwortliche Stelle ist die natürliche Person, die über die Zwecke
         und Mittel der Verarbeitung von personenbezogenen Daten entscheidet.
@@ -231,7 +231,7 @@ export function Privacy() {
         <br />
         <h3>Server-Log-Dateien</h3>
         Der Provider der Seiten erhebt und speichert automatisch Informationen
-        in so genannten Server- Log-Dateien, die dein Browser automatisch an uns
+        in so genannten Server-Log-Dateien, die dein Browser automatisch an uns
         übermittelt. Dies sind:
         <ul>
           <li>Browsertyp und Browserversion</li>
@@ -289,7 +289,7 @@ export function Privacy() {
         Speicherung widerrufst oder der Zweck für die Datenspeicherung entfällt
         (z. B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende
         gesetzliche Bestimmungen – insbesondere gesetzliche Aufbewahrungsfristen
-        – bleiben unberührt
+        – bleiben unberührt.
       </Container>
     </>
   );
