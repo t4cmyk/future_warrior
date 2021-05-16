@@ -23,6 +23,7 @@ import { Tutorial } from "./pages/tutorial";
 import { Planet } from "./pages/planet";
 import { isLoggedIn } from "../core/authentication";
 import { Footer } from "./footer";
+import { Countdown } from "./pages/Countdown";
 
 export function AppComponent() {
   return (
@@ -48,6 +49,9 @@ export function AppComponent() {
           </Route>
           <Route path="/Tutorial/">
             <Tutorial />
+          </Route>
+          <Route path="/Countdown/">
+            <Countdown />
           </Route>
 
           <Route path="/Help/">
