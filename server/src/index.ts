@@ -1,6 +1,7 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import config from "config";
+import * as path from "path";
 import jwt from "jsonwebtoken";
 import { text as textBodyParser, json as jsonBodyParser } from "body-parser";
 import { registerUserHandler } from "./handlers/register";
@@ -35,8 +36,10 @@ async function setupServer() {
 
 	app.use(express.static("../client/dist"));
 
-	app.get("/", function (req, res) {
-		res.sendFile("../client/dist/index.html");
+	app.get("*", (req: Request, res: Response) => {
+		res.sendFile(
+			path.resolve(__dirname, "..", "..", "client", "dist", "index.html")
+		);
 	});
 
 	let port = config.get<number>("port");
