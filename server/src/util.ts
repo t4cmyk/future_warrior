@@ -1,5 +1,9 @@
+import config from "config";
+
+const tokenSecret = config.get<string>("jwtSecret");
+
 export function getAccessTokenSecret() {
-	return "todo";
+	return tokenSecret;
 }
 
 export function convertJsToSQLDate(jsDate: Date) {

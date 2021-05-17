@@ -1,11 +1,12 @@
 {
 	"port": 8137,
 	"cors": "*",
+	"jwtSecret": "secret",
 	"mailHost": "mail.gmx.net",
 	"mailPort": 587,
 	"mailCiphers": "SSLv3",
 	"mailUser": "EXAMPLE-MAIL-ADDRESS@gmx.de",
 	"mailPass": "PASSWORD",
 	"supportMail": "EXAMPLE-MAIL-ADDRESS@support.de",
-	"domainName" :"EXAMPLE-DOMAIN-NAME.de"
+	"domainName": "EXAMPLE-DOMAIN-NAME.de"
 }
