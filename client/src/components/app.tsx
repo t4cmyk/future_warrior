@@ -23,7 +23,7 @@ import { Tutorial } from "./pages/tutorial";
 import { Planet } from "./pages/planet";
 import { isLoggedIn } from "../core/authentication";
 import { Footer } from "./footer";
-import { Countdown } from "./pages/Countdown";
+import { Countdown } from "./pages/countdown";
 import { requireGameState } from "./hooks/gameState";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { ChangePassword } from "./pages/changePassword";
