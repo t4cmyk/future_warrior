@@ -6,5 +6,6 @@
 	"mailCiphers": "SSLv3",
 	"mailUser": "EXAMPLE-MAIL-ADDRESS@gmx.de",
 	"mailPass": "PASSWORD",
-	"supportMail": "EXAMPLE-MAIL-ADDRESS@support.de"
+	"supportMail": "EXAMPLE-MAIL-ADDRESS@support.de",
+	"domainName" :"EXAMPLE-DOMAIN-NAME.de"
 }

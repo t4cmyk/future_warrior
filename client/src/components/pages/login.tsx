@@ -3,6 +3,7 @@ import { Alert, Button } from "react-bootstrap";
 import Container from "react-bootstrap/esm/Container";
 import Form from "react-bootstrap/esm/Form";
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 import {
   authenticateUser,
   getUsername,
@@ -68,7 +69,9 @@ export function Login() {
               ref={passwordRef}
             />
           </Form.Group>
-          <Button variant="secondary">Passwort vergessen?</Button>{" "}
+          <Link to="ForgotPassword">
+            <Button variant="secondary">Passwort vergessen?</Button>{" "}
+          </Link>
           <Button type="submit">Einloggen</Button>
         </Form>
       </Container>

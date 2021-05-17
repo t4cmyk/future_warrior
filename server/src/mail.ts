@@ -40,3 +40,16 @@ export async function contactMail(
 		"Nachricht von " + user + " (" + mail + "): \n" + text
 	);
 }
+
+export async function sendPwRecoveryMail(user: string,mail: string) {
+	let link = "https://"+config.get<string>("domainName") +"/changePassword"+":todo";
+	sendMail(
+		mail,
+		"Passwortwiederherstellung",
+		"Hallo " +
+			user +
+			",\n bitte klicke auf den folgenden Link um dein Passwort zu ändern:\n" +
+			link +
+			"\n \nFalls du keine Passwortänderung angefordert hast, kannst du diese E-mail einfach ignorieren.\n Mit freundlichen Grüßen\nDein Dis-positiv Team"
+	);
+}

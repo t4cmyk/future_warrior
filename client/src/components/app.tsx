@@ -25,6 +25,8 @@ import { isLoggedIn } from "../core/authentication";
 import { Footer } from "./footer";
 import { Countdown } from "./pages/Countdown";
 import { requireGameState } from "./hooks/gameState";
+import { ForgotPassword } from "./pages/forgotPassword";
+import { ChangePassword } from "./pages/changePassword";
 
 function Header() {
   return (
@@ -52,14 +54,20 @@ function SwitchPageContent() {
       <Route path="/Login/">
         <Login />
       </Route>
+      <Route path="/ForgotPassword/">
+        <ForgotPassword />
+      </Route>
+      <Route path="/ChangePassword/">
+        <ChangePassword />
+      </Route>
       <Route path="/Register/">
         <Register />
       </Route>
       <Route path="/Tutorial/">
         <Tutorial />
-          </Route>
-          <Route path="/Countdown/">
-            <Countdown />
+      </Route>
+      <Route path="/Countdown/">
+        <Countdown />
       </Route>
 
       <Route path="/Help/">
