@@ -55,9 +55,6 @@ export function ContactForm() {
       const respData = await resp.json();
       if (resp.ok) {
         setSubmitSuccess(true);
-        alert("Nachricht wurde erfolgreich gesendet!");
-        /**  authenticateByJWT(respData.token);
-        history.push("/Main");*/
       } else {
         setSumbitError(respData);
       }

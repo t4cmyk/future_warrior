@@ -17,7 +17,7 @@ const createUserConstraints: CreateUserConstraint[] = [
 	],
 	[
 		(userInfo: UserCreateInfo) => userInfo.name.length >= 3,
-		"Dein Nichname muss aus mindestens 3 Zeichen bestehen",
+		"Dein Nickname muss aus mindestens 3 Zeichen bestehen",
 	],
 	[
 		(userInfo: UserCreateInfo) =>
