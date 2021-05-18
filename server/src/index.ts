@@ -17,6 +17,7 @@ import { planetHandler } from "./handlers/planet";
 import { contactFormHandler } from "./handlers/contactForm";
 import { getStatusHandler } from "./handlers/status";
 import { forgotPasswordHandler } from "./handlers/forgotPassword";
+import { changePasswordHandler } from "./handlers/changePasswordHandler";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -53,11 +54,8 @@ async function setupServer() {
 	console.log("Hello");
 	console.log("------------------------------");
 	initMissions();
-	createTestGame();
+	//createTestGame();
 }
 
 setupServer();
-function changePasswordHandler(arg0: string, changePasswordHandler: any) {
-	throw new Error("Function not implemented.");
-}
 

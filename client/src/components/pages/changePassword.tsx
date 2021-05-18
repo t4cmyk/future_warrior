@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Alert, Button, Container, Form, Spinner } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function ContactSuccess(props: { success: boolean; onClose: () => any }) {
   if (!props.success) return <></>;
@@ -28,6 +28,9 @@ function ContactError(props: { errorMsg: string[]; onClose: () => any }) {
 }
 
 export function ChangePassword() {
+  const search = useLocation().search;
+  let token = new URLSearchParams(search).get('token');
+
   const passwordRef = useRef<HTMLInputElement>();
 
   let history = useHistory();
@@ -42,7 +45,9 @@ export function ChangePassword() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        mail: passwordRef.current.value,
+        password: passwordRef.current.value,
+        token: token
+        
       }),
     };
     try {

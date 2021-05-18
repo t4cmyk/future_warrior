@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getPlayerWithMail } from "../database/passwordRecovery";
-import { contactMail, sendPwRecoveryMail } from "../mail";
+import { sendPwRecoveryMail } from "../mail";
 
 export interface pwRecoveryInfo {
 	mail: string;
@@ -50,8 +50,8 @@ export async function forgotPasswordHandler(req: Request, resp: Response) {
 			resp.status(400).json(violatedConstaints.map((val) => val[1]));
 			return;
 		}
-		let user = getPlayerWithMail(pwRecoveryInfo.mail).name;
-		sendPwRecoveryMail(user, pwRecoveryInfo.mail);
+		let user =  getPlayerWithMail(pwRecoveryInfo.mail);
+		sendPwRecoveryMail(user.id, user.name, pwRecoveryInfo.mail);
 
 		resp.status(200).json({});
 	} catch {

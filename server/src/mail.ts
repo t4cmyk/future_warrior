@@ -1,5 +1,6 @@
 import config from "config";
 import nodemailer from "nodemailer";
+import { createPwRecoveryToken } from "./database/passwordRecovery";
 
 let transporter = nodemailer.createTransport({
 	host: config.get<string>("mailHost"),
@@ -41,15 +42,23 @@ export async function contactMail(
 	);
 }
 
-export async function sendPwRecoveryMail(user: string,mail: string) {
-	let link = "https://"+config.get<string>("domainName") +"/changePassword"+":todo";
+export async function sendPwRecoveryMail(
+	userId: number,
+	username: string,
+	mail: string
+) {
+	let link =
+		"https://" +
+		config.get<string>("domainName") +
+		"/changePassword?token=" +
+		createPwRecoveryToken(userId);
 	sendMail(
 		mail,
 		"Passwortwiederherstellung",
 		"Hallo " +
-			user +
+			username +
 			",\n bitte klicke auf den folgenden Link um dein Passwort zu ändern:\n" +
 			link +
-			"\n \nFalls du keine Passwortänderung angefordert hast, kannst du diese E-mail einfach ignorieren.\n Mit freundlichen Grüßen\nDein Dis-positiv Team"
+			"\nAchtung, dieser Link ist nur 20 Minuten gültig.\nFalls du keine Passwortänderung angefordert hast, kannst du diese E-mail einfach ignorieren.\n Mit freundlichen Grüßen\nDein Dis-positiv Team"
 	);
 }
