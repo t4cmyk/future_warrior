@@ -32,7 +32,7 @@ export interface IPwRecoveryData {
 
 export function createPwRecoveryToken(userId: number) {
 	return jwt.sign(
-		{ id: userId, time: new Date().valueOf},
+		{ id: userId, timestamp: new Date().valueOf()},
 		getAccessTokenSecret()
 	);
 }

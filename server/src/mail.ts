@@ -57,8 +57,8 @@ export async function sendPwRecoveryMail(
 		"Passwortwiederherstellung",
 		"Hallo " +
 			username +
-			",\n bitte klicke auf den folgenden Link um dein Passwort zu ändern:\n" +
+			",\nbitte klicke auf den folgenden Link um dein Passwort zu ändern:\n" +
 			link +
-			"\nAchtung, dieser Link ist nur 20 Minuten gültig.\nFalls du keine Passwortänderung angefordert hast, kannst du diese E-mail einfach ignorieren.\n Mit freundlichen Grüßen\nDein Dis-positiv Team"
+			"\nAchtung, dieser Link ist nur 20 Minuten gültig.\nFalls du keine Passwortänderung angefordert hast, kannst du diese E-mail einfach ignorieren.\nMit freundlichen Grüßen\nDein Dis-positiv Team"
 	);
 }
