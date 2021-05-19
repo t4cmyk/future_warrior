@@ -27,6 +27,7 @@ import { Countdown } from "./pages/countdown";
 import { requireGameState } from "./hooks/gameState";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { ChangePassword } from "./pages/changePassword";
+import { Verify } from "./pages/verify";
 
 function Header() {
   return (
@@ -62,6 +63,9 @@ function SwitchPageContent() {
       </Route>
       <Route path="/Register/">
         <Register />
+      </Route>
+      <Route path="/Verify/">
+        <Verify />
       </Route>
       <Route path="/Tutorial/">
         <Tutorial />

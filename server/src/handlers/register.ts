@@ -3,10 +3,12 @@ import { createUserToken } from "../authentication";
 import { loginUser } from "../database/login";
 import {
 	createUser,
+	isFreeMail,
 	isFreeUserName,
 	isValidUserCreateInfo,
 	UserCreateInfo,
 } from "../database/register";
+import { sendVerificationMail } from "../mail";
 import { GamePhase, getCurrentGameState } from "./status";
 
 type CreateUserConstraint = [(userInfo: UserCreateInfo) => boolean, string];
@@ -62,16 +64,22 @@ export async function registerUserHandler(req: Request, resp: Response) {
 		return;
 	}
 
+	if ((await isFreeMail(createInfo.mail)) === false) {
+		resp.status(400).json(["Diese E-mailadresse ist bereits vergeben."]);
+		return;
+	}
+
 	await createUser(createInfo);
 	const loginInfo = {
 		username: createInfo.name,
 		password: createInfo.password,
 	};
 	const userId = await loginUser(loginInfo);
-	if (userId > 0) {
+	if (userId <= 0) {
 		resp.status(500).json(["Something went terribly wrong :("]);
 		return;
 	}
 	const jwt = createUserToken(loginInfo, userId);
-	resp.status(200).send(jwt);
+	sendVerificationMail(userId, loginInfo.username, createInfo.mail);
+	resp.status(200).json({ token: jwt });
 }

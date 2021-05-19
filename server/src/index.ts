@@ -18,6 +18,8 @@ import { contactFormHandler } from "./handlers/contactForm";
 import { getStatusHandler } from "./handlers/status";
 import { forgotPasswordHandler } from "./handlers/forgotPassword";
 import { changePasswordHandler } from "./handlers/changePasswordHandler";
+import { verifyHandler } from "./handlers/verify";
+import { createMailVerificationToken } from "./database/verify";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -37,6 +39,7 @@ async function setupServer() {
 	app.post("/register", registerUserHandler);
 	app.post("/contactForm", contactFormHandler);
 	app.post("/login", loginUserHandler);
+	app.post("/verify", verifyHandler);
 	app.post("/forgotPassword", forgotPasswordHandler);
 	app.post("/changePassword", changePasswordHandler);
 
@@ -54,8 +57,6 @@ async function setupServer() {
 	console.log("Hello");
 	console.log("------------------------------");
 	initMissions();
-	//createTestGame();
 }
 
 setupServer();
-

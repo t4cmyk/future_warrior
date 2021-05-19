@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
 import { database } from "./core";
+import { getPlayerWithMail } from "./passwordRecovery";
 
 export interface UserCreateInfo {
 	name: string;
@@ -31,6 +32,14 @@ export async function isFreeUserName(username: string) {
 		id: number;
 	} = getUserId.get(username);
 	if (userIdResult) return false;
+	return true;
+}
+
+export async function isFreeMail(mail: string) {
+	const mailResult: {
+		id: number;
+	} = getPlayerWithMail(mail);
+	if (mailResult) return false;
 	return true;
 }
 
