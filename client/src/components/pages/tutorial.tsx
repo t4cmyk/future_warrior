@@ -10,7 +10,7 @@ export function Tutorial() {
         width="800"
         height="450"
         controls
-        src="tutorial.mp4"
+        src="/tutorial.mp4"
         className="center"
       ></video>
       <br />
