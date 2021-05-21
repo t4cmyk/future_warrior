@@ -19,8 +19,8 @@ export function Landing() {
       <br />
       <h2 className="center">
         Erledige Missionen, um Punkte für den Aufbau zu generieren.
-        </h2>
-        <br />
+      </h2>
+      <br />
       <h2>Entscheidet, auf welche Sektoren ihr euch spezialisieren wollt.</h2>
       <img
         src="/img/planet/edre.png"
