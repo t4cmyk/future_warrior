@@ -77,6 +77,13 @@ footer {
   display: block;
 }
 
+.logo {
+  height: 40px;
+  border-radius: 15px;
+  overflow: hidden;
+  perspective: 1px;
+}
+
 .card {
   margin: 0 auto;
   float: none;
