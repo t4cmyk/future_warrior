@@ -22,7 +22,13 @@ function loadFromLocalStorage() {
 
 function parseToken() {
   const encPayload = jwt.split(".")[1];
-  const payload: { username: string } = JSON.parse(window.atob(encPayload));
+  const payload: { username: string; iat: number } = JSON.parse(
+    window.atob(encPayload)
+  );
+  if (payload.iat < 1621695600) {
+    jwt = "";
+    return;
+  }
   userLoggedIn = payload.username;
 }
 
