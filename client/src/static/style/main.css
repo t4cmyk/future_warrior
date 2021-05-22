@@ -21,6 +21,10 @@ h4 {
   text-align: center;
 }
 
+#root {
+  background: rgba(0, 0, 0, 0.4);
+}
+
 /** Colors:
 rgb(23, 83, 95); - darkest turquoise
 rgb(76, 150, 155); 
