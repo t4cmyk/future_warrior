@@ -27,6 +27,7 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { ChangePassword } from "./pages/changePassword";
 import { Verify } from "./pages/verify";
 import { Header } from "./header";
+import { ScrollToTop } from "./scrollToTop";
 
 function SwitchPageContent() {
   const loadedGameState = requireGameState();
@@ -105,6 +106,7 @@ export function AppComponent() {
     <>
       <Router>
         <Header />
+        <ScrollToTop />
         <SwitchPageContent />
         <Footer />
       </Router>
