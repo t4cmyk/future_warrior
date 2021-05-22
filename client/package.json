@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack && ncp src/static dist",
+    "build-production": "webpack -p --config ./webpack.production.config.js && ncp src/static dist",
     "start": "webpack-dev-server --port 9000 --open --hot --inline --content-base src/static"
   },
   "engines": {
