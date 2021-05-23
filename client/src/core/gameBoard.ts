@@ -50,6 +50,12 @@ export class GameboardGraphics {
     this.initialize();
   }
 
+  async inputGraphicsData(root: GraphicsData) {
+    const data = await buildSceneFromData(root);
+    this.scene.clear();
+    this.scene.add(data);
+  }
+
   private initialize() {
     this.clock = new THREE.Clock();
     this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -85,7 +91,15 @@ export class GameboardGraphics {
       x?: number;
       y?: number;
       z?: number;
+      pos?: number;
     }) => {
+      if (coords.pos) {
+        const angle = (coords.pos * 1.14 - 0.3) / (2 * Math.PI);
+        const radius = Math.max(0, 100 - coords.pos * 0.5);
+        coords.x = radius * Math.sin(angle);
+        coords.y = coords.pos * 0.75 - 9.5;
+        coords.z = radius * Math.cos(angle);
+      }
       const data = await buildSceneFromData({
         model: "/models/board.glb",
         children: [

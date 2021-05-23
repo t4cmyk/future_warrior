@@ -26,6 +26,14 @@ export function getMissionIdFromDailyId(
 	return result.mission;
 }
 
+const selectIncompleteMission = database.prepare<[number]>(
+	"SELECT COUNT(*) AS count FROM dailyMissions WHERE id=?"
+);
+
+const createScoreEntry = database.prepare<[number, number]>(
+	"INSERT INTO score (team, mission, time) VALUES (?, ?, datetime('now'))"
+);
+
 const updateDailyMissionComplete = database.prepare<[number, number]>(
 	"UPDATE dailyMissions SET completedByPlayer=? WHERE id=? AND completedByPlayer IS NULL"
 );
@@ -43,6 +51,8 @@ export function completeMission(
 	teamId: number,
 	feedback: IMissionFeedback
 ) {
+	if (selectIncompleteMission.get(dailyMissionId) > 0)
+		createScoreEntry.run(teamId, missionId);
 	updateDailyMissionComplete.run(playerId, dailyMissionId);
 	createFeedbackEntry.run(
 		missionId,

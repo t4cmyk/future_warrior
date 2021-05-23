@@ -20,6 +20,8 @@ import { forgotPasswordHandler } from "./handlers/forgotPassword";
 import { changePasswordHandler } from "./handlers/changePasswordHandler";
 import { verifyHandler } from "./handlers/verify";
 import { createMailVerificationToken } from "./database/verify";
+import { allTeamScoresHandler, teamScoreHandler } from "./handlers/score";
+import { gameboardHandler } from "./handlers/game";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -30,6 +32,9 @@ async function setupServer() {
 
 	app.get("/status", getStatusHandler);
 	app.get("/dailyMissions", authenticateUser, missionsHandler);
+	app.get("/teamScore", authenticateUser, teamScoreHandler);
+	app.get("/allTeamScores", authenticateUser, allTeamScoresHandler);
+	app.get("/board", authenticateUser, gameboardHandler);
 	app.get("/mission/:missionId", queryMissionHandler);
 	app.get("/planetData", authenticateUser, planetDataHandler);
 	app.get("/teams", handleTeamsData);

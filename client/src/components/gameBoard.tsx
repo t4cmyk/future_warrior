@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useRef } from "react";
+import { getToken } from "../core/authentication";
 import { GameboardGraphics } from "../core/gameBoard";
 
 export function Gameboard() {
@@ -7,6 +8,9 @@ export function Gameboard() {
 
   useEffect(() => {
     const graphics = new GameboardGraphics(divRef.current);
+    fetch(`/dailyMissions?token=${getToken()}`)
+      .then((result) => result.json())
+      .then((result) => graphics.inputGraphicsData(result));
     return () => graphics.dispose();
   }, []);
 
