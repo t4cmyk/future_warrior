@@ -30,8 +30,8 @@ const selectIncompleteMission = database.prepare<[number]>(
 	"SELECT COUNT(*) AS count FROM dailyMissions WHERE id=?"
 );
 
-const createScoreEntry = database.prepare<[number, number]>(
-	"INSERT INTO score (team, mission, time) VALUES (?, ?, datetime('now'))"
+const createCompletedEntry = database.prepare<[number, number]>(
+	"INSERT INTO completedMissions (team, mission, time) VALUES (?, ?, datetime('now'))"
 );
 
 const updateDailyMissionComplete = database.prepare<[number, number]>(
@@ -52,7 +52,7 @@ export function completeMission(
 	feedback: IMissionFeedback
 ) {
 	if (selectIncompleteMission.get(dailyMissionId) > 0)
-		createScoreEntry.run(teamId, missionId);
+		createCompletedEntry.run(teamId, missionId);
 	updateDailyMissionComplete.run(playerId, dailyMissionId);
 	createFeedbackEntry.run(
 		missionId,
