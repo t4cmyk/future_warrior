@@ -29,7 +29,7 @@ async function setupServer() {
 	app.use(jsonBodyParser());
 
 	app.get("/status", getStatusHandler);
-	app.get("/missions", authenticateUser, missionsHandler);
+	app.get("/dailyMissions", authenticateUser, missionsHandler);
 	app.get("/mission/:missionId", queryMissionHandler);
 	app.get("/planet", authenticateUser, planetHandler);
 	app.get("/teams", handleTeamsData);

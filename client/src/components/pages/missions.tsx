@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { getToken } from "../../core/authentication";
 import { Carousel } from "../carousel";
-import { IMission, MissionCard } from "../missionCard";
+import { MissionCard } from "../missionCard";
 
 interface IDailyMissionData {
   id: number;
@@ -34,14 +32,8 @@ export function Missions() {
     const resultHandler = { onFetch: setMissions };
     const fetchMissions = async () => {
       try {
-        const resp = await fetch(`/missions?token=${getToken()}`);
+        const resp = await fetch(`/dailyMissions?token=${getToken()}`);
         const respData = (await resp.json()) as IDailyMissionData[];
-        respData.forEach((mission) =>
-          sessionStorage.setItem(
-            `mission/${mission.id}`,
-            JSON.stringify(mission)
-          )
-        );
         return respData;
       } catch (e) {
         console.log(e);

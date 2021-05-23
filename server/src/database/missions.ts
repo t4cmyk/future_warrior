@@ -109,7 +109,7 @@ function getImagePath(sector: Sector, score: number) {
 			break;
 	}
 	if (score > 4) imagePath += "-advanced";
-	imagePath += ".jpg";
+	imagePath += ".png";
 	return imagePath;
 }
 
