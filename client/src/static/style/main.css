@@ -146,6 +146,11 @@ footer {
   /*z-index: -1;*/
 }
 
+.game-board canvas {
+  position: absolute;
+  top: 13vh;
+}
+
 .game-board-space {
   width: 100vw;
   height: 60vh;

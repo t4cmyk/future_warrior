@@ -3,6 +3,37 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
+interface GraphicsData {
+  model: string;
+  posX?: number;
+  posY?: number;
+  posZ?: number;
+  children: GraphicsData[];
+}
+
+function loadModel(path: string) {
+  return new Promise<THREE.Group>((resolve, reject) => {
+    const loader = new GLTFLoader();
+
+    loader.load(path, (gltf) => resolve(gltf.scene), undefined, reject);
+  });
+}
+
+async function buildSceneFromData(data: GraphicsData) {
+  const modelPromise = loadModel(data.model);
+  const children = data.children.map<[GraphicsData, Promise<THREE.Group>]>(
+    (child) => [child, buildSceneFromData(child)]
+  );
+  const model = await modelPromise;
+  for (let child of children) {
+    const [childData, childModelPromise] = child;
+    const childModel = await childModelPromise;
+    childModel.position.set(childData.posX, childData.posY, childData.posZ);
+    model.add(childModel);
+  }
+  return model;
+}
+
 export class GameboardGraphics {
   private parent: HTMLDivElement;
   private renderer: THREE.WebGLRenderer;
@@ -10,6 +41,7 @@ export class GameboardGraphics {
   private camera: THREE.PerspectiveCamera;
   private clock: THREE.Clock;
   private controls: OrbitControls;
+  private disposed = false;
 
   constructor(parent: HTMLDivElement) {
     this.parent = parent;
@@ -48,30 +80,29 @@ export class GameboardGraphics {
     ).texture;
 
     this.renderer.setClearColor(0xffffff, 0);
-    const loader = new GLTFLoader();
 
-    loader.load(
-      "/models/board.glb",
-      (gltf) => {
-        const board = gltf.scene;
-        scene.add(board);
-
-        loader.load(
-          "/models/player.glb",
-          (gltf) => {
-            board.add(gltf.scene);
+    (window as any).TestModel = async (coords: {
+      x?: number;
+      y?: number;
+      z?: number;
+    }) => {
+      const data = await buildSceneFromData({
+        model: "/models/board.glb",
+        children: [
+          {
+            model: "/models/player.glb",
+            children: [],
+            posX: coords.x,
+            posY: coords.y,
+            posZ: coords.z,
           },
-          undefined,
-          function (error) {
-            console.error(error);
-          }
-        );
-      },
-      undefined,
-      function (error) {
-        console.error(error);
-      }
-    );
+        ],
+      });
+      this.scene.clear();
+      this.scene.add(data);
+    };
+    (window as any).TestModel({});
+
     this.controls = new OrbitControls(camera, this.renderer.domElement);
     this.controls.target.set(0, 0.5, 0);
     this.controls.maxDistance = 1000.0;
@@ -80,26 +111,32 @@ export class GameboardGraphics {
     this.controls.enablePan = false;
     this.controls.enableDamping = true;
 
-    this.renderer.render(scene, camera);
     this.scene = scene;
     this.camera = camera;
     window.addEventListener("resize", this.onResize);
+    this.onResize();
     this.animate();
   }
 
   onResize() {
-    this.camera.aspect = window.innerWidth / window.innerHeight;
+    const width = window.innerWidth;
+    const height = window.innerHeight * 0.7;
+    this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
 
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(width, height);
   }
 
   dispose() {
+    console.assert(this.disposed === false);
+    this.disposed = true;
     this.renderer.dispose();
     window.removeEventListener("resize", this.onResize);
   }
 
   animate() {
+    if (this.disposed) return;
+
     requestAnimationFrame(this.animate);
 
     const delta = this.clock.getDelta();
