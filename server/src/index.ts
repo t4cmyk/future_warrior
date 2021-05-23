@@ -13,7 +13,7 @@ import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
 import { handleTeamsData } from "./handlers/teams";
 import { getChatHandler, postChatMsgHandler } from "./handlers/chat";
-import { planetHandler } from "./handlers/planet";
+import { planetDataHandler } from "./handlers/planet";
 import { contactFormHandler } from "./handlers/contactForm";
 import { getStatusHandler } from "./handlers/status";
 import { forgotPasswordHandler } from "./handlers/forgotPassword";
@@ -31,7 +31,7 @@ async function setupServer() {
 	app.get("/status", getStatusHandler);
 	app.get("/dailyMissions", authenticateUser, missionsHandler);
 	app.get("/mission/:missionId", queryMissionHandler);
-	app.get("/planet", authenticateUser, planetHandler);
+	app.get("/planetData", authenticateUser, planetDataHandler);
 	app.get("/teams", handleTeamsData);
 	app.post("/complete", authenticateUser, completeMissionHandler);
 	app.get("/chat", authenticateUser, getChatHandler);

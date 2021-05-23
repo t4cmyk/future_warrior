@@ -10,7 +10,7 @@ export interface IPlanetInfo {
 	happiness: number;
 }
 
-export async function planetHandler(req: Request, resp: Response) {
+export async function planetDataHandler(req: Request, resp: Response) {
 	try {
 		const userId = req.currentUser.id;
 		const teamId = getTeamIDFromUserId(userId);

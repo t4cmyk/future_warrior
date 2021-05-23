@@ -1,9 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { getToken } from "../../core/authentication";
-import { drawPlanet, IPlanetInfo } from "../planetElements";
+import { useImage } from "../../core/util";
+import {
+  drawHappinessPoints,
+  drawPlanet,
+  getPlanetDescription,
+  IPlanetInfo,
+} from "../planetElements";
 
-
+export interface IPlanetImages {
+  edre: HTMLImageElement;
+  rainbow: HTMLImageElement;
+  energy: HTMLImageElement;
+  diet: HTMLImageElement;
+  household: HTMLImageElement;
+  social: HTMLImageElement;
+  mobility: HTMLImageElement;
+  clouds: HTMLImageElement;
+}
 
 export function Planet() {
   const inputEnergy = useRef<HTMLInputElement>(null);
@@ -12,22 +27,39 @@ export function Planet() {
   const inputSocial = useRef<HTMLInputElement>(null);
   const inputHousehold = useRef<HTMLInputElement>(null);
   const canvasPlanet = useRef<HTMLCanvasElement>();
+  const canvasHappinessPoints = useRef<HTMLCanvasElement>();
   let description =
     "Erreiche ein höheres Level um die Sektoren freizuschalten.";
+  const happyImg = useImage("img/planet/happiness.png");
+  const edreImg = useImage("img/planet/edre.png");
+  const rainbowImg = useImage("img/planet/rainbow.png");
+  const energyImg = useImage("img/planet/energy.png");
+  const dietImg = useImage("img/planet/diet.png");
+  const householdImg = useImage("img/planet/household.png");
+  const socialImg = useImage("img/planet/social.png");
+  const mobilityImg = useImage("img/planet/mobility.png");
+  const cloudsImg = useImage("img/planet/clouds.png");
+  let planetImages = {
+    edre: edreImg,
+    rainbow: rainbowImg,
+    energy: energyImg,
+    diet: dietImg,
+    household: householdImg,
+    social: socialImg,
+    mobility: mobilityImg,
+    clouds: cloudsImg,
+  };
+ 
 
   const [planetInfo, setPlanetInfo] = useState<IPlanetInfo>();
   useEffect(() => {
     const resultHandler = { onFetch: setPlanetInfo };
     const fetchSectors = async () => {
       try {
-        const resp = await fetch(`/planet?token=${getToken()}`);
+        const resp = await fetch(`/planetData?token=${getToken()}`);
         const respData = (await resp.json()) as IPlanetInfo;
-        let planetCon = canvasPlanet.current.getContext("2d");
-        drawPlanet(planetCon, respData);
-        setTimeout(function () {
-          drawPlanet(planetCon, respData);
-        }, 100);
-        description = getDescription(respData.level);
+        setPlanetInfo(respData);
+        description = getPlanetDescription(respData.level);
         return respData;
       } catch (e) {
         console.log(e);
@@ -40,7 +72,23 @@ export function Planet() {
     };
   }, []);
 
-
+  useEffect(() => {
+    let planetCon = canvasPlanet.current.getContext("2d");
+    let happyCon = canvasHappinessPoints.current.getContext("2d");
+    drawPlanet(planetCon, planetInfo, planetImages);
+    drawHappinessPoints(canvasHappinessPoints, happyCon, 10, happyImg);
+  }, [
+    happyImg,
+    edreImg,
+    rainbowImg,
+    energyImg,
+    dietImg,
+    householdImg,
+    socialImg,
+    mobilityImg,
+    cloudsImg,
+    planetInfo,
+  ]);
 
   return (
     <>
@@ -52,6 +100,7 @@ export function Planet() {
             <canvas ref={canvasPlanet} height="400" width="400"></canvas>
           </Col>
           <Col>
+            <canvas ref={canvasHappinessPoints} height="0" width="0"></canvas>
             <br />
             <br />
             <ListGroup>
@@ -105,9 +154,3 @@ export function Planet() {
     </>
   );
 }
-
-
-function getDescription(level: number): string {
-  throw new Error("Function not implemented.");
-}
-
