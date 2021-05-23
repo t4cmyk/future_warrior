@@ -19,16 +19,16 @@ export function Main() {
       <br />
       <Gameboard />
       <Link to="/Planet">
-        <button>Unsere Edre</button>
+        <button id={"nav-arrow_Planet"} className={"nav-arrow"}>Unsere Edre</button>
       </Link>
       <Link to="/Missions">
-        <button>Missionen</button>
+        <button id={"nav-arrow_Missions"} className={"nav-arrow"}>Missionen</button>
       </Link>
       <Link to="/Teams">
-        <button>Teams</button>
+        <button id={"nav-arrow_Teams"} className={"nav-arrow"}>Teams</button>
       </Link>
       <Link to="/Chat">
-        <button>Chat</button>
+        <button id={"nav-arrow_Chat"} className={"nav-arrow"}>Chat</button>
       </Link>
     </>
   );

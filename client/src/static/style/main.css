@@ -3,6 +3,7 @@ body {
   background-color: black;
   background-image: url("background.jpg");
   background-size: cover;
+  overflow-x: hidden;
 }
 
 body p > label {
@@ -27,9 +28,9 @@ h4 {
 
 /** Colors:
 rgb(23, 83, 95); - darkest turquoise
-rgb(76, 150, 155); 
+rgb(76, 150, 155);
 rgb(86, 191, 188);
-rgb(158, 217, 219); 
+rgb(158, 217, 219);
 
 rgb(21, 94, 86);
 rgb(63, 132, 114);
@@ -148,4 +149,119 @@ footer {
 .game-board-space {
   width: 100vw;
   height: 60vh;
+}
+
+
+.nav-arrow {
+  z-index: 5;
+  position: relative;
+  background: rgb(158, 217, 219);
+  border: 4px solid rgb(23, 83, 95);
+}
+
+.nav-arrow:after, .nav-arrow:before {
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.nav-arrow:after {
+  border-color: rgba(255, 0, 0, 0);
+  border-width: 20px;
+}
+.nav-arrow:before {
+  border-color: rgba(0, 0, 255, 0);
+  border-width: 26px;
+}
+
+
+#nav-arrow_Missions {
+  position: absolute;
+  left: 26px;
+  top: 50%;
+}
+
+#nav-arrow_Missions:after, #nav-arrow_Missions:before {
+  right: 100%;
+  top: 50%;
+}
+
+#nav-arrow_Missions:after {
+  border-right-color: rgb(158, 217, 219);
+  margin-top: -20px;
+}
+
+#nav-arrow_Missions:before {
+  border-right-color: rgb(23, 83, 95);
+  margin-top: -26px;
+}
+
+#nav-arrow_Teams {
+  position: absolute;
+  right: 26px;
+  top: 50%;
+}
+
+#nav-arrow_Teams:after, #nav-arrow_Teams:before {
+  left: 100%;
+  top: 50%;
+}
+
+#nav-arrow_Teams:after {
+  border-left-color: rgb(158, 217, 219);
+  margin-top: -20px;
+}
+
+#nav-arrow_Teams:before {
+  border-left-color: rgb(23, 83, 95);
+  margin-top: -26px;
+}
+
+#nav-arrow_Planet {
+  position: absolute;
+  right: 50%;
+  top: 116px;
+  width: 120px;
+  margin-right: -60px;
+}
+
+#nav-arrow_Planet:after, #nav-arrow_Planet:before {
+  bottom: 100%;
+  left: 50%;
+}
+
+#nav-arrow_Planet:after {
+  border-bottom-color: rgb(158, 217, 219);
+  margin-left: -20px;
+}
+
+#nav-arrow_Planet:before {
+  border-bottom-color: rgb(23, 83, 95);
+  margin-left: -26px;
+}
+
+
+#nav-arrow_Chat {
+  position: relative;
+  left: 50%;
+  width: 70px;
+  margin-left: -35px;
+}
+
+#nav-arrow_Chat:after, #nav-arrow_Chat:before {
+  top: 100%;
+  left: 50%;
+}
+
+#nav-arrow_Chat:after {
+  border-top-color: rgb(158, 217, 219);
+  margin-left: -20px;
+}
+
+#nav-arrow_Chat:before {
+  border-top-color: rgb(23, 83, 95);
+  margin-left: -26px;
 }
