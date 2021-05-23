@@ -8,10 +8,7 @@ export function createTestGame() {
 	createTeam("greenday");
 	createTeam("blink");
 	createTeam("sum");
-	createUser(	{name: "test",
-		password: "test",
-		mail: "t@t.t",
-		plz: "00000"})
-	changeTeamSectors(1, Sector.diet, Sector.energy);
+	createUser({ name: "test", password: "test", mail: "t@t.t", plz: "00000" });
+	changeTeamSectors(1, Sector.diet, Sector.energy, Sector.household);
 	createParticipates(1, 1, 1);
 }

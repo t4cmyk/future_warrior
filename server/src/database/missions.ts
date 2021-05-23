@@ -210,7 +210,9 @@ export function getDailyMissions(teamId: number) {
 	if (d.lastDailyUpdate == null) {
 		pickDailyMissions(teamId);
 		setLastDailyUpdate(teamId, new Date());
-	} else if (convertSQLToJsDate(d.lastDailyUpdate) <   getStartOfDay(new Date())) {
+	} else if (
+		convertSQLToJsDate(d.lastDailyUpdate) < getStartOfDay(new Date())
+	) {
 		pickDailyMissions(teamId);
 		setLastDailyUpdate(teamId, new Date());
 	}
