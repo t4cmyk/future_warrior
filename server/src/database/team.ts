@@ -10,17 +10,18 @@ const getTeamIdFromUserIdQuery = database.prepare<number>(
 );
 
 const getSectorsFromTeamIdQuery = database.prepare<number>(
-	"SELECT sector1, sector2 FROM teams WHERE id=? "
+	"SELECT sector1, sector2, sector3 FROM teams WHERE id=? "
 );
 
-const changeTeamSectorsQuery = database.prepare<[Sector, Sector, number]>(
-	"UPDATE teams SET sector1 = ?, sector2 = ? WHERE id=?"
-);
+const changeTeamSectorsQuery = database.prepare<
+	[Sector, Sector, Sector, number]
+>("UPDATE teams SET sector1 = ?, sector2 = ?, sector3 = ? WHERE id=?");
 
 export function getSectorsFromTeamId(teamId: number) {
 	return getSectorsFromTeamIdQuery.all(teamId) as {
 		sector1: string;
 		sector2: string;
+		sector3: string;
 	}[];
 }
 
@@ -33,6 +34,11 @@ export function createTeam(name: string) {
 	createTeamQuery.run(name);
 }
 
-export function changeTeamSectors(teamId: number, sec1: Sector, sec2: Sector) {
-	changeTeamSectorsQuery.run(sec1, sec2, teamId);
+export function changeTeamSectors(
+	teamId: number,
+	sec1: Sector,
+	sec2: Sector,
+	sec3: Sector
+) {
+	changeTeamSectorsQuery.run(sec1, sec2, sec3, teamId);
 }

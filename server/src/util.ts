@@ -38,15 +38,19 @@ export function convertSQLToJsDate(sqlDate: string) {
 }
 
 export function getStartOfDay(day: Date) {
-	//00.00
+	//04.00
+	let result = new Date(day.getFullYear(), day.getMonth(), day.getDate());
+	result.setTime(
+		result.getTime() + 4 * 60 * 60 * 1000
+	);
 	return new Date(day.getFullYear(), day.getMonth(), day.getDate());
 }
 
 export function getEndOfDay(day: Date) {
-	// 23:59:59
+	// 03:59:59
 	let result = new Date(day.getFullYear(), day.getMonth(), day.getDate());
 	result.setTime(
-		result.getTime() + 23 * 60 * 60 * 1000 + 59 * 60 * 1000 + 59 * 1000
+		result.getTime() + 3 * 60 * 60 * 1000 + 59 * 60 * 1000 + 59 * 1000
 	);
 	return result;
 }

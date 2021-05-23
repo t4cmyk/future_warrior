@@ -1,7 +1,7 @@
 import { database } from "./core";
 import { readFileSync, writeFileSync } from "fs";
 import { getSectorsFromTeamId } from "./team";
-import { convertSQLToJsDate } from "../util";
+import { convertJsToSQLDate, convertSQLToJsDate, getStartOfDay } from "../util";
 
 export enum Sector {
 	diet = "Ernährung",
@@ -182,22 +182,39 @@ const getAdvancedMissionsQuery = database.prepare<String>(
 );
 
 const getCustomMissionsQuery = database.prepare(
-	"SELECT * FROM missions WHERE creatorId=-1"
+	"SELECT * FROM missions WHERE creatorId>-1"
 );
 
-const getLastDailyUpdate = database.prepare<number>(
+const getLastDailyUpdateQuery = database.prepare<number>(
 	"SELECT lastDailyUpdate FROM teams WHERE id=?"
 );
+
+const setLastDailyUpdateQuery = database.prepare<[String, number]>(
+	"UPDATE teams SET lastDailyUpdate = ? WHERE id=?"
+);
+
+function getLastDailyUpdate(team: number) {
+	return getLastDailyUpdateQuery.get(team);
+}
+
+function setLastDailyUpdate(team: number, date: Date) {
+	setLastDailyUpdateQuery.run(convertJsToSQLDate(date), team);
+}
 
 const getDailyMissionsForTeam = database.prepare<number>(
 	"SELECT id,mission,completedByPlayer FROM dailyMissions WHERE team=?"
 );
 
 export function getDailyMissions(teamId: number) {
-	let d = getLastDailyUpdate.get(teamId);
-	if (d.lastDailyUpdate == null) pickDailyMissions(teamId);
-	else if (convertSQLToJsDate(d.lastDailyUpdate) < new Date())
+	let d = getLastDailyUpdate(teamId);
+	if (d.lastDailyUpdate == null) {
 		pickDailyMissions(teamId);
+		setLastDailyUpdate(teamId, new Date());
+	} else if (convertSQLToJsDate(d.lastDailyUpdate) <   getStartOfDay(new Date())) {
+		pickDailyMissions(teamId);
+		setLastDailyUpdate(teamId, new Date());
+	}
+
 	const missions: {
 		id: number;
 		mission: number;
@@ -210,6 +227,7 @@ export function getDailyMissions(teamId: number) {
 export async function pickDailyMissions(teamId: number) {
 	let sec1 = getSectorsFromTeamId(teamId)[0].sector1;
 	let sec2 = getSectorsFromTeamId(teamId)[0].sector2;
+	let sec3 = getSectorsFromTeamId(teamId)[0].sector3;
 	clearDailyMissionsForTeamQuery.run(teamId);
 
 	let dailyMissions: Mission[] = [];
@@ -234,26 +252,36 @@ export async function pickDailyMissions(teamId: number) {
 		normalMissions[m];
 		dailyMissions.push(normalMissions[m]);
 	});
-	//2 sector advanced missions
+	//collect 2 random missions for each advanced sector
+	let advancedMissions: Mission[] = [];
 	if (sec1 != null) {
 		let advMissions1 = getAdvancedMissionsQuery.all(sec1.toString());
-		dailyMissions.push(
-			advMissions1[Math.floor(Math.random() * advMissions1.length)]
-		);
+		advMissions1.forEach((m) => advancedMissions.push(m));
 	}
 
 	if (sec2 != null) {
-		let advMissions2 = getAdvancedMissionsQuery.all(sec2.toString());
-		dailyMissions.push(
-			advMissions2[Math.floor(Math.random() * advMissions2.length)]
-		);
+		let advMissions1 = getAdvancedMissionsQuery.all(sec2.toString());
+		advMissions1.forEach((m) => advancedMissions.push(m));
 	}
+
+	if (sec3 != null) {
+		let advMissions1 = getAdvancedMissionsQuery.all(sec3.toString());
+		advMissions1.forEach((m) => advancedMissions.push(m));
+	}
+	// add 2 of the random advanced missions to the pool
+	dailyMissions.push(
+		advancedMissions[Math.floor(Math.random() * advancedMissions.length)]
+	);
+	dailyMissions.push(
+		advancedMissions[Math.floor(Math.random() * advancedMissions.length)]
+	);
 
 	//+? Custom missions
 	let custMissions = getCustomMissionsQuery.all();
-	dailyMissions.push(
-		custMissions[Math.floor(Math.random() * custMissions.length)]
-	);
+	if (custMissions.length > 0)
+		dailyMissions.push(
+			custMissions[Math.floor(Math.random() * custMissions.length)]
+		);
 
 	dailyMissions.forEach((m) => {
 		createDailyMission(teamId, m.id, null);
