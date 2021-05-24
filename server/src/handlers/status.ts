@@ -14,7 +14,10 @@ interface GameState {
 
 export function getCurrentGameState() {
 	const state: GameState = {
-		phase: GamePhase.Signup,
+		phase:
+			Date.now() > 1621900800 * 1000
+				? GamePhase.Running
+				: GamePhase.Preparation,
 		nextPhase: new Date(),
 	};
 	return state;
