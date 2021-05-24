@@ -34,6 +34,15 @@ async function buildSceneFromData(data: GraphicsData) {
   return model;
 }
 
+const calcPoly = (coefs: number[], pos: number) => {
+  let factor = pos;
+  return coefs.reduce((prev, coef) => {
+    const next = prev + coef * factor;
+    factor *= pos;
+    return next;
+  });
+};
+
 export class GameboardGraphics {
   private parent: HTMLDivElement;
   private renderer: THREE.WebGLRenderer;
@@ -92,12 +101,28 @@ export class GameboardGraphics {
       y?: number;
       z?: number;
       pos?: number;
+      angle?: number;
+      radius?: number;
     }) => {
-      if (coords.pos) {
-        const angle = (coords.pos * 1.14 - 0.3) / (2 * Math.PI);
-        const radius = Math.max(0, 100 - coords.pos * 0.5);
+      if (coords.pos !== undefined) {
+        const angle =
+          coords.angle ||
+          calcPoly([-3.5744454867309372e-2, 8.9583472024692079e-2], coords.pos);
+        const radius =
+          coords.radius ||
+          calcPoly(
+            [
+              9.6782875101673611e1, -2.213185722071942e-2,
+              -4.3885400281670449e-3,
+            ],
+            coords.pos
+          );
         coords.x = radius * Math.sin(angle);
-        coords.y = coords.pos * 0.75 - 9.5;
+        if (coords.y === undefined)
+          coords.y =
+            -9.3 +
+            coords.pos * 0.3 -
+            (Math.sin(coords.pos * Math.PI) + 1.0) * 0.4;
         coords.z = radius * Math.cos(angle);
       }
       const data = await buildSceneFromData({

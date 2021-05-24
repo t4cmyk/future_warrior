@@ -8,7 +8,7 @@ export function Gameboard() {
 
   useEffect(() => {
     const graphics = new GameboardGraphics(divRef.current);
-    fetch(`/dailyMissions?token=${getToken()}`)
+    fetch(`/board?token=${getToken()}`)
       .then((result) => result.json())
       .then((result) => graphics.inputGraphicsData(result));
     return () => graphics.dispose();
@@ -28,7 +28,7 @@ export function Gameboard() {
       <div className="game-board" ref={divRef}>
         <input
           ref={debugRef}
-          defaultValue={`{"x":0, "y":0, "z":0}`}
+          defaultValue={`{"pos": 0}`}
           onChange={onInputDebug}
         />
       </div>
