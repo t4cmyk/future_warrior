@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { getToken } from "../../core/authentication";
 import { useImage } from "../../core/util";
 import {
+  checkSectorInputBoxes,
   drawHappinessPoints,
   drawPlanet,
-  getPlanetDescription,
   IPlanetInfo,
+  writePlanetDescription,
 } from "../planetElements";
+import { SelectSector } from "./sectorSelection";
 
 export interface IPlanetImages {
   edre: HTMLImageElement;
@@ -20,16 +22,31 @@ export interface IPlanetImages {
   clouds: HTMLImageElement;
 }
 
+export interface ISectorCheckboxesRefs {
+  energy: MutableRefObject<HTMLInputElement>;
+  diet: MutableRefObject<HTMLInputElement>;
+  household: MutableRefObject<HTMLInputElement>;
+  mobility: MutableRefObject<HTMLInputElement>;
+  social: MutableRefObject<HTMLInputElement>;
+}
+
 export function Planet() {
   const inputEnergy = useRef<HTMLInputElement>(null);
   const inputDiet = useRef<HTMLInputElement>(null);
   const inputMobility = useRef<HTMLInputElement>(null);
   const inputSocial = useRef<HTMLInputElement>(null);
   const inputHousehold = useRef<HTMLInputElement>(null);
+  let inputRefs: ISectorCheckboxesRefs = {
+    energy: inputEnergy,
+    diet: inputDiet,
+    mobility: inputMobility,
+    household: inputHousehold,
+    social: inputSocial,
+  };
+
   const canvasPlanet = useRef<HTMLCanvasElement>();
   const canvasHappinessPoints = useRef<HTMLCanvasElement>();
-  let description =
-    "Erreiche ein höheres Level um die Sektoren freizuschalten.";
+  const descriptionRef = useRef<HTMLAnchorElement>(null);
   const happyImg = useImage("img/planet/happiness.png");
   const edreImg = useImage("img/planet/edre.png");
   const rainbowImg = useImage("img/planet/rainbow.png");
@@ -49,7 +66,6 @@ export function Planet() {
     mobility: mobilityImg,
     clouds: cloudsImg,
   };
- 
 
   const [planetInfo, setPlanetInfo] = useState<IPlanetInfo>();
   useEffect(() => {
@@ -59,7 +75,6 @@ export function Planet() {
         const resp = await fetch(`/planetData?token=${getToken()}`);
         const respData = (await resp.json()) as IPlanetInfo;
         setPlanetInfo(respData);
-        description = getPlanetDescription(respData.level);
         return respData;
       } catch (e) {
         console.log(e);
@@ -73,10 +88,18 @@ export function Planet() {
   }, []);
 
   useEffect(() => {
+    if (!planetInfo) return;
     let planetCon = canvasPlanet.current.getContext("2d");
     let happyCon = canvasHappinessPoints.current.getContext("2d");
     drawPlanet(planetCon, planetInfo, planetImages);
-    drawHappinessPoints(canvasHappinessPoints, happyCon, 10, happyImg);
+    drawHappinessPoints(
+      canvasHappinessPoints,
+      happyCon,
+      planetInfo.happiness,
+      happyImg
+    );
+    checkSectorInputBoxes(inputRefs, planetInfo);
+    writePlanetDescription(planetInfo, descriptionRef);
   }, [
     happyImg,
     edreImg,
@@ -105,7 +128,7 @@ export function Planet() {
             <br />
             <ListGroup>
               <ListGroup.Item className="listgrouphead">
-                {description}
+                <a ref={descriptionRef}></a>
               </ListGroup.Item>
               <ListGroup.Item>
                 <input
@@ -147,7 +170,7 @@ export function Planet() {
           </Col>
         </Row>
       </Container>
-
+      <SelectSector />
       <br />
 
       <br />

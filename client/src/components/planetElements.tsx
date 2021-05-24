@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useImage } from "../core/util";
-import { IPlanetImages } from "./pages/planet";
+import { IPlanetImages, ISectorCheckboxesRefs } from "./pages/planet";
+import { isAnySectorEqualString } from "./pages/sectorSelection";
 
 export interface IPlanetInfo {
   level: number; // 1 -default, 2 - one sector, 3 - two sectors, 4 - three sectors
@@ -13,7 +14,7 @@ export interface IPlanetInfo {
 // level 1: 0 - 54
 // level 2: 55 - 119 Sec1
 // level 3: 120 - 194 Sec2
-// Endgame: 195 - 280 Sec3
+// level 4/Endgame: 195 - 280 Sec3
 
 export enum Sector {
   diet = "Ernährung",
@@ -24,19 +25,24 @@ export enum Sector {
   key = "Schlüsselereignis",
 }
 
-export function getPlanetDescription(level: number) {
-  switch (level) {
+export function writePlanetDescription(planetInfo: any, description: any) {
+  if (planetInfo == null) return;
+  let text = "";
+  switch (planetInfo.level) {
     case 1:
-      return "Erreiche ein höheres Level um die Sektoren freizuschalten.";
+      text = "Erreiche ein höheres Level um die Sektoren freizuschalten.";
+      break;
     case 2:
-      return "Erreiche ein höheres Level um weitere Sektoren freizuschalten.";
+      text = "Erreiche ein höheres Level um weitere Sektoren freizuschalten.";
+      break;
     case 3:
-      return "Erreiche ein höheres Level um weitere Sektoren freizuschalten.";
+      text = "Erreiche ein höheres Level um weitere Sektoren freizuschalten.";
+      break;
     case 4:
-      return "Sammel mehr Punkte um mehr Happiness Points freizuschalten.";
+      text = "Sammel mehr Punkte um mehr Happiness Points freizuschalten.";
+      break;
   }
-  console.log(level);
-  return "Es ist ein Fehler aufgetreten";
+  description.current.innerText = text;
 }
 
 export function drawHappinessPoints(
@@ -72,7 +78,7 @@ export function drawPlanet(
   images: IPlanetImages
 ) {
   if (
-    !planetInfo||
+    !planetInfo ||
     !images.rainbow ||
     !images.edre ||
     !images.energy ||
@@ -151,4 +157,21 @@ export function drawPlanet(
   }
 
   // rainbow -> edre -> energy ->diet ->household -> social -> mobility? -> clouds
+}
+
+export function checkSectorInputBoxes(
+  refs: ISectorCheckboxesRefs,
+  planetInfo: IPlanetInfo
+) {
+  if (planetInfo == undefined) return;
+  if (isAnySectorEqualString(planetInfo, Sector.energy))
+    refs.energy.current.checked = true;
+  if (isAnySectorEqualString(planetInfo, Sector.diet))
+    refs.diet.current.checked = true;
+  if (isAnySectorEqualString(planetInfo, Sector.household))
+    refs.household.current.checked = true;
+  if (isAnySectorEqualString(planetInfo, Sector.mobility))
+    refs.mobility.current.checked = true;
+  if (isAnySectorEqualString(planetInfo, Sector.social))
+    refs.social.current.checked = true;
 }

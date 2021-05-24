@@ -1,5 +1,6 @@
 import { convertJsToSQLDate, getEndOfDay, getStartOfDay } from "../util";
 import { database } from "./core";
+import { isKeyMissionFromTeamFinished } from "./keyMission";
 
 const selectAllTeamScores = database.prepare<[]>(
 	"SELECT team, SUM(score) AS score FROM completedMissions, missions WHERE completedMissions.mission = missions.id GROUP BY team"
@@ -33,4 +34,23 @@ export function getTeamScoreForDate(
 		convertJsToSQLDate(begin),
 		convertJsToSQLDate(end)
 	).total || 0) as number;
+}
+
+const pointsForLevel2 = 55;
+const pointsForLevel3 = 120;
+const pointsForLevel4 = 195;
+const pointsForCompletePlanet = 280;
+const pointsForOneHappinessPoint = 20;
+
+export function getTeamLevel(team: number) {
+	let score = getTotalScoreForTeam(team);
+	if (score >= pointsForLevel4) return 4;
+	if (score >= pointsForLevel3) return 3;
+	if (score >= pointsForLevel2) return 2;
+	return 1;
+}
+export function getHappinessPoints(team: number) {
+	if (!isKeyMissionFromTeamFinished(team)) return 0;
+	let score = getTotalScoreForTeam(team);
+	return score - pointsForCompletePlanet / pointsForOneHappinessPoint;
 }

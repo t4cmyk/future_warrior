@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getDailyMissions, Sector } from "../database/missions";
-import { getTeamIDFromUserId } from "../database/team";
+import { getHappinessPoints, getTeamLevel } from "../database/score";
+import { getSectorsFromTeamId, getTeamIDFromUserId } from "../database/team";
 
 export interface IPlanetInfo {
 	level: number;
@@ -15,13 +16,14 @@ export async function planetDataHandler(req: Request, resp: Response) {
 		const userId = req.currentUser.id;
 		const teamId = getTeamIDFromUserId(userId);
 		if (teamId == null) throw new Error();
+		let sectors = getSectorsFromTeamId(teamId);
 
 		let result = {
-			level: 4,
-			sector1: Sector.diet,
-			sector2: Sector.energy,
-			sector3: Sector.social,
-			happiness: 3,
+			level: getTeamLevel(teamId),
+			sector1: sectors.sector1,
+			sector2: sectors.sector2,
+			sector3: sectors.sector3,
+			happiness: getHappinessPoints(teamId),
 		};
 		resp.status(200).json(result);
 	} catch {

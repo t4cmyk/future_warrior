@@ -18,11 +18,7 @@ const changeTeamSectorsQuery = database.prepare<
 >("UPDATE teams SET sector1 = ?, sector2 = ?, sector3 = ? WHERE id=?");
 
 export function getSectorsFromTeamId(teamId: number) {
-	return getSectorsFromTeamIdQuery.all(teamId) as {
-		sector1: string;
-		sector2: string;
-		sector3: string;
-	}[];
+	return getSectorsFromTeamIdQuery.get(teamId);
 }
 
 export function getTeamIDFromUserId(userId: number) {
