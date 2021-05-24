@@ -83,7 +83,7 @@ export function RecentFeedback() {
   const entries = useFeedbackEntries();
 
   const cards = entries.map((entry, idx) => (
-    <RecentFeedbackEntry idx={idx} entry={entry} />
+    <RecentFeedbackEntry idx={idx} key={idx} entry={entry} />
   ));
   return (
     <Container>
