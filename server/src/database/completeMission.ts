@@ -27,7 +27,7 @@ export function getMissionIdFromDailyId(
 }
 
 const selectIncompleteMission = database.prepare<[number]>(
-	"SELECT COUNT(*) AS count FROM dailyMissions WHERE id=?"
+	"SELECT COUNT(*) AS count FROM dailyMissions WHERE id=? AND completedByPlayer IS NULL"
 );
 
 const createCompletedEntry = database.prepare<[number, number]>(
@@ -51,7 +51,7 @@ export function completeMission(
 	teamId: number,
 	feedback: IMissionFeedback
 ) {
-	if (selectIncompleteMission.get(dailyMissionId) > 0)
+	if (selectIncompleteMission.get(dailyMissionId).count > 0)
 		createCompletedEntry.run(teamId, missionId);
 	updateDailyMissionComplete.run(playerId, dailyMissionId);
 	createFeedbackEntry.run(

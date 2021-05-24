@@ -3,7 +3,7 @@ import { getToken } from "../../core/authentication";
 import { Carousel } from "../carousel";
 import { MissionCard } from "../missionCard";
 
-interface IDailyMissionData {
+export interface IDailyMissionData {
   id: number;
   mission: number;
   completedByPlayer: number | null;
@@ -18,7 +18,9 @@ function ControlledCarousel(props: { missions: IDailyMissionData[] }) {
       height={520}
       width={288}
       timeConstant={250}
-      render={(elem) => <MissionCard missionsId={elem.mission} />}
+      render={(elem) => (
+        <MissionCard missionsId={elem.mission} dailyMission={elem} />
+      )}
       onContextMenu={() => {}}
       onDoubleClick={() => {}}
       elementList={props.missions}
@@ -34,6 +36,12 @@ export function Missions() {
       try {
         const resp = await fetch(`/dailyMissions?token=${getToken()}`);
         const respData = (await resp.json()) as IDailyMissionData[];
+        respData.forEach((dailyMission) =>
+          sessionStorage.setItem(
+            `daily/${dailyMission.id}`,
+            JSON.stringify(dailyMission)
+          )
+        );
         return respData;
       } catch (e) {
         console.log(e);

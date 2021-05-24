@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { IDailyMissionData } from "./pages/missions";
 
 export interface IMission {
   id: number;
   name: string;
   description: string;
   imagePath: string;
-  completedByPlayer: number | null;
   score: number;
   sector: string;
   creatorId?: number;
@@ -47,13 +47,22 @@ export function useMissionData(missionId: number) {
   return missionData;
 }
 
-export function MissionCard(props: { missionsId: number }) {
+export function MissionCard(props: {
+  missionsId: number;
+  dailyMission?: IDailyMissionData;
+}) {
   const data = useMissionData(props.missionsId);
-  if (data) return <MissionCardFromData mission={data} />;
+  if (data)
+    return (
+      <MissionCardFromData mission={data} dailyMission={props.dailyMission} />
+    );
   return <></>;
 }
 
-function MissionCardFromData(props: { mission: IMission }) {
+function MissionCardFromData(props: {
+  mission: IMission;
+  dailyMission?: IDailyMissionData;
+}) {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Header>
@@ -63,12 +72,12 @@ function MissionCardFromData(props: { mission: IMission }) {
         <Card.Img variant="top" src={props.mission.imagePath} />
         <Card.Title>{`Sektor: ${props.mission.sector}`}</Card.Title>
         <Card.Text>{props.mission.description}</Card.Text>
-        {props.mission.completedByPlayer != null ? (
+        {!props.dailyMission || props.dailyMission.completedByPlayer != null ? (
           <Button variant="primary" className="w-100" disabled>
             Mission abgeschlossen
           </Button>
         ) : (
-          <Link to={`/MissionComplete/${props.mission.id}`}>
+          <Link to={`/MissionComplete/${props.dailyMission.id}`}>
             <Button variant="primary" className="w-100">
               Mission abschließen
             </Button>

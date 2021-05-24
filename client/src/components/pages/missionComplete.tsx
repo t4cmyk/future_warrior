@@ -1,14 +1,16 @@
 import React, { ChangeEvent, useRef, useState } from "react";
 import { Redirect, useHistory, useParams } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
-import { IMission } from "../missionCard";
+import { IMission, useMissionData } from "../missionCard";
 import { getToken } from "../../core/authentication";
+import { IDailyMissionData } from "./missions";
 
 export function MissionComplete() {
   const { mission } = useParams<{ mission: string }>();
-  const missionTxt = sessionStorage.getItem(`mission/${mission}`);
+  const missionTxt = sessionStorage.getItem(`daily/${mission}`);
   if (!missionTxt) return <Redirect to="/Missions/" />;
-  const missionData: IMission = JSON.parse(missionTxt);
+  const dailyData: IDailyMissionData = JSON.parse(missionTxt);
+  const missionData = useMissionData(dailyData.mission);
 
   return (
     <Container>
@@ -23,7 +25,7 @@ export function MissionComplete() {
       zukünftigen Gesellschaft dort, die von eurem Erfahrungsreichtum der „alten
       Welt“ profitiert.
       <br />
-      <MissionCompleteFeedback mission={missionData} />;
+      <MissionCompleteFeedback mission={dailyData} />;
     </Container>
   );
 }
@@ -55,7 +57,7 @@ function FeedbackRating(props: {
   );
 }
 
-function MissionCompleteFeedback(props: { mission: IMission }) {
+function MissionCompleteFeedback(props: { mission: IDailyMissionData }) {
   const feedbackRef = useRef<HTMLTextAreaElement>();
   const commentRef = useRef<HTMLTextAreaElement>();
 
