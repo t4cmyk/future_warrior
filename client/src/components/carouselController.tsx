@@ -322,6 +322,7 @@ export default class CarouselController<ElementType> {
   handleWheel(e: WheelEvent) {
     if (this.pressed || (this.canScroll && !this.canScroll())) return;
 
+    e.preventDefault();
     let targetPos: number | undefined = undefined;
     if (e.deltaY > 0) targetPos = this.target + this.dim;
     else if (e.deltaY < 0) targetPos = this.target - this.dim;
@@ -337,10 +338,12 @@ export default class CarouselController<ElementType> {
     let targetPos: number | undefined = undefined;
     // Space or PageDown or RightArrow or DownArrow
     if ([32, 34, 39, 40].indexOf(e.which) >= 0) {
+      e.preventDefault();
       targetPos = this.target + this.dim;
     }
     // PageUp or LeftArrow or UpArrow
     if ([33, 37, 38].indexOf(e.which) >= 0) {
+      e.preventDefault();
       targetPos = this.target - this.dim;
     }
     if (targetPos !== undefined) {

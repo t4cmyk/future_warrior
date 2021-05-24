@@ -64,7 +64,7 @@ function MissionCardFromData(props: {
   dailyMission?: IDailyMissionData;
 }) {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "338px" }}>
       <Card.Header>
         <h4>{props.mission.name}</h4>
       </Card.Header>

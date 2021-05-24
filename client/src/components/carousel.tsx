@@ -26,9 +26,8 @@ export function Carousel<ElementType>(props: CarouselProps<ElementType>) {
     new Array<React.RefObject<HTMLDivElement>>()
   );
   const [renderOffset, setRenderOffset] = useState(0);
-  const [controller, setController] = useState<
-    CarouselController<ElementType> | undefined
-  >(undefined);
+  const [controller, setController] =
+    useState<CarouselController<ElementType> | undefined>(undefined);
 
   const viewRef = useRef<HTMLDivElement>();
 
@@ -105,7 +104,7 @@ export function Carousel<ElementType>(props: CarouselProps<ElementType>) {
       style={{
         height: props.height || props.width,
         perspective: "500px",
-        overflow: "hidden",
+        overflow: "visible",
         transformStyle: "preserve-3d",
       }}
     >

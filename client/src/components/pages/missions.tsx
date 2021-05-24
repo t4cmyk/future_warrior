@@ -15,8 +15,8 @@ function ControlledCarousel(props: { missions: IDailyMissionData[] }) {
       angle={-60}
       dist={-150}
       shift={10}
-      height={520}
-      width={288}
+      height={800}
+      width={338}
       timeConstant={250}
       render={(elem) => (
         <MissionCard missionsId={elem.mission} dailyMission={elem} />
