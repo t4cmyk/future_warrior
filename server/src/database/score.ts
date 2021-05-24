@@ -3,7 +3,8 @@ import { database } from "./core";
 import { isKeyMissionFromTeamFinished } from "./keyMission";
 
 const selectAllTeamScores = database.prepare<[]>(
-	"SELECT team, SUM(score) AS score FROM completedMissions, missions WHERE completedMissions.mission = missions.id GROUP BY team"
+	`SELECT id as team, IFNULL(score, 1) as score FROM teams LEFT OUTER JOIN 
+	(SELECT team, SUM(score) AS score FROM completedMissions, missions WHERE completedMissions.mission = missions.id GROUP BY team) AS scores ON teams.id=scores.team`
 );
 
 const selectTotalScoreForTeam = database.prepare<[number]>(
@@ -15,7 +16,7 @@ const selectScoreForTeamAndDate = database.prepare<[number, string, string]>(
 );
 
 export function getAllTeamScores() {
-	return selectAllTeamScores.all() as [number, number][];
+	return selectAllTeamScores.all() as { team: number; score: number }[];
 }
 
 export function getTotalScoreForTeam(team: number) {

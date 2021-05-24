@@ -28,6 +28,7 @@ export function Gameboard() {
       <div className="game-board" ref={divRef}>
         <input
           ref={debugRef}
+          style={{ display: "none" }}
           defaultValue={`{"pos": 0}`}
           onChange={onInputDebug}
         />
