@@ -11,7 +11,7 @@ import { createTestGame } from "./database/testgame";
 import { missionsHandler, queryMissionHandler } from "./handlers/missions";
 import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
-import { handleTeamsData } from "./handlers/teams";
+import { handleFeedbackData, handleStatsData } from "./handlers/teams";
 import { getChatHandler, postChatMsgHandler } from "./handlers/chat";
 import { planetDataHandler } from "./handlers/planet";
 import { contactFormHandler } from "./handlers/contactForm";
@@ -37,7 +37,8 @@ async function setupServer() {
 	app.get("/board", authenticateUser, gameboardHandler);
 	app.get("/mission/:missionId", queryMissionHandler);
 	app.get("/planetData", authenticateUser, planetDataHandler);
-	app.get("/teams", handleTeamsData);
+	app.get("/stats", handleStatsData);
+	app.get("/feedback", handleFeedbackData);
 	app.post("/complete", authenticateUser, completeMissionHandler);
 	app.get("/chat", authenticateUser, getChatHandler);
 	app.post("/chat", textBodyParser(), authenticateUser, postChatMsgHandler);

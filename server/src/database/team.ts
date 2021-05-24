@@ -1,6 +1,8 @@
 import { database } from "./core";
 import { Sector } from "./missions";
 
+const selectTeams = database.prepare("SELECT id, name FROM teams");
+
 const createTeamQuery = database.prepare<string>(
 	"INSERT INTO teams (name, sector1, sector2) VALUES (?, null, null)"
 );
@@ -16,6 +18,15 @@ const getSectorsFromTeamIdQuery = database.prepare<number>(
 const changeTeamSectorsQuery = database.prepare<
 	[Sector, Sector, Sector, number]
 >("UPDATE teams SET sector1 = ?, sector2 = ?, sector3 = ? WHERE id=?");
+
+export function getTeams() {
+	const teams: { name: string; id: number }[] = selectTeams
+		.all()
+		.map((entry) => {
+			return { name: entry.name, id: entry.id };
+		});
+	return teams;
+}
 
 export function getSectorsFromTeamId(teamId: number) {
 	return getSectorsFromTeamIdQuery.get(teamId);

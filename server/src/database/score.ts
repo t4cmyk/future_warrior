@@ -19,7 +19,7 @@ export function getAllTeamScores() {
 }
 
 export function getTotalScoreForTeam(team: number) {
-	return (selectTotalScoreForTeam.get(team).total || 0) as number;
+	return (selectTotalScoreForTeam.get(team).score || 0) as number;
 }
 
 export function getTeamScoreForDate(
@@ -33,7 +33,7 @@ export function getTeamScoreForDate(
 		team,
 		convertJsToSQLDate(begin),
 		convertJsToSQLDate(end)
-	).total || 0) as number;
+	).score || 0) as number;
 }
 
 const pointsForLevel2 = 55;

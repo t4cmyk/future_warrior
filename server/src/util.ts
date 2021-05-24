@@ -7,19 +7,10 @@ export function getAccessTokenSecret() {
 }
 
 export function convertJsToSQLDate(jsDate: Date) {
-	let sqlDate =
-		jsDate.getFullYear() +
-		"-" +
-		jsDate.getMonth() +
-		"-" +
-		jsDate.getDate() + // date != day
-		" " +
-		jsDate.getHours() +
-		":" +
-		jsDate.getMinutes() +
-		":" +
-		jsDate.getSeconds();
-	return sqlDate;
+	return jsDate
+		.toISOString()
+		.replace("T", " ")
+		.replace(/\.\d\d\dZ/, "");
 }
 
 export function convertSQLToJsDate(sqlDate: string) {
@@ -32,25 +23,47 @@ export function convertSQLToJsDate(sqlDate: string) {
 	const hour = parseInt(match[4]);
 	const min = parseInt(match[5]);
 	const secs = parseInt(match[6]);
-	const date = new Date(year, month, day, hour, min, secs);
+	const timestamp = Date.UTC(year, month, day, hour, min, secs);
+	const date = new Date(timestamp);
 
 	return date;
 }
 
 export function getStartOfDay(day: Date) {
 	//04.00
-	let result = new Date(day.getFullYear(), day.getMonth(), day.getDate());
-	result.setTime(
-		result.getTime() + 4 * 60 * 60 * 1000
+	const isBefore4AM = day.getHours() < 4;
+	let result = new Date(
+		day.getFullYear(),
+		day.getMonth(),
+		day.getDate() + (isBefore4AM ? -1 : 0)
 	);
-	return new Date(day.getFullYear(), day.getMonth(), day.getDate());
+	result.setTime(result.getTime() + 4 * 60 * 60 * 1000);
+	return result;
 }
 
 export function getEndOfDay(day: Date) {
 	// 03:59:59
-	let result = new Date(day.getFullYear(), day.getMonth(), day.getDate());
+	const isBefore4AM = day.getHours() < 4;
+	let result = new Date(
+		day.getFullYear(),
+		day.getMonth(),
+		day.getDate() + (isBefore4AM ? 0 : 1)
+	);
 	result.setTime(
 		result.getTime() + 3 * 60 * 60 * 1000 + 59 * 60 * 1000 + 59 * 1000
 	);
 	return result;
+}
+
+export function* daysBetween(start: Date, end: Date) {
+	if (start > end) {
+		let tmp = start;
+		start = end;
+		end = tmp;
+	}
+	let current = start;
+	do {
+		yield current;
+		current.setDate(current.getDate() - 1);
+	} while (current > end);
 }

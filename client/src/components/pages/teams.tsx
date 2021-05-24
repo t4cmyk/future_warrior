@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -10,36 +10,46 @@ import {
 } from "recharts";
 import { RecentFeedback } from "../missionFeedback";
 
-const data = [
-  //sample Data
-  {
-    name: "01.05",
-    team1: 0,
-    team2: 0,
-    amt: 100,
-  },
-  {
-    name: "02.05",
-    team1: 14,
-    team2: 10,
-    amt: 100,
-  },
-  {
-    name: "03.05",
-    team1: 20,
-    team2: 20,
-    amt: 100,
-  },
-];
+interface TeamData {
+  team: number;
+  scores: number[];
+}
+
+function useServerStats() {
+  const [stats, setStats] = useState<any[]>([]);
+  useEffect(() => {
+    const presistent = { cleanUp: false };
+    fetch("/stats")
+      .then((resp) => resp.json())
+      .then((data) => {
+        if (!presistent.cleanUp) {
+          setStats(data);
+        }
+      });
+    return () => (presistent.cleanUp = true);
+  }, []);
+  return stats;
+}
 
 export function Teams() {
+  const stats = useServerStats();
+  let lines: JSX.Element[] = [];
+  if (stats.length > 0) {
+    Object.keys(stats[0]).forEach((key, idx) => {
+      if (key === "date") return;
+      lines.push(
+        <Line type="linear" key={idx} dataKey={key} stroke="#82ca9d" />
+      );
+    });
+  }
+
   return (
     <>
       <h1>Teams</h1>
       <LineChart
         width={500}
         height={300}
-        data={data}
+        data={stats}
         margin={{
           top: 5,
           right: 30,
@@ -48,17 +58,11 @@ export function Teams() {
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
+        <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line
-          type="linear"
-          dataKey="team1"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-        <Line type="linear" dataKey="team2" stroke="#82ca9d" />
+        {lines}
       </LineChart>
       <RecentFeedback />
     </>

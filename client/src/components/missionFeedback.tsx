@@ -68,7 +68,7 @@ function useFeedbackEntries() {
   useEffect(() => {
     addOnFeedbackListener(setFeedbackEntries);
     const fetchFeedbackEntries = async () => {
-      const resp = await fetch("/teams");
+      const resp = await fetch("/feedback");
       const data = await resp.json();
       onFeedbackListener.forEach((callback) => callback(data.feedback));
     };
