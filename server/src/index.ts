@@ -7,7 +7,7 @@ import { text as textBodyParser, json as jsonBodyParser } from "body-parser";
 import { registerUserHandler } from "./handlers/register";
 import { loginUserHandler } from "./handlers/login";
 import { initMissions, Mission } from "./database/missions";
-import { createTestGame } from "./database/testgame";
+import { createTestGame, testSections } from "./database/testgame";
 import { missionsHandler, queryMissionHandler } from "./handlers/missions";
 import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
@@ -22,6 +22,10 @@ import { verifyHandler } from "./handlers/verify";
 import { createMailVerificationToken } from "./database/verify";
 import { allTeamScoresHandler, teamScoreHandler } from "./handlers/score";
 import { gameboardHandler } from "./handlers/game";
+import {
+	sectorChoiceHandler,
+	sectorSelectionHandler,
+} from "./handlers/sectorSelection";
 
 async function setupServer() {
 	const app = express(); // app = webserver
@@ -39,6 +43,9 @@ async function setupServer() {
 	app.get("/planetData", authenticateUser, planetDataHandler);
 	app.get("/stats", handleStatsData);
 	app.get("/feedback", handleFeedbackData);
+	app.post("/sectorChoice", authenticateUser, sectorChoiceHandler);
+	app.get("/sectorSelection", authenticateUser, sectorSelectionHandler);
+	app.get("/teams", handleTeamsData);
 	app.post("/complete", authenticateUser, completeMissionHandler);
 	app.get("/chat", authenticateUser, getChatHandler);
 	app.post("/chat", textBodyParser(), authenticateUser, postChatMsgHandler);
@@ -63,6 +70,7 @@ async function setupServer() {
 	console.log("Hello");
 	console.log("------------------------------");
 	initMissions();
+	//testSections();
 }
 
 setupServer();

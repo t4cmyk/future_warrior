@@ -10,16 +10,11 @@ import {
 import { getToken } from "../../core/authentication";
 import { IPlanetInfo, Sector } from "../planetElements";
 
-const level = 4;
-const sector1 = 1;
-const sector2: any = null;
-const sector3: any = null;
-
 function isNewSectorAvaible(sel: ISectorSelection) {
   if (
-    (level > 1 && sel.sector1 == null) ||
-    (level > 2 && sel.sector2 == null) ||
-    (level > 3 && sel.sector3 == null)
+    (sel.level > 1 && sel.sector1 == null) ||
+    (sel.level > 2 && sel.sector2 == null) ||
+    (sel.level > 3 && sel.sector3 == null)
   )
     return true;
 }
@@ -60,29 +55,42 @@ function genRadios(sectors: ISectorSelection) {
     radios.push({ name: Sector.social, value: Sector.social });
   if (!isAnySectorEqualString(sectors, Sector.household))
     radios.push({ name: Sector.household, value: Sector.household });
-  radios.push({ name: "Ich weiß es noch nicht", value: "0" });
+  radios.push({ name: "Ich weiß es noch nicht", value: "null" });
 
   return radios;
 }
 
 export function SelectSector() {
   const [show, setShow] = useState(false);
-  const [radioValue, setRadioValue] = useState("0");
+  const [radioValue, setRadioValue] = useState("null");
   const [radios, setRadios] = useState([
-    { name: "Energie", value: "0" },
-    { name: "Ernährung", value: "0" },
-    { name: "Mobilität", value: "0" },
-    { name: "Soziales", value: "0" },
-    { name: "Haushalt", value: "0" },
-    { name: "Ich weiß es noch nicht", value: "0" },
+    { name: "Ich weiß es noch nicht", value: "null" },
   ]);
 
+  const onSectorSelection = async (value: any) => {
+    const request: RequestInit = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sector: value == "null" ? null : value,
+      }),
+    };
+    const resp = await fetch(`/sectorChoice?&token=${getToken()}`, request);
+    const respData = (await resp.json());
+    if (resp.ok) {
+      if (respData == true) setShow(false);
+    } else {
+      console.log(resp);
+    }
+  };
+
+  // fetch sector infos
   const [selectionInfo, setSelectionInfo] = useState<ISectorSelection>();
   useEffect(() => {
     const resultHandler = { onFetch: setSelectionInfo };
     const fetchSelectionInfos = async () => {
       try {
-        const resp = await fetch(`/planetData?token=${getToken()}`);
+        const resp = await fetch(`/sectorSelection?token=${getToken()}`);
         const respData = (await resp.json()) as ISectorSelection;
         setSelectionInfo(respData);
         return respData;
@@ -97,10 +105,12 @@ export function SelectSector() {
     };
   }, []);
 
+  // show selection
   useEffect(() => {
     if (!selectionInfo) return;
     if (isNewSectorAvaible(selectionInfo)) setShow(true);
     setRadios(genRadios(selectionInfo));
+    setRadioValue(selectionInfo.selectedSector);
   }, [selectionInfo]);
 
   return (
@@ -132,7 +142,10 @@ export function SelectSector() {
                   name="radio"
                   value={radio.value}
                   checked={radioValue === radio.value}
-                  onChange={(e) => setRadioValue(e.currentTarget.value)}
+                  onChange={(e) => {
+                    setRadioValue(e.currentTarget.value);
+                    onSectorSelection(e.currentTarget.value);
+                  }}
                 >
                   {radio.name}
                 </ToggleButton>

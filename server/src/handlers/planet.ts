@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { getDailyMissions, Sector } from "../database/missions";
 import { getHappinessPoints, getTeamLevel } from "../database/score";
 import { getSectorsFromTeamId, getTeamIDFromUserId } from "../database/team";
 
