@@ -14,7 +14,6 @@ export function Main() {
 
   return (
     <>
-      <h1>Missionen</h1>
       <br />
       <br />
       <Gameboard />
