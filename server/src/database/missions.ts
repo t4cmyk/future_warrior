@@ -271,13 +271,14 @@ export async function pickDailyMissions(teamId: number) {
 		advMissions1.forEach((m) => advancedMissions.push(m));
 	}
 	// add 2 of the random advanced missions to the pool
-	dailyMissions.push(
-		advancedMissions[Math.floor(Math.random() * advancedMissions.length)]
-	);
-	dailyMissions.push(
-		advancedMissions[Math.floor(Math.random() * advancedMissions.length)]
-	);
-
+	if (advancedMissions.length > 0) {
+		dailyMissions.push(
+			advancedMissions[Math.floor(Math.random() * advancedMissions.length)]
+		);
+		dailyMissions.push(
+			advancedMissions[Math.floor(Math.random() * advancedMissions.length)]
+		);
+	}
 	//+? Custom missions
 	let custMissions = getCustomMissionsQuery.all();
 	if (custMissions.length > 0)
