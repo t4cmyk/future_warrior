@@ -227,9 +227,9 @@ export function getDailyMissions(teamId: number) {
 }
 
 export async function pickDailyMissions(teamId: number) {
-	let sec1 = getSectorsFromTeamId(teamId)[0].sector1;
-	let sec2 = getSectorsFromTeamId(teamId)[0].sector2;
-	let sec3 = getSectorsFromTeamId(teamId)[0].sector3;
+	let sec1 = getSectorsFromTeamId(teamId).sector1;
+	let sec2 = getSectorsFromTeamId(teamId).sector2;
+	let sec3 = getSectorsFromTeamId(teamId).sector3;
 	clearDailyMissionsForTeamQuery.run(teamId);
 
 	let dailyMissions: Mission[] = [];

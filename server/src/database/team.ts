@@ -45,7 +45,11 @@ const resetPlayerSectorsOfTeamQuery = database.prepare<[number]>(
 );
 
 export function getSectorsFromTeamId(teamId: number) {
-	return getSectorsFromTeamIdQuery.get(teamId);
+	return getSectorsFromTeamIdQuery.get(teamId) as {
+		sector1: string;
+		sector2: string;
+		sector3: string;
+	};
 }
 
 export function getTeamIDFromUserId(userId: number) {
