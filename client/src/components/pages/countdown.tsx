@@ -22,8 +22,7 @@ export function Countdown() {
     time = days + " Tage " + dd(hours) + ":" + dd(minutes) + ":" + dd(seconds);
     if (dist <= 0) {
       clearInterval(clock);
-      time =
-        "Wenn das Spiel jetzt nicht begonnen hat, dann haben wir noch mehr technische Schwierigkeiten :(";
+      time = "Das Spiel hat begonnen!";
       captionRef.current.innerText = "";
     }
     if (timerRef.current == null) {
@@ -38,18 +37,9 @@ export function Countdown() {
       <br />
       <Container>
         <Alert variant="warning">
-          Schön, dass du dich angemeldet hast!
-          <br />
-          <br />
-          Was wäre ein Projekt ohne Pannen? Leider haben wir eine Verzögerung
-          beim Spielstart. Die K.I. muss noch die letzte Testphase durchlaufen.
-          <br />
-          <br />
-          Das Spiel startet am Dienstag, den 25.05. und endet am 08.06. Der
-          Countdown zum Spielstart endet um 4 Uhr. Das liegt daran, dass zu
-          dieser Zeit immer die Missionen für den neuen Tag gezogen werden. Ihr
-          könnt ganz entspannt und individuell am Dienstag starten, wann ihr
-          wollt.
+          Falls du nich auf das Spielfeld kommst, logge dich bitte einmal aus
+          und dann wieder ein. Falls es danach immer noch Probleme gibt. Melde
+          dich bitte bei uns über die Kontakt-Seite!
           <br />
         </Alert>
       </Container>
