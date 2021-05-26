@@ -8,7 +8,11 @@ import { registerUserHandler } from "./handlers/register";
 import { loginUserHandler } from "./handlers/login";
 import { initMissions, Mission } from "./database/missions";
 import { createTestGame, testSections } from "./database/testgame";
-import { missionsHandler, queryMissionHandler } from "./handlers/missions";
+import {
+	checkRemainingMissionsHandler,
+	missionsHandler,
+	queryMissionHandler,
+} from "./handlers/missions";
 import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
 import { handleFeedbackData, handleStatsData } from "./handlers/teams";
@@ -40,6 +44,11 @@ async function setupServer() {
 	app.get("/allTeamScores", authenticateUser, allTeamScoresHandler);
 	app.get("/board", authenticateUser, gameboardHandler);
 	app.get("/mission/:missionId", queryMissionHandler);
+	app.get(
+		"/checkRemainingMissions",
+		authenticateUser,
+		checkRemainingMissionsHandler
+	);
 	app.get("/planetData", authenticateUser, planetDataHandler);
 	app.get("/stats", handleStatsData);
 	app.get("/feedback", handleFeedbackData);

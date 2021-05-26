@@ -29,8 +29,26 @@ function ControlledCarousel(props: { missions: IDailyMissionData[] }) {
 }
 
 export function Missions() {
+  const [isDailyMissionRemaning, setIsDailyMissionRemaning] =
+    useState<boolean>(false);
   const [missions, setMissions] = useState<IDailyMissionData[]>([]);
   useEffect(() => {
+    const remainingMissioHandler = { onFetch: setIsDailyMissionRemaning };
+    const fetchRemainingMissionInfo = async () => {
+      try {
+        const resp = await fetch(`/checkRemainingMissions?token=${getToken()}`);
+        const respData = (await resp.json()) as boolean;
+        setIsDailyMissionRemaning(respData);
+        return respData;
+      } catch (e) {
+        console.log(e);
+      }
+      return;
+    };
+    fetchRemainingMissionInfo().then((result) =>
+      remainingMissioHandler.onFetch(result)
+    );
+
     const resultHandler = { onFetch: setMissions };
     const fetchMissions = async () => {
       try {
@@ -59,7 +77,16 @@ export function Missions() {
       <h1>Missionen</h1>
       <br />
       <br />
-      <ControlledCarousel missions={missions} />
+      {isDailyMissionRemaning?(
+      <ControlledCarousel missions={missions} />) : (<>
+      <h2>
+        Gratulation! Du hast heute die maximale Anzahl an Missionen
+        abgeschlossen. Morgen kannst du neue abschließen.
+      </h2>
+      <div className="disabled">
+        <ControlledCarousel missions={missions} />
+      </div></>
+      )}
     </>
   );
 }

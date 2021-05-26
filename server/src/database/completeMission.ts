@@ -44,6 +44,16 @@ const createFeedbackEntry = database.prepare<
 	"INSERT INTO feedback (missionId, playerId, time, feedback, enjoy, importance, frequency, comments) VALUES (?,?,datetime('now'),?,?,?,?,?)"
 );
 
+const countCompletedDailyMissionFromPlayer = database.prepare<[number, number]>(
+	"SELECT COUNT(*) AS count FROM dailyMissions WHERE completedByPlayer=? AND team=?"
+);
+
+export function hasPlayerDailyMissionsLeft(player: number, team: number) {
+	if (countCompletedDailyMissionFromPlayer.get(player, team).count < 2)
+		return true;
+	return false;
+}
+
 export function completeMission(
 	playerId: number,
 	dailyMissionId: number,
@@ -51,16 +61,20 @@ export function completeMission(
 	teamId: number,
 	feedback: IMissionFeedback
 ) {
-	if (selectIncompleteMission.get(dailyMissionId).count > 0)
+	if (
+		selectIncompleteMission.get(dailyMissionId).count > 0 &&
+		hasPlayerDailyMissionsLeft(playerId, teamId)
+	) {
 		createCompletedEntry.run(teamId, missionId);
-	updateDailyMissionComplete.run(playerId, dailyMissionId);
-	createFeedbackEntry.run(
-		missionId,
-		playerId,
-		feedback.feedback,
-		feedback.enjoy,
-		feedback.importance,
-		feedback.frequency,
-		feedback.comment
-	);
+		updateDailyMissionComplete.run(playerId, dailyMissionId);
+		createFeedbackEntry.run(
+			missionId,
+			playerId,
+			feedback.feedback,
+			feedback.enjoy,
+			feedback.importance,
+			feedback.frequency,
+			feedback.comment
+		);
+	}
 }
