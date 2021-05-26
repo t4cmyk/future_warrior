@@ -207,11 +207,13 @@ const getDailyMissionsForTeam = database.prepare<number>(
 
 export function getDailyMissions(teamId: number) {
 	let d = getLastDailyUpdate(teamId);
+
 	if (d.lastDailyUpdate == null) {
 		pickDailyMissions(teamId);
 		setLastDailyUpdate(teamId, new Date());
 	} else if (
-		convertSQLToJsDate(d.lastDailyUpdate) < getStartOfDay(new Date())
+		convertSQLToJsDate(d.lastDailyUpdate).getTime() <
+		getStartOfDay(new Date()).getTime()
 	) {
 		pickDailyMissions(teamId);
 		setLastDailyUpdate(teamId, new Date());

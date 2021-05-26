@@ -18,7 +18,7 @@ export function convertSQLToJsDate(sqlDate: string) {
 	if (!match) throw new Error();
 	// const match = result[0];
 	const year = parseInt(match[1]);
-	const month = parseInt(match[2]);
+	const month = parseInt(match[2])-1;
 	const day = parseInt(match[3]);
 	const hour = parseInt(match[4]);
 	const min = parseInt(match[5]);
