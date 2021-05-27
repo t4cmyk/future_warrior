@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Button,
   Container,
@@ -6,19 +6,22 @@ import {
   FormControl,
   InputGroup,
   ListGroup,
-} from "react-bootstrap";
-import { getToken, getUsername } from "../../core/authentication";
+} from 'react-bootstrap';
+import { getToken, getUsername } from '../../core/authentication';
 
 type OnChatUpdateHandler = (entries: IChatEntry[]) => any;
 let chatData: IChatEntry[] = [];
 const onChatListener: OnChatUpdateHandler[] = [];
+
 function onChatData(entries: IChatEntry[]) {
   chatData = entries;
   onChatListener.forEach((callback) => callback(entries));
 }
+
 function addOnChatListener(handler: OnChatUpdateHandler) {
   onChatListener.push(handler);
 }
+
 function removeOnChatListener(handler: OnChatUpdateHandler) {
   const idx = onChatListener.indexOf(handler);
   if (idx >= 0) {
@@ -46,8 +49,16 @@ function useChatEntries() {
 function ChatEntry(props: { entry: IChatEntry }) {
   return (
     <ListGroup.Item
-      className={props.entry.name === getUsername() ? "text-right" : ""}
+      className={props.entry.name === getUsername() ? 'text-right' : ''}
     >
+      <span>{
+        new Intl.DateTimeFormat('de-DE', {
+          year: 'numeric',
+          month: 'long',
+          day: '2-digit',
+          hour: 'numeric', minute: 'numeric', second: 'numeric',
+        }).format(new Date(props.entry.time))
+      }</span>
       <h5 className="text-capitalize">{props.entry.name}</h5>
       <span>{props.entry.message}</span>
     </ListGroup.Item>
@@ -74,8 +85,8 @@ function TeamChat() {
   const onSendChat = async () => {
     const message = inputRef.current.value;
     const request: RequestInit = {
-      method: "POST",
-      headers: { "Content-Type": "text/plain" },
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
       body: message,
     };
     const resp = await fetch(`/chat?&token=${getToken()}`, request);
@@ -83,7 +94,7 @@ function TeamChat() {
       const data = await resp.json();
       onChatData(data);
     }
-    inputRef.current.value = "";
+    inputRef.current.value = '';
   };
 
   useEffect(() => {
@@ -98,7 +109,7 @@ function TeamChat() {
       entry={entry}
     />
   ));
-  listElements.push(<div key="dummy" ref={dummyRef} />);
+  listElements.push(<div key="dummy" ref={dummyRef}/>);
 
   return (
     <>
@@ -110,7 +121,7 @@ function TeamChat() {
         }}
       >
         <InputGroup className="mb-3">
-          <FormControl ref={inputRef} placeholder="Nachricht eintippen..." />
+          <FormControl ref={inputRef} placeholder="Nachricht eintippen..."/>
           <InputGroup.Append>
             <Button type="submit" variant="secondary">
               Chat
@@ -126,11 +137,11 @@ export function Chat() {
   return (
     <>
       <h1>Team-Chat</h1>
-      <br />
+      <br/>
       <Container>
-        <TeamChat />
+        <TeamChat/>
       </Container>
-      <br />
+      <br/>
     </>
   );
 }
