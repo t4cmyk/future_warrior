@@ -63,6 +63,7 @@ export function logoutPlayer() {
   jwt = "";
   localStorage.removeItem("jwt");
   onLoginStateChange();
+  window.location.href = "/";
 }
 
 export function isLoggedIn() {

@@ -76,22 +76,22 @@ function SwitchPageContent() {
       </Route>
 
       <Route path="/Main/">
-        <Main />
+        {isLoggedIn() ? <Main />: <Redirect to="/Landing" />}
       </Route>
       <Route path="/Planet/">
-        <Planet />
+        {isLoggedIn() ? <Planet />: <Redirect to="/Landing" />}
       </Route>
       <Route path="/Teams/">
-        <Teams />
+        {isLoggedIn() ? <Teams />: <Redirect to="/Landing" />}
       </Route>
       <Route path="/Missions/">
-        <Missions />
+        {isLoggedIn() ? <Missions />: <Redirect to="/Landing" />}
       </Route>
       <Route path="/Chat/">
-        <Chat />
+        {isLoggedIn() ? <Chat />: <Redirect to="/Landing" />}
       </Route>
       <Route path="/MissionComplete/:mission">
-        <MissionComplete />
+        {isLoggedIn() ? <MissionComplete />: <Redirect to="/Landing" />}
       </Route>
 
       <Route path="/" exact>
