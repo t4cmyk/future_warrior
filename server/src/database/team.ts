@@ -1,5 +1,4 @@
-import { database } from "./core";
-import { Sector } from "./missions";
+import { database } from './core';
 
 const selectTeams = database.prepare("SELECT id, name FROM teams");
 
@@ -30,6 +29,11 @@ const updatePlayerSectorQuery = database.prepare<[string, number, number]>(
 const changeTeamSectorsQuery = database.prepare<
 	[string, string, string, number]
 >("UPDATE teams SET sector1 = ?, sector2 = ?, sector3 = ? WHERE id=?");
+
+const getMemberNamesByTeamQuery = database.prepare<number>(
+  "SELECT name FROM participates, players WHERE teamId=? AND players.id=participates.playerId"
+);
+
 
 export function getTeams() {
 	const teams: { name: string; id: number }[] = selectTeams
@@ -89,4 +93,9 @@ export function checkTeamSectorChoice(team: number) {
 
 export function resetPlayerSectorsOfTeam(team: number) {
 	resetPlayerSectorsOfTeamQuery.run(team);
+}
+
+
+export function getTeamMemberNamesByTeamId(teamId: number) {
+	return getMemberNamesByTeamQuery.all(teamId);
 }

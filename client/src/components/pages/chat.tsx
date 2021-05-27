@@ -8,6 +8,7 @@ import {
   ListGroup,
 } from 'react-bootstrap';
 import { getToken, getUsername } from '../../core/authentication';
+import { getTeamMemberNamesByTeamId } from '../../../../server/src/database/team';
 
 type OnChatUpdateHandler = (entries: IChatEntry[]) => any;
 let chatData: IChatEntry[] = [];
@@ -137,6 +138,8 @@ export function Chat() {
   return (
     <>
       <h1>Team-Chat</h1>
+      <br/>
+      {/*<h4>Mitglieder:innen - A, B, C, D</h4>*/}
       <br/>
       <Container>
         <TeamChat/>
