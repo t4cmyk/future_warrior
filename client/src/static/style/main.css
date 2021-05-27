@@ -59,6 +59,8 @@ header {
   text-align: center;
   border-radius: 15px;
   font-size: 1em;
+  position: relative;
+  z-index: 5;
 }
 
 footer {
