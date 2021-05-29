@@ -2,6 +2,7 @@ import { database } from "./core";
 import { readFileSync, writeFileSync } from "fs";
 import { getSectorsFromTeamId } from "./team";
 import { convertJsToSQLDate, convertSQLToJsDate, getStartOfDay } from "../util";
+import { isKeyMissionFromTeamFinished } from "./keyMission";
 
 export enum Sector {
 	diet = "Ernährung",
@@ -106,7 +107,8 @@ function getImagePath(sector: Sector, score: number) {
 			break;
 		case Sector.key:
 			imagePath = "/img/missions/key";
-			break;
+			imagePath += ".png";
+			return imagePath;
 	}
 	if (score > 4) imagePath += "-advanced";
 	imagePath += ".png";
@@ -122,6 +124,8 @@ const createMissionQuery = database.prepare<
 const clearDailyMissionsForTeamQuery = database.prepare<number>(
 	"DELETE FROM dailyMissions WHERE team=?"
 );
+
+const clearMissionsQuery = database.prepare("DELETE FROM missions");
 
 const createDailyMissionQuery = database.prepare<
 	[number, number, number | null]
@@ -179,6 +183,10 @@ const getNormalMissionsQuery = database.prepare(
 
 const getAdvancedMissionsQuery = database.prepare<String>(
 	"SELECT * FROM missions WHERE score>4 AND creatorId=-1 AND sector=?"
+);
+
+const getKeyMissionQuery = database.prepare(
+	"SELECT * FROM missions WHERE sector='Schlüsselereignis'"
 );
 
 const getCustomMissionsQuery = database.prepare(
@@ -287,6 +295,11 @@ export async function pickDailyMissions(teamId: number) {
 		dailyMissions.push(
 			custMissions[Math.floor(Math.random() * custMissions.length)]
 		);
+
+	if (!isKeyMissionFromTeamFinished(teamId)) {
+		let keyMission = getKeyMissionQuery.get();
+		dailyMissions.push(keyMission);
+	}
 
 	dailyMissions.forEach((m) => {
 		createDailyMission(teamId, m.id, null);

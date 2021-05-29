@@ -248,5 +248,15 @@
 				"score": 5
 			}
 		]
+	},
+	{
+		"sector": "Schlüsselereignis",
+		"tasks": [
+			{
+				"title": "Schlüssel-Mission",
+				"description": "Das ist eure gemeinsame Team-Mission, die ihr absolvieren müsst, um das letzte Level abzuschließen. Eine detailierte Beschreibung findet ihr unterhalb der Missionsauswahl.",
+				"score": 20
+			}
+		]
 	}
 ]

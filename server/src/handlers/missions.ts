@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { hasPlayerDailyMissionsLeft } from "../database/completeMission";
+import { isKeyMissionFromTeamFinished } from "../database/keyMission";
 import { getDailyMissions, getMissionData } from "../database/missions";
 import { getTeamIDFromUserId } from "../database/team";
 
@@ -42,6 +43,22 @@ export async function checkRemainingMissionsHandler(
 		if (team == null) throw new Error();
 
 		let result = hasPlayerDailyMissionsLeft(user, team);
+		resp.status(200).json(result);
+	} catch {
+		resp.sendStatus(500);
+	}
+}
+
+export async function keyMissionHandler(
+	req: Request,
+	resp: Response
+) {
+	try {
+		const user = req.currentUser.id;
+		const team = getTeamIDFromUserId(user);
+		if (team == null) throw new Error();
+
+		let result = isKeyMissionFromTeamFinished(team);
 		resp.status(200).json(result);
 	} catch {
 		resp.sendStatus(500);

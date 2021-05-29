@@ -10,6 +10,7 @@ import { initMissions, Mission } from "./database/missions";
 import { createTestGame, testSections } from "./database/testgame";
 import {
 	checkRemainingMissionsHandler,
+	keyMissionHandler,
 	missionsHandler,
 	queryMissionHandler,
 } from "./handlers/missions";
@@ -23,7 +24,6 @@ import { getStatusHandler } from "./handlers/status";
 import { forgotPasswordHandler } from "./handlers/forgotPassword";
 import { changePasswordHandler } from "./handlers/changePasswordHandler";
 import { verifyHandler } from "./handlers/verify";
-import { createMailVerificationToken } from "./database/verify";
 import { allTeamScoresHandler, teamScoreHandler } from "./handlers/score";
 import { gameboardHandler } from "./handlers/game";
 import {
@@ -49,6 +49,7 @@ async function setupServer() {
 		authenticateUser,
 		checkRemainingMissionsHandler
 	);
+	app.get("/keyMission", authenticateUser, keyMissionHandler)
 	app.get("/planetData", authenticateUser, planetDataHandler);
 	app.get("/stats", handleStatsData);
 	app.get("/feedback", handleFeedbackData);
@@ -78,7 +79,6 @@ async function setupServer() {
 	console.log("Hello");
 	console.log("------------------------------");
 	initMissions();
-	//testSections();
 }
 
 setupServer();

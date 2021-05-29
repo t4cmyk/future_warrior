@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getToken } from "../../core/authentication";
 import { Carousel } from "../carousel";
 import { MissionCard } from "../missionCard";
+import { KeyMissionDescription } from "../keyMissionDescription";
 
 export interface IDailyMissionData {
   id: number;
@@ -77,16 +78,20 @@ export function Missions() {
       <h1>Missionen</h1>
       <br />
       <br />
-      {isDailyMissionRemaning?(
-      <ControlledCarousel missions={missions} />) : (<>
-      <h2>
-        Gratulation! Du hast heute die maximale Anzahl an Missionen
-        abgeschlossen. Morgen kannst du neue abschließen.
-      </h2>
-      <div className="disabled">
+      {isDailyMissionRemaning ? (
         <ControlledCarousel missions={missions} />
-      </div></>
+      ) : (
+        <>
+          <h2>
+            Gratulation! Du hast heute die maximale Anzahl an Missionen
+            abgeschlossen. Morgen kannst du neue abschließen.
+          </h2>
+          <div className="disabled">
+            <ControlledCarousel missions={missions} />
+          </div>
+        </>
       )}
+      <KeyMissionDescription />
     </>
   );
 }
