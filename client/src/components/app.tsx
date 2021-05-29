@@ -82,7 +82,7 @@ function SwitchPageContent() {
         {isLoggedIn() ? <Planet />: <Redirect to="/Landing" />}
       </Route>
       <Route path="/Teams/">
-        {isLoggedIn() ? <Teams />: <Redirect to="/Landing" />}
+        <Teams />
       </Route>
       <Route path="/Missions/">
         {isLoggedIn() ? <Missions />: <Redirect to="/Landing" />}
