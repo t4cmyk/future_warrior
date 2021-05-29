@@ -53,5 +53,6 @@ export function getTeamLevel(team: number) {
 export function getHappinessPoints(team: number) {
 	if (!isKeyMissionFromTeamFinished(team)) return 0;
 	let score = getTotalScoreForTeam(team);
-	return score - pointsForCompletePlanet / pointsForOneHappinessPoint;
+	if (score <= pointsForCompletePlanet) return 0;
+	return (score - pointsForCompletePlanet) / pointsForOneHappinessPoint;
 }
