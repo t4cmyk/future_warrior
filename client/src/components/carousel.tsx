@@ -1,6 +1,8 @@
 import React, { createRef, useEffect, useRef, useState } from "react";
 import CarouselController from "./carouselController";
 
+type RenderFunctionType<ElementType> = (elem: ElementType) => JSX.Element;
+
 interface CarouselProps<ElementType> {
   divCount?: number;
   width: number;
@@ -11,13 +13,29 @@ interface CarouselProps<ElementType> {
   timeConstant: number;
   dim?: number;
   elementList: Readonly<Array<ElementType>>;
-  render: (elem: ElementType) => JSX.Element;
+  render: RenderFunctionType<ElementType>;
   focusElement?: ElementType;
   onScroll?: (song?: ElementType) => any;
   onClick?: (song: ElementType) => any;
   onDoubleClick: (song: ElementType) => any;
   onContextMenu: (song: ElementType) => any;
   registerSongListChange?: (callback: () => any) => () => any;
+}
+
+function CarouselElement<ElementType>(props: {
+  element?: ElementType;
+  divRef: React.RefObject<HTMLDivElement>;
+  render: RenderFunctionType<ElementType>;
+  width: number;
+}) {
+  return (
+    <div
+      ref={props.divRef}
+      style={{ position: "absolute", maxWidth: props.width }}
+    >
+      {props.element ? props.render(props.element) : <></>}
+    </div>
+  );
 }
 
 export function Carousel<ElementType>(props: CarouselProps<ElementType>) {
@@ -74,31 +92,29 @@ export function Carousel<ElementType>(props: CarouselProps<ElementType>) {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const renderDivContent = (idx: number) => {
-    if (!controller || props.elementList.length === 0) return <></>;
+  const getElement = (idx: number) => {
+    if (!controller || props.elementList.length === 0) return undefined;
     const divCnt = divRefs.length;
     const halfDivCnt = Math.floor(divCnt / 2);
     const overflowCount = Math.floor(
       (renderOffset + halfDivCnt - idx) / divCnt
     );
     const elemIdx = (idx + overflowCount * divCnt) % props.elementList.length;
-    if (isNaN(elemIdx)) return <></>;
-    return props.render(
-      props.elementList[
-        elemIdx < 0 ? elemIdx + props.elementList.length : elemIdx
-      ]
-    );
+    if (isNaN(elemIdx)) return undefined;
+    return props.elementList[
+      elemIdx < 0 ? elemIdx + props.elementList.length : elemIdx
+    ];
   };
 
   let divElements = divRefs.map((ref, i) => {
     return (
-      <div
-        ref={ref}
+      <CarouselElement<ElementType>
         key={i}
-        style={{ position: "absolute", maxWidth: props.width }}
-      >
-        {renderDivContent(i)}
-      </div>
+        divRef={ref}
+        width={props.width}
+        element={getElement(i)}
+        render={props.render}
+      />
     );
   });
   return (
