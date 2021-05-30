@@ -245,13 +245,6 @@ export default class CarouselController<ElementType> {
     }
   }
 
-  getElemIdxFromDivIdx(divIdx: number) {
-    const absoluteIdx =
-      this.centerIdx + (divIdx - Math.floor(this.divCount / 2.0));
-    const wrappedIdx = absoluteIdx % this._elementList.length;
-    return wrappedIdx < 0 ? wrappedIdx + this._elementList.length : wrappedIdx;
-  }
-
   getElement(idx: number) {
     let result = idx % this._elementList.length;
     if (result < 0) result += this._elementList.length;

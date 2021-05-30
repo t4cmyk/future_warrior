@@ -76,9 +76,12 @@ export function Carousel<ElementType>(props: CarouselProps<ElementType>) {
 
   const renderDivContent = (idx: number) => {
     if (!controller || props.elementList.length === 0) return <></>;
-    const elemIdx =
-      (controller.getElemIdxFromDivIdx(idx) - renderOffset) %
-      props.elementList.length;
+    const divCnt = divRefs.length;
+    const halfDivCnt = Math.floor(divCnt / 2);
+    const overflowCount = Math.floor(
+      (renderOffset + halfDivCnt - idx) / divCnt
+    );
+    const elemIdx = (idx + overflowCount * divCnt) % props.elementList.length;
     if (isNaN(elemIdx)) return <></>;
     return props.render(
       props.elementList[

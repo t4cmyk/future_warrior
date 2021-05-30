@@ -20,8 +20,7 @@ export function useMissionData(missionId: number) {
   const [missionData, setMissionData] = useState(
     missionCache.has(missionId) ? missionCache.get(missionId) : undefined
   );
-  useEffect(() => {
-    if (missionData) return;
+  const loadMission = () => {
     const loadMission = !loadMissionCallbacks.has(missionId);
     if (loadMission) {
       const callbacks = new Array<(m: IMission) => any>();
@@ -43,6 +42,18 @@ export function useMissionData(missionId: number) {
         callbacks[callbacks.length - 1];
       callbacks.pop();
     };
+  };
+  useEffect(() => {
+    if (missionData && missionData.id !== missionId) {
+      const entry = missionCache.has(missionId)
+        ? missionCache.get(missionId)
+        : undefined;
+      setMissionData(entry);
+      if (!entry) return loadMission();
+    }
+  }, [missionId]);
+  useEffect(() => {
+    if (!missionData) return loadMission();
   }, []);
   return missionData;
 }
