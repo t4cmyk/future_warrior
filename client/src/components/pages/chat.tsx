@@ -134,10 +134,40 @@ function TeamChat() {
   );
 }
 
+export function ChatTitle() {
+  const title = useRef<HTMLHeadingElement>(null);
+  const [teamName, setTeamName] = useState<string>();
+  useEffect(() => {
+    const resultHandler = { onFetch: setTeamName };
+    const fetchTeamName = async () => {
+      try {
+        const resp = await fetch(`/teamName?token=${getToken()}`);
+        const respData = (await resp.json()) as string;
+        setTeamName(respData);
+        title.current.innerText = respData + " Chat";
+        return respData;
+      } catch (e) {
+        console.log(e);
+      }
+      return;
+    };
+    fetchTeamName().then((result) => resultHandler.onFetch(result));
+    return () => {
+      resultHandler.onFetch = (_: any) => {};
+    };
+  }, []);
+
+  return (
+  <>
+    <h1 ref={title}>Team-Chat</h1>
+  </>);
+}
+
 export function Chat() {
   return (
     <>
-      <h1>Team-Chat</h1>
+    <ChatTitle/>
+      
       <br/>
       {/*<h4>Mitglieder:innen - A, B, C, D</h4>*/}
       <br/>

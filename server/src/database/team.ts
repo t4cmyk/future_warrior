@@ -1,4 +1,4 @@
-import { database } from './core';
+import { database } from "./core";
 
 const selectTeams = database.prepare("SELECT id, name FROM teams");
 
@@ -18,6 +18,10 @@ const selectPlayerSectorQuery = database.prepare<[number, number]>(
 	"SELECT sector FROM participates WHERE playerId=? AND teamId=? "
 );
 
+const selectTeamNameQuery = database.prepare<[number]>(
+	"SELECT name FROM teams WHERE id=? "
+);
+
 const selectPlayerSectorsByTeamQuery = database.prepare<[number]>(
 	"SELECT sector FROM participates WHERE teamId=? "
 );
@@ -31,9 +35,8 @@ const changeTeamSectorsQuery = database.prepare<
 >("UPDATE teams SET sector1 = ?, sector2 = ?, sector3 = ? WHERE id=?");
 
 const getMemberNamesByTeamQuery = database.prepare<number>(
-  "SELECT name FROM participates, players WHERE teamId=? AND players.id=participates.playerId"
+	"SELECT name FROM participates, players WHERE teamId=? AND players.id=participates.playerId"
 );
-
 
 export function getTeams() {
 	const teams: { name: string; id: number }[] = selectTeams
@@ -59,6 +62,10 @@ export function getSectorsFromTeamId(teamId: number) {
 export function getTeamIDFromUserId(userId: number) {
 	const result: { teamId: number } = getTeamIdFromUserIdQuery.get(userId);
 	return result.teamId;
+}
+
+export function getTeamName(team: number) {
+	return selectTeamNameQuery.get(team).name;
 }
 
 export function createTeam(name: string) {
@@ -94,7 +101,6 @@ export function checkTeamSectorChoice(team: number) {
 export function resetPlayerSectorsOfTeam(team: number) {
 	resetPlayerSectorsOfTeamQuery.run(team);
 }
-
 
 export function getTeamMemberNamesByTeamId(teamId: number) {
 	return getMemberNamesByTeamQuery.all(teamId);

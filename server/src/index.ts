@@ -17,7 +17,11 @@ import {
 import { authenticateUser } from "./authentication";
 import { completeMissionHandler } from "./handlers/completeMission";
 import { handleFeedbackData, handleStatsData } from "./handlers/teams";
-import { getChatHandler, postChatMsgHandler } from "./handlers/chat";
+import {
+	getChatHandler,
+	postChatMsgHandler,
+	teamNameHandler,
+} from "./handlers/chat";
 import { planetDataHandler } from "./handlers/planet";
 import { contactFormHandler } from "./handlers/contactForm";
 import { getStatusHandler } from "./handlers/status";
@@ -49,13 +53,14 @@ async function setupServer() {
 		authenticateUser,
 		checkRemainingMissionsHandler
 	);
-	app.get("/keyMission", authenticateUser, keyMissionHandler)
+	app.get("/keyMission", authenticateUser, keyMissionHandler);
 	app.get("/planetData", authenticateUser, planetDataHandler);
 	app.get("/stats", handleStatsData);
 	app.get("/feedback", handleFeedbackData);
 	app.post("/sectorChoice", authenticateUser, sectorChoiceHandler);
 	app.get("/sectorSelection", authenticateUser, sectorSelectionHandler);
 	app.post("/complete", authenticateUser, completeMissionHandler);
+	app.get("/teamName", authenticateUser, teamNameHandler);
 	app.get("/chat", authenticateUser, getChatHandler);
 	app.post("/chat", textBodyParser(), authenticateUser, postChatMsgHandler);
 	app.post("/register", registerUserHandler);
