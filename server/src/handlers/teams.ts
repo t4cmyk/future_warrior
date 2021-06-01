@@ -7,12 +7,12 @@ import { daysBetween, getEndOfDay, getStartOfDay } from "../util";
 function getTeamStats() {
 	const teams = getTeams();
 	const teamScores: { team: number; scores: number[] }[] = [];
-	const initalDate = new Date(2021, 5, 23);
+	const initalDate = new Date(2021, 4, 23);
 
 	for (let team of teams) {
 		const scores: number[] = [];
+		const start = getStartOfDay(initalDate);
 		for (let date of daysBetween(new Date(), initalDate)) {
-			const start = getStartOfDay(date);
 			const end = getEndOfDay(date);
 			const teamScore = getTeamScoreForDate(team.id, start, end);
 			scores.push(teamScore);
@@ -22,13 +22,14 @@ function getTeamStats() {
 	}
 
 	const result = [];
-	const idx = 0;
+	let idx = 0;
 	for (let date of daysBetween(new Date(), initalDate)) {
 		const dailyData: any = {};
 		dailyData.date = `${date.getDate()}.${date.getMonth() + 1}.`;
 		teamScores.forEach((score) => {
 			dailyData[score.team] = score.scores[idx];
 		});
+		idx++;
 		result.push(dailyData);
 	}
 
