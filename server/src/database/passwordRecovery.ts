@@ -23,6 +23,7 @@ export function changePassword(user: number, newPassword: string) {
 		.update(salt)
 		.update(newPassword)
 		.digest("hex");
+	changePasswordQuery.run(hash, salt, user);
 }
 
 export interface IPwRecoveryData {
@@ -32,7 +33,7 @@ export interface IPwRecoveryData {
 
 export function createPwRecoveryToken(userId: number) {
 	return jwt.sign(
-		{ id: userId, timestamp: new Date().valueOf()},
+		{ id: userId, timestamp: new Date().valueOf() },
 		getAccessTokenSecret()
 	);
 }
