@@ -29,16 +29,18 @@ import { Verify } from "./pages/verify";
 import { Header } from "./header";
 import { ScrollToTop } from "./scrollToTop";
 import { CookieBanner } from "./cookiebanner";
+import { useLoginState } from "./hooks/loginState";
 
 function SwitchPageContent() {
   const loadedGameState = requireGameState();
+  const loginState = useLoginState();
 
   if (!loadedGameState) return <></>;
 
   return (
     <Switch>
       <Route path="/Landing/">
-        <Landing />
+        {loginState ? <Redirect to="/Main/" /> : <Landing />}
       </Route>
       <Route path="/Login/">
         <Login />
@@ -76,26 +78,26 @@ function SwitchPageContent() {
       </Route>
 
       <Route path="/Main/">
-        {isLoggedIn() ? <Main />: <Redirect to="/Landing" />}
+        {loginState ? <Main /> : <Redirect to="/Landing/" />}
       </Route>
       <Route path="/Planet/">
-        {isLoggedIn() ? <Planet />: <Redirect to="/Landing" />}
+        {loginState ? <Planet /> : <Redirect to="/Landing/" />}
       </Route>
       <Route path="/Teams/">
         <Teams />
       </Route>
       <Route path="/Missions/">
-        {isLoggedIn() ? <Missions />: <Redirect to="/Landing" />}
+        {loginState ? <Missions /> : <Redirect to="/Landing/" />}
       </Route>
       <Route path="/Chat/">
-        {isLoggedIn() ? <Chat />: <Redirect to="/Landing" />}
+        {loginState ? <Chat /> : <Redirect to="/Landing/" />}
       </Route>
       <Route path="/MissionComplete/:mission">
-        {isLoggedIn() ? <MissionComplete />: <Redirect to="/Landing" />}
+        {loginState ? <MissionComplete /> : <Redirect to="/Landing/" />}
       </Route>
 
       <Route path="/" exact>
-        <Redirect to={isLoggedIn() ? "/Main/" : "/Landing/"} />
+        <Redirect to={loginState ? "/Main/" : "/Landing/"} />
       </Route>
       <Route path="/">404</Route>
     </Switch>

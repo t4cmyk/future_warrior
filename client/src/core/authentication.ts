@@ -35,7 +35,7 @@ function parseToken() {
 loadFromLocalStorage();
 
 function onLoginStateChange() {
-  onLoginStateChangeCallbacks.forEach((cb) => cb());
+  [...onLoginStateChangeCallbacks].forEach((cb) => cb());
 }
 
 export async function authenticateUser(username: string, password: string) {

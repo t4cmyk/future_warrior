@@ -14,7 +14,7 @@ export function useLoginState() {
     };
     const cleanup = registerOnLoginChange(onNewLoginState);
     return cleanup;
-  });
+  }, []);
 
   if (loggedInState) {
     return {
