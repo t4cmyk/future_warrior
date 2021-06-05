@@ -18,9 +18,13 @@ const calcPoly = (coefs: number[], pos: number) => {
 	});
 };
 
-const anglePoly = [-3.5744454867309372e-2, 8.9583472024692079e-2];
+const anglePoly = [4.7115890059858501e-2, 8.9391932821537581e-2];
 const radiusPoly = [
-	9.6782875101673611e1, -2.213185722071942e-2, -4.3885400281670449e-3,
+	9.8057340089914845e1, -4.702033999520765e-1, -1.421116485586682e-3,
+	2.6435669277312997e-3, -1.5015714040843254e-4, 3.6796337272804276e-6,
+	-4.9298718523646309e-8, 3.8602156233250395e-10, -1.7045732837159821e-12,
+	3.0536612898665987e-15, 6.9562405234876874e-18, -4.9113909872355874e-20,
+	1.0026924850213402e-22, -7.4691025295758869e-26,
 ];
 
 function getFigureModel(
@@ -38,7 +42,7 @@ function getFigureModel(
 	const radius = calcPoly(radiusPoly, score) + radiusOffset;
 
 	const x = radius * Math.sin(angle);
-	const y = -9.3 + score * 0.3 - (Math.sin(score * Math.PI) + 1.0) * 0.4;
+	const y = -9.3 + score * 0.265 - (Math.sin(score * Math.PI) + 1.0) * 0.4;
 	const z = radius * Math.cos(angle);
 	return {
 		model: models[team % models.length],
