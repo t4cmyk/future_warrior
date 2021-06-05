@@ -7,7 +7,7 @@ import { daysBetween, getEndOfDay, getStartOfDay } from "../util";
 function getTeamStats() {
 	const teams = getTeams();
 	const teamScores: { team: number; scores: number[] }[] = [];
-	const initalDate = new Date(2021, 4, 23);
+	const initalDate = new Date(2021, 4, 23, 12);
 
 	for (let team of teams) {
 		const scores: number[] = [];
