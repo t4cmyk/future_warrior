@@ -30,8 +30,8 @@ const selectIncompleteMission = database.prepare<[number]>(
 	"SELECT COUNT(*) AS count FROM dailyMissions WHERE id=? AND completedByPlayer IS NULL"
 );
 
-const createCompletedEntry = database.prepare<[number, number]>(
-	"INSERT INTO completedMissions (team, mission, time) VALUES (?, ?, datetime('now'))"
+const createCompletedEntry = database.prepare<[number, number, number]>(
+	"INSERT INTO completedMissions (team, mission, time, bonusScore) VALUES (?, ?, datetime('now'), (SELECT score * 2 FROM missions WHERE id=?))"
 );
 
 const updateDailyMissionComplete = database.prepare<[number, number]>(
@@ -65,7 +65,7 @@ export function completeMission(
 		selectIncompleteMission.get(dailyMissionId).count > 0 &&
 		hasPlayerDailyMissionsLeft(playerId, teamId)
 	) {
-		createCompletedEntry.run(teamId, missionId);
+		createCompletedEntry.run(teamId, missionId, missionId);
 		updateDailyMissionComplete.run(playerId, dailyMissionId);
 		createFeedbackEntry.run(
 			missionId,

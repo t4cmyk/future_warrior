@@ -4,15 +4,15 @@ import { isKeyMissionFromTeamFinished } from "./keyMission";
 
 const selectAllTeamScores = database.prepare<[]>(
 	`SELECT id as team, IFNULL(score, 1) as score FROM teams LEFT OUTER JOIN 
-	(SELECT team, SUM(score) AS score FROM completedMissions, missions WHERE completedMissions.mission = missions.id GROUP BY team) AS scores ON teams.id=scores.team`
+	(SELECT team, (SUM(score) + SUM(bonusScore)) AS score FROM completedMissions, missions WHERE completedMissions.mission = missions.id GROUP BY team) AS scores ON teams.id=scores.team`
 );
 
 const selectTotalScoreForTeam = database.prepare<[number]>(
-	"SELECT SUM(score) AS score FROM completedMissions, missions WHERE team=? AND completedMissions.mission = missions.id"
+	"SELECT (SUM(score) + SUM(bonusScore)) AS score FROM completedMissions, missions WHERE team=? AND completedMissions.mission = missions.id"
 );
 
 const selectScoreForTeamAndDate = database.prepare<[number, string, string]>(
-	"SELECT SUM(score) AS score FROM completedMissions, missions WHERE team=? AND completedMissions.mission = missions.id AND time>=? AND time<=?"
+	"SELECT (SUM(score) + SUM(bonusScore)) AS score FROM completedMissions, missions WHERE team=? AND completedMissions.mission = missions.id AND time>=? AND time<=?"
 );
 
 export function getAllTeamScores() {
