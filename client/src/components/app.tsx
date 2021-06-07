@@ -30,6 +30,7 @@ import { Header } from "./header";
 import { ScrollToTop } from "./scrollToTop";
 import { CookieBanner } from "./cookiebanner";
 import { useLoginState } from "./hooks/loginState";
+import { Ending } from "./pages/ending";
 
 function SwitchPageContent() {
   const loadedGameState = requireGameState();
@@ -62,6 +63,10 @@ function SwitchPageContent() {
       </Route>
       <Route path="/Countdown/">
         <Countdown />
+      </Route>
+
+      <Route path="/Ending/">
+        <Ending />
       </Route>
 
       <Route path="/Help/">
