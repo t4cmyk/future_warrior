@@ -61,8 +61,8 @@ async function setupServer() {
 	app.get("/sectorSelection", authenticateUser, sectorSelectionHandler);
 	app.post("/complete", authenticateUser, completeMissionHandler);
 	app.get("/teamName", authenticateUser, teamNameHandler);
-	app.get("/chat", authenticateUser, getChatHandler);
-	app.post("/chat", textBodyParser(), authenticateUser, postChatMsgHandler);
+	app.get("/chatMessages", authenticateUser, getChatHandler);
+	app.post("/chatMessages", textBodyParser(), authenticateUser, postChatMsgHandler);
 	app.post("/register", registerUserHandler);
 	app.post("/contactForm", contactFormHandler);
 	app.post("/login", loginUserHandler);

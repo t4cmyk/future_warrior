@@ -74,7 +74,7 @@ function TeamChat() {
 
   useEffect(() => {
     const fetchChatMessages = async () => {
-      const resp = await fetch(`/chat?token=${getToken()}`);
+      const resp = await fetch(`/chatMessages?token=${getToken()}`);
       const data = await resp.json();
       onChatData(data);
     };
@@ -90,7 +90,7 @@ function TeamChat() {
       headers: { 'Content-Type': 'text/plain' },
       body: message,
     };
-    const resp = await fetch(`/chat?&token=${getToken()}`, request);
+    const resp = await fetch(`/chatMessages?&token=${getToken()}`, request);
     if (resp.ok) {
       const data = await resp.json();
       onChatData(data);
