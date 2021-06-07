@@ -127,7 +127,7 @@ export function SelectSector() {
           <Alert.Heading></Alert.Heading>
           Glückwusch, Ihr habt einen weiteren Sektor zum Ausbauen
           freigeschaltet. Sobald dein gesamtes Team den gleichen Sektor
-          ausgewählt hat, wird die Auswahl bestätigt.
+          ausgewählt hat, wird die Auswahl bestätigt. Mit jedem neuen Sektor schaltet ihr neue Missionen frei.
           <br />
           <br />
           Welchen Sektor möchtest du ausbauen?

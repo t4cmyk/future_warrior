@@ -87,6 +87,7 @@ export function RecentFeedback() {
   ));
   return (
     <Container>
+      <h2>Die letzten 20 erfüllten Missionen von allem Teams:</h2>
       <Accordion defaultActiveKey="0">{cards}</Accordion>
     </Container>
   );
