@@ -145,7 +145,7 @@ export class GameboardGraphics {
     this.controls = new OrbitControls(camera, this.renderer.domElement);
     this.controls.target.set(0, 0.5, 0);
     this.controls.maxDistance = 1000.0;
-    this.controls.minDistance = 300.0;
+    this.controls.minDistance = 100.0;
     this.controls.update();
     this.controls.enablePan = false;
     this.controls.enableDamping = true;
