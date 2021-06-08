@@ -24,6 +24,8 @@ const fetchGameState = async () => {
   updateStateCallbacks.forEach((cb) => cb(data));
 };
 
+setInterval(fetchGameState, 60 * 1000);
+
 export function requireGameState() {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -40,7 +42,7 @@ export function requireGameState() {
       setLoaded(true);
     };
     loadGameState();
-  });
+  }, []);
   return loaded;
 }
 

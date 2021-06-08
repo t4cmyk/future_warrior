@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   Switch,
+  useHistory,
 } from "react-router-dom";
 import { Chat } from "./pages/chat";
 import { Contact } from "./pages/contact";
@@ -22,7 +23,7 @@ import { Planet } from "./pages/planet";
 import { isLoggedIn } from "../core/authentication";
 import { Footer } from "./footer";
 import { Countdown } from "./pages/countdown";
-import { requireGameState } from "./hooks/gameState";
+import { GamePhase, requireGameState, useGameState } from "./hooks/gameState";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { ChangePassword } from "./pages/changePassword";
 import { Verify } from "./pages/verify";
@@ -34,12 +35,28 @@ import { Ending } from "./pages/ending";
 
 function SwitchPageContent() {
   const loadedGameState = requireGameState();
+  const gameState = useGameState();
+  const history = useHistory();
   const loginState = useLoginState();
+
+  useEffect(() => {
+    if (
+      loadedGameState &&
+      gameState.phase == GamePhase.Finished &&
+      loginState &&
+      history.location.pathname != "/Ending/"
+    )
+      history.push("/Ending/");
+  });
 
   if (!loadedGameState) return <></>;
 
   return (
     <Switch>
+      <Route path="/Ending/">
+        <Ending />
+      </Route>
+
       <Route path="/Landing/">
         {loginState ? <Redirect to="/Main/" /> : <Landing />}
       </Route>
@@ -64,11 +81,6 @@ function SwitchPageContent() {
       <Route path="/Countdown/">
         <Countdown />
       </Route>
-
-      <Route path="/Ending/">
-        <Ending />
-      </Route>
-
       <Route path="/Help/">
         <Help />
       </Route>
