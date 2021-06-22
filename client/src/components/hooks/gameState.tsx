@@ -6,6 +6,7 @@ export enum GamePhase {
   Preparation,
   Running,
   Finished,
+  Sandbox,
 }
 
 interface GameState {

@@ -31,7 +31,7 @@ export function Register() {
   const [submitError, setSumbitError] = useState<string[]>([]);
 
   const state = useGameState();
-  if (state.phase !== GamePhase.Signup) {
+  if (state.phase !== GamePhase.Signup && state.phase !== GamePhase.Sandbox) {
     return (
       <Container>
         <h1>Registrierung beendet</h1>
@@ -61,7 +61,7 @@ export function Register() {
       const respData = await resp.json();
       if (resp.ok) {
         authenticateByJWT(respData.token);
-        history.push("/Main");
+        history.push("/Tutorial/");
       } else {
         setSumbitError(respData);
       }

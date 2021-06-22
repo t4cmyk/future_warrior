@@ -5,6 +5,7 @@ export enum GamePhase {
 	Preparation,
 	Running,
 	Finished,
+	Sandbox, 
 }
 
 interface GameState {
@@ -15,7 +16,7 @@ interface GameState {
 export function getCurrentGameState() {
 	const state: GameState = {
 		phase:
-			Date.now() > 1623175200 * 1000 ? GamePhase.Finished : GamePhase.Running,
+			Date.now() > 1624372190639 ? GamePhase.Sandbox : GamePhase.Finished,
 		nextPhase: new Date(),
 	};
 	return state;

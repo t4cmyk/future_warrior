@@ -22,6 +22,10 @@ const selectTeamNameQuery = database.prepare<[number]>(
 	"SELECT name FROM teams WHERE id=? "
 );
 
+const updateTeamNameQuery = database.prepare<[string, number]>(
+	"UPDATE teams SET name = ? WHERE id=?"
+);
+
 const selectPlayerSectorsByTeamQuery = database.prepare<[number]>(
 	"SELECT sector FROM participates WHERE teamId=? "
 );
@@ -70,6 +74,10 @@ export function getTeamName(team: number) {
 
 export function createTeam(name: string) {
 	createTeamQuery.run(name);
+}
+
+export function changeTeamName(id: number,name: string) {
+	updateTeamNameQuery.run(name, id);
 }
 
 export function changeTeamSectors(

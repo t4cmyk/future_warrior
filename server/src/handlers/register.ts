@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { createUserToken } from "../authentication";
+import { createParticipates } from "../database/game";
 import { loginUser } from "../database/login";
 import {
 	createUser,
@@ -8,6 +9,7 @@ import {
 	isValidUserCreateInfo,
 	UserCreateInfo,
 } from "../database/register";
+import { changeTeamName, createTeam, getTeams } from "../database/team";
 import { sendVerificationMail } from "../mail";
 import { GamePhase, getCurrentGameState } from "./status";
 
@@ -46,7 +48,10 @@ export async function registerUserHandler(req: Request, resp: Response) {
 		return;
 	}
 
-	if (getCurrentGameState().phase !== GamePhase.Signup) {
+	if (
+		getCurrentGameState().phase !== GamePhase.Signup &&
+		getCurrentGameState().phase !== GamePhase.Sandbox
+	) {
 		resp.status(400).json(["Die Registierung wurde beendet"]);
 		return;
 	}
@@ -79,6 +84,20 @@ export async function registerUserHandler(req: Request, resp: Response) {
 		resp.status(500).json(["Something went terribly wrong :("]);
 		return;
 	}
+
+	if (getCurrentGameState().phase === GamePhase.Sandbox) {
+		if (getTeams().length < 5) {
+			while (getTeams().length < 4) {
+				createTeam("FillerTeam");
+			}
+			createTeam("Team5");
+		}
+		let teamFiveId = getTeams()[4].id;
+		changeTeamName(teamFiveId, "Team"+teamFiveId)
+		
+		createParticipates(1, teamFiveId, userId);
+	}
+
 	const jwt = createUserToken(loginInfo, userId);
 	sendVerificationMail(userId, loginInfo.username, createInfo.mail);
 	resp.status(200).json({ token: jwt });

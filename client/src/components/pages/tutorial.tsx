@@ -14,7 +14,8 @@ export function Tutorial() {
         className="center"
       ></video>
       <br />
-      <Link to="/Countdown">
+      
+      <Link to="/Main">
         <Button className="center">Alles klar, los geht's!</Button>
       </Link>
     </>
